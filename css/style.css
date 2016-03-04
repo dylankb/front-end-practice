@@ -7,6 +7,17 @@ body {
   background-color: orange;
 }
 
+.title {
+  color: white;
+  font-size: 26px;
+}
+
+ol li {
+  background-color: tomato;
+  color: white;
+  margin-bottom: 5px;
+}
+
 h1 {  
   font-size: 90px;
   color: white;
@@ -23,10 +34,6 @@ h3 {
 
 .primary-content {
   text-align: center;
-}
-
-.secondary-content {
-  border-top: 2px solid lightgrey;
 }
 
 .t-border {
