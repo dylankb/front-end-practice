@@ -1,27 +1,35 @@
-
 body {
-  text-align: center;
+  color: #878787;
+  margin: 0;
 }
 
-h1 {
-  font-size: 72px;
-  color: white;
-}
-
-header {
+.main-header {
   background-color: orange;
 }
 
-p {
-  font-size: 20px;
+h1 {  
+  font-size: 90px;
+  color: white;
 }
 
-#primary-content {
-  border: 3px solid red;
+h2 {
+  font-size: 53px;
+}
+
+h3 {
+  font-size: 20px;
+  color: #48525c;
+}
+
+.primary-content {
+  text-align: center;
+}
+
+.secondary-content {
+  border-top: 2px solid lightgrey;
 }
 
 #main-footer {
   padding-top: 60px;
   padding-bottom: 60px;
   border-bottom: solid 10px orange;
-}
