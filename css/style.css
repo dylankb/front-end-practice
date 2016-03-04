@@ -3,21 +3,6 @@ body {
   margin: 0;
 }
 
-.main-header {
-  background-color: orange;
-}
-
-.title {
-  color: white;
-  font-size: 26px;
-}
-
-ol li {
-  background-color: tomato;
-  color: white;
-  margin-bottom: 5px;
-}
-
 h1 {  
   font-size: 90px;
   color: white;
@@ -32,6 +17,21 @@ h3 {
   color: #48525c;
 }
 
+#main-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-bottom: solid 10px orange;
+}
+
+.main-header {
+  background-color: orange;
+}
+
+.title {
+  color: white;
+  font-size: 26px;
+}
+
 .primary-content {
   text-align: center;
 }
@@ -40,8 +40,23 @@ h3 {
   border-top: 2px solid lightgrey;
 }
 
-#main-footer {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  border-bottom: solid 10px orange;
+a:link {
+  color: orange;
+}
+
+a:visited {
+  color: lightblue;
+}
+
+a:hover {
+  color: forestgreen;
+}
+
+a:active {
+  color: lightcoral;
+}
+
+a:focus {
+  color: white;
+  background-color: orange;
 }
