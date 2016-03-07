@@ -3,16 +3,20 @@
 body {
   color: #878787;
   margin: 0;
-  font-size: 1em;
+  font-size: 1em; /* 16px */
 }
 
 h1 {  
   font-size: 5.625rem; /* 90px / 16px  */
   color: rgba(255, 255, 255, .5);
+  text-transform: uppercase;
+  font-weight: normal;
 }
 
 h2 {
   font-size: 53px;
+  text-decoration: underline;
+  font-weight: normal;
 }
 
 h3 {
