@@ -3,7 +3,7 @@
 body {
   color: #878787;
   margin: 0;
-  font: normal 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1 {  
@@ -80,6 +80,13 @@ a:active {
 /* Layout Styles ------------------ */
 
 .primary-content,
-.main-header {
+.secondary-content {
   width: 60%;
+}
+
+.wildlife {
+  color: white;
+  background-color: #434a52;
+
+  padding: 18% 24%;
 }
