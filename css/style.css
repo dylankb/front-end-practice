@@ -56,9 +56,15 @@ a:active {
   font-size: 1.625rem; /* 26px/16px */
 }
 
+.intro {
+  font-size: 1.25em; /* 20px/16px */
+  line-height: 1.6;
+}
+
 .primary-content,
-.secondary-content {
-  width: 60%;
+.main-header,
+.main-footer {
+  text-align: center;
 }
 
 .main-footer {
@@ -75,5 +81,5 @@ a:active {
 
 .primary-content,
 .main-header {
-  text-align: center;
+  width: 60%;
 }
