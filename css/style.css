@@ -1,4 +1,4 @@
-/* Type Selectors ------------------ */
+/* Base Styles -------------------- */
 
 body {
   color: #878787;
@@ -16,13 +16,14 @@ h1 {
 
 h2 {
   font-size: 3.3125em; /* 53px/16px */
-  text-decoration: underline;
   font-weight: normal;
+  line-height: 1.1;
 }
 
 h3 {
   font-size: 1.25em; /* 20px/16px  */
   color: #48525c;
+  line-height: 1.2;
 }
 
 /* Pseudo-classes ------------------ */
@@ -44,15 +45,7 @@ a:active {
   color: lightcoral;
 }
 
-/* ID Selectors -------------------- */
-
-#main-footer {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  border-bottom: solid 10px #ffa949; /*orange*/
-}
-
-/* Class Selectors ----------------- */
+/* Main Styles ----------------- */
 
 .main-header {
   background-color: #ffa949;
@@ -68,11 +61,19 @@ a:active {
   width: 60%;
 }
 
-.primary-content,
-.main-header {
-  text-align: center;
+.main-footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  border-bottom: solid 10px #ffa949; /*orange*/
 }
 
 .t-border {
   border-top: 2px solid lightgrey; /* Top border styles */
+}
+
+/* Layout Styles ------------------ */
+
+.primary-content,
+.main-header {
+  text-align: center;
 }
