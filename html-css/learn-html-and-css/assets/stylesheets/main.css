@@ -209,3 +209,10 @@ h5 {
   font-size: 14px;
   font-weight: 400;
 }
+
+strong {
+  font-weight: 400;
+}
+cite, em {
+  font-style: italic;
+}
