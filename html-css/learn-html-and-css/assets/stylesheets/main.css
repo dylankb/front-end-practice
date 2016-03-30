@@ -159,7 +159,7 @@ h1, h3, h4, h5, p {
 .col-1-3 {
   width: 33.33%;
 }
-.col-2-3 {
+.col-2-3 {        /*f*/
   width: 66.66%;
 }
 
@@ -219,6 +219,7 @@ h5 {
   color: #a9b2b9;
   font-size: 14px;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 strong {
@@ -239,10 +240,15 @@ a:hover {
 
 a {
   color: #648880;
+  text-decoration: none;
 }
 
 .teaser a:hover h3 {
   color: #a9b2b9;
+}
+
+p a {
+  border-bottom: 1px solid #dfe2e5;  /*This selector isn't active*/
 }
 
 /*  ========================================
