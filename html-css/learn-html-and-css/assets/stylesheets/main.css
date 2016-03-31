@@ -79,13 +79,23 @@ h1, h3, h4, h5, p {
 
 .btn {
   border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
   display: inline-block;
+  font-weight: 400;
+  letter-spacing: .5px;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .btn-alt {
   border: 1px solid #dfe2e5;
   padding: 10px 30px;
+}
+
+.btn-alt:hover {
+  background: #fff;
+  color: 648880;
 }
 
 /*
@@ -95,6 +105,7 @@ h1, h3, h4, h5, p {
 */
 
 .hero {
+  color: #fff;
   line-height: 44px;
   padding: 22px 80px 66px 80px;
   text-align: center;
