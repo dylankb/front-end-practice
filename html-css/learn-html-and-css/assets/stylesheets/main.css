@@ -266,6 +266,16 @@ p a {
   border-bottom: 1px solid #dfe2e5;  /*This selector isn't active*/
 }
 
+.primary-header a,
+.primary-footer a {
+  color: #fff;
+}
+
+.primary-header a:hover,
+.primary-footer a:hover {
+  color: #648880;
+}
+
 /*  ========================================
   Header
   ========================================*/
