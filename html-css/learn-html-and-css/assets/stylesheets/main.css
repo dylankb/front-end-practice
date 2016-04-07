@@ -395,3 +395,18 @@ p a {
 .venue-hotel {
   margin-bottom: 22px;
 }
+
+.venue-map {
+  height: 264px;
+}
+
+/*
+  ========================================
+  Register
+  ========================================
+*/
+
+.why-attend {
+  list-style: square;
+  margin: 0 0 22px 30px;
+}
