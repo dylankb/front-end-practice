@@ -469,5 +469,21 @@ table {
 }
 
 table:last-child {
-  margin-bottom: 0px
+  margin-bottom: 0px;
+}
+
+th,
+td {
+  padding-bottom: 22px;
+  vertical-align: top;
+}
+
+th{
+  padding-right: 45px;
+  text-align: right;
+  width: 20%;
+}
+
+td {
+  width: 40%;
 }
