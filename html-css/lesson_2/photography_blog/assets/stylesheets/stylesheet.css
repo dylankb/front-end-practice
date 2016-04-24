@@ -48,7 +48,7 @@ h1 {
 
 h2 {
   font-size: 32px;
-  padding: 10px 30px 40px 30px;
+  padding: 10px 0 40px 0;
 }
 
 main {
@@ -58,10 +58,12 @@ main {
   background: #fff;
   margin: 0 auto;
   box-shadow: 1px 5px 2px 1px rgba(0, 0, 0, 0.2);
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 
 main img {
-  padding: 0 30px 30px 30px; 
+  padding-bottom: 30px; 
 }
 
 main .masthead {
@@ -75,7 +77,7 @@ main .floated-image {
 
 p {
   line-height: 28px;
-  padding: 0 30px 25px 30px;
+  padding-bottom: 25px;
 }
 
 footer div {
