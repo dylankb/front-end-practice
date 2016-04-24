@@ -54,7 +54,7 @@ h2 {
 main {
   clear: both;
   width: 960px;
-  height: 1195px;
+  overflow: hidden;
   background: #fff;
   margin: 0 auto;
   box-shadow: 1px 5px 2px 1px rgba(0, 0, 0, 0.2);
@@ -70,9 +70,9 @@ main .masthead {
   padding-top: 30px;
 }
 
-main .floated-image {
-  float: right;  
-  padding-bottom: 10px;
+figure {
+  float: right;
+  padding: 0 30px;  
 }
 
 p {
