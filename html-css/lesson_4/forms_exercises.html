@@ -8,33 +8,43 @@
 
     <form action="#" method="post">
       <fieldset>
-          <dl>
-            <dt>
-              <label for="first_name">First Name</label>
-            </dt>
-            <dd>
-              <input type="text" name="first_name" id="first_name">
-            </dd>
-            <dt>
-              <label for="last_name">Last Name</label>
-            </dt>
-            <dd>
-              <input type="text" name="last_name" id="first_name">
-            </dd>
-            <dt>
-              <label for="email">Email Address</label>
-            </dt>
-            <dd>
-              <input type="email" name="email" autocomplete="off" autocapitalize="off" autocorrect="off">
-            </dd>
-            <dt>
-              <label for="phone">Phone Number</label>
-            </dt>
-            <dd>
-              <input type="tel" name="phone" id="phone">
-            </dd>
-            <input type="submit" value="Submit">
-          </dl>
+        <dl>
+          <dt>
+            <label for="first_name">First Name</label>
+          </dt>
+          <dd>
+            <input type="text" name="first_name" id="first_name">
+          </dd>
+          <dt>
+            <label for="last_name">Last Name</label>
+          </dt>
+          <dd>
+            <input type="text" name="last_name" id="first_name">
+          </dd>
+          <dt>
+            <label for="email">Email Address</label>
+          </dt>
+          <dd>
+            <input type="email" name="email" autocomplete="off" autocapitalize="off" autocorrect="off">
+          </dd>
+          <dt>
+            <label for="phone">Phone Number</label>
+          </dt>
+          <dd>
+            <input type="tel" name="phone" id="phone">
+          </dd>
+          <dt>
+            <label for="phone_type">Phone Type</label>
+          </dt>
+          <dd>
+            <select name="phone_type" id="phone_type">
+              <option value="home" selected>Home</option>
+              <option value="mobile">Mobile</option>
+              <option value="work">Work</option>
+            <select>
+          </dd>
+        </dl>
+        <input type="submit" value="Submit">
       </fieldset>
     </form>
 
