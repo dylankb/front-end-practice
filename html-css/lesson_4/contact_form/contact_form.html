@@ -43,7 +43,7 @@
             <label for="state">State</label>
           </dt>
           <dd>
-            <select name="state">
+            <select id="state">
               <option>AK</option>
               <option>AL</option>
               <option>AR</option>
@@ -113,16 +113,18 @@
         
 
         <p>What type of programmer are you?</p>
+        <ul>
           <label>
-            <dd>
+            <li>
               <input type="checkbox" name="frontend">Front End
-            </dd>
+            </li>
           </label>
           <label>
-            <dd>
+            <li>
               <input type="checkbox" name="backend">Backend
-            </dd>
+            </li>
           </label>
+        </ul>
 
           <p>What tech do you want to hear more about?
           <ul>
@@ -142,7 +144,7 @@
             <label for="comments">Comments!</label>
           </dt>
           <dd>
-            <textarea name="comments" row="15"col="60"></textarea>
+            <textarea name="comments" row="8"col="60"></textarea>
           </dd>
 
           <input type="hidden" value="2015-01-01" name="timestamp">
