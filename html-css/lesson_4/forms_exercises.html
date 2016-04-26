@@ -49,7 +49,7 @@
       </fieldset>
     </form>
 
-    <h3>Form 2</h3>
+    <h3>Form 2 V.1</h3>
     <form action="#" method="get">
       <fieldset>
         <ul>
@@ -93,6 +93,37 @@
           </label>
           
         </ul>
+        <input type="Submit" value="Filter">
+      </fieldset>
+    </form
+
+    <h3>Form 2 V.2</h3>
+    <form action="#" method="get">
+      <fieldset>
+        <dl>
+          <dt>
+            <label for="category">Category</label>
+          <dt>
+          <dd>
+            <select name="category">
+              <option value="core">Core</option>
+              <option value="plugins">Plugins and Libraries</option>
+              <option value="conventions">Conventions</option></dd>
+              <option value="reviews">Reviews</option>
+            </select>
+          </dd>
+        </dl>
+
+        <dt>
+          <label for="tags">Tags</label>
+        </dt>
+        <dd>
+          <select name="tags" multiple>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+          </select>
+      </dd>
         <input type="Submit" value="Filter">
       </fieldset>
     </form
