@@ -104,16 +104,15 @@ footer li a {
   height: 46px;
   text-indent: -9999px;
   overflow: hidden;
-  background: transparent url("..images/icons_social-media.png") 0 0 no-repeat;
-  background-size: 46px;
+  background: transparent url("../images/icons_social-media.png") 0 0 no-repeat;
 }
 
 footer li a.facebook {
-  background-position: 
-}
-footer li a.twitter {
   background-position: 0 -46px;
 }
 footer li a.email {
+  background-position: 0 -92px;
+}
+footer li a.instagram {
   background-position: 0 100%;
 }
