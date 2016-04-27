@@ -13,23 +13,21 @@ header h1 {
   padding-bottom: 115px 
 }
 
-main {
- background-color: white;
- width: 100%;
- text-align: center;
- margin: 80px auto 0 auto;
- padding-bottom: 40px; 
+.column {
+  width: 800px;
+  margin: 80px auto 0 auto; 
 }
 
-footer {
-  max-width: 980px;
-  background: lightgrey;
-  margin: 0 auto 40px auto;
+main {
+ background-color: #ffffff;
+ text-align: center;
+ padding: 80px 0 40px 0; 
 }
 
 nav {
   font-size: 26px;
   text-transform: uppercase;
+  padding-bottom: 45px;
 }
 
 nav li {
@@ -48,22 +46,25 @@ nav a.active {
 }
 
 h2 {
-  font-size: 40px;
-  font-weight: bold;
-  padding: 100px 0 15px 0;
+  font-size: 36px;
+  font-weight: 600;
+  padding: 0px 0 15px 0;
 }
 
 h2:before {
-   content: "  \00b7  ";
-   font-size: x-large; 
+  display: inline-block;
+  content: " \2022 ";
+  padding: 0 24px;
+  font-size: 22px;
+  vertical-align: 5px; 
 }
 
 h2:after {
-   content: "  \00b7  "; 
-}
-
-article {
-  padding: 0 225px;
+  display: inline-block;
+  content: " \2022 ";
+  padding: 0 24px;
+  font-size: 22px; 
+  vertical-align: 5px;
 }
 
 h3 {
@@ -72,16 +73,47 @@ h3 {
   padding: 10px;
 }
 
+article {
+  padding-bottom: 80px;
+}
+
 p {
   padding: 20px 0; 
 }
 
+footer {
+  background: #e7e7e7;
+  margin: 0 auto 40px auto;
+  padding-bottom: 25px;
+}
+
+footer p {
+  padding-top: 65px;
+  color: #b2b2b2;
+}
+
 footer li {
-  display: inline;
+  display: inline-block;
   text-align: center;
   padding: 0 60px;
 }
 
-img {
-  display: inline-block;
+footer li a {
+  display: block;
+  width: 46px;
+  height: 46px;
+  text-indent: -9999px;
+  overflow: hidden;
+  background: transparent url("..images/icons_social-media.png") 0 0 no-repeat;
+  background-size: 46px;
+}
+
+footer li a.facebook {
+  background-position: 
+}
+footer li a.twitter {
+  background-position: 0 -46px;
+}
+footer li a.email {
+  background-position: 0 100%;
 }
