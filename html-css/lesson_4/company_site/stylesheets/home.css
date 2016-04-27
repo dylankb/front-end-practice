@@ -18,9 +18,11 @@ header h1 {
   margin: 80px auto 0 auto; 
 }
 
-.projects {
+.projects,
+.team {
   width: 1000px;
 }
+
 
 main {
  background-color: #ffffff;
@@ -132,4 +134,28 @@ footer li a.instagram {
 
 .projects figure {
   padding: 20px 0;
+}
+
+.team li a {
+  text-decoration: none;
+  color: #3e59b2;
+  font-size: 24px;
+}
+
+.team ul {
+  padding-bottom: 200px;
+}
+
+.team li {
+  display: inline-block;
+  padding: 0 30px;
+}
+
+.team p {
+  padding: 0 110px 40px 110px;
+}
+
+.team li img {
+  display: block;
+  padding-bottom: 30px;
 }
