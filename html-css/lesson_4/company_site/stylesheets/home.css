@@ -18,6 +18,10 @@ header h1 {
   margin: 80px auto 0 auto; 
 }
 
+.projects {
+  width: 1000px;
+}
+
 main {
  background-color: #ffffff;
  text-align: center;
@@ -81,10 +85,14 @@ p {
   padding: 20px 0; 
 }
 
+img {
+  display: inline-block;
+}
+
 footer {
   background: #e7e7e7;
   margin: 0 auto 40px auto;
-  padding-bottom: 25px;
+  padding-bottom: 35px;
 }
 
 footer p {
@@ -115,4 +123,13 @@ footer li a.email {
 }
 footer li a.instagram {
   background-position: 0 100%;
+}
+
+.projects p {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.projects figure {
+  padding: 20px 0;
 }
