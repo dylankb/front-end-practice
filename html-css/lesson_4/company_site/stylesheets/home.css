@@ -1,0 +1,87 @@
+@import url("whitespace-reset.css");
+
+body {
+  padding: 135px 0 0 0;
+  color :#45494d;
+  background: #2f2840 url("../images/bg_body.gif") 50% 0 repeat; 
+  background-color: #2f2840;
+  font: normal 20px/28px "Avenir", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+header h1 {
+  padding-bottom: 115px 
+}
+
+main {
+ background-color: white;
+ width: 100%;
+ text-align: center;
+ margin: 80px auto 0 auto;
+ padding-bottom: 40px; 
+}
+
+footer {
+  max-width: 980px;
+  background: lightgrey;
+  margin: 0 auto 40px auto;
+}
+
+nav {
+  font-size: 26px;
+  text-transform: uppercase;
+}
+
+nav li {
+  display: inline;
+  padding: 0 42px;
+}
+
+nav a {
+  color: #cacaca;
+  text-decoration: none;
+}
+
+nav a.active {
+  color: #6db9ff;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 100px 0 15px 0;
+}
+
+h2:before {
+   content: "  \00b7  ";
+   font-size: x-large; 
+}
+
+h2:after {
+   content: "  \00b7  "; 
+}
+
+article {
+  padding: 0 225px;
+}
+
+h3 {
+  color: #3e59b2;
+  font-size: 24px;
+  padding: 10px;
+}
+
+p {
+  padding: 20px 0; 
+}
+
+footer li {
+  display: inline;
+  text-align: center;
+  padding: 0 60px;
+}
+
+img {
+  display: inline-block;
+}
