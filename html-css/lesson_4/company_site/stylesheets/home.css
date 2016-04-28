@@ -56,14 +56,7 @@ h2 {
   padding: 0px 0 15px 0;
 }
 
-h2:before {
-  display: inline-block;
-  content: " \2022 ";
-  padding: 0 24px;
-  font-size: 22px;
-  vertical-align: 5px; 
-}
-
+h2:before, 
 h2:after {
   display: inline-block;
   content: " \2022 ";
@@ -135,6 +128,7 @@ footer li a.instagram {
   text-decoration: none;
   color: #3e59b2;
   font-size: 24px;
+  text-align: center;
 }
 
 .team ul {
@@ -151,7 +145,7 @@ footer li a.instagram {
 }
 
 .team li img {
-  display: block;
+  /*display: block;*/
   padding-bottom: 30px;
 }
 
