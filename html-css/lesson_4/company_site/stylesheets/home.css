@@ -13,6 +13,14 @@ header h1 {
   padding-bottom: 115px 
 }
 
+header h1 a {
+  display: inline-block;
+  width: 298px;
+  height: 243px;
+  background: transparent url("../images/logo.png") 0 0 no-repeat;
+  text-indent: -9999px;
+}
+
 .column {
   max-width: 1000px;
   margin: 80px auto 0 auto; 
@@ -159,14 +167,11 @@ footer li a.instagram {
 }
 
 @media (max-width: 768px) {
-  header h1 {
-    width: 235px;
-    height: 185px;
+  header h1 a {
+    width: 223px;
+    height: 182px;
     padding-bottom: 45px;
-    margin: 0 auto
-  }
-  header img {
-    width: 100%;
+    background-size: cover;
   }
   body {
     padding-top: 65px;
@@ -188,12 +193,57 @@ footer li a.instagram {
   }
 
 @media (max-width: 480px){
+  body {
+    padding-top: 0px;
+    font-size: 16px;
+  }
   header {
+    padding: 20px 15px;
+  }
+  header h1 {
     float: left;
-    display: inline;
+    padding-bottom: 0;
+    margin-top: 20px;
+    font-size: 20px
   }
   header h1 img {
     width: 100%;
+  }
+  header h1 a {
+    width: auto;
+    height: 40px;
+    padding: 10px 0 0 55px;
+    text-indent: 0px;
+    color: #fff;
+    background-size: 90px auto;
+    background-position: -20px 0;
+    text-decoration: none;
+  }
+  nav {
+    text-align: right;
+    padding-bottom: 0;
+  }
+  nav li {
+    display: block;
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h2:before,
+  h2:after {
+    vertical-align: 0;
+  }
+  footer li {
+    padding: 20px;
+  }
+
+  .team p,
+  .projects p {
+    padding: 0 20px 20px 20px;
   }
 
 }
