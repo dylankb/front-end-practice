@@ -14,13 +14,12 @@ header h1 {
 }
 
 .column {
-  width: 800px;
+  max-width: 1000px;
   margin: 80px auto 0 auto; 
 }
 
-.projects,
-.team {
-  width: 1000px;
+.team ul {
+  max-width: 1000px;
 }
 
 
@@ -85,10 +84,6 @@ article {
 
 p {
   padding: 20px 0; 
-}
-
-img {
-  display: inline-block;
 }
 
 footer {
@@ -158,4 +153,18 @@ footer li a.instagram {
 .team li img {
   display: block;
   padding-bottom: 30px;
+}
+
+@media (max-width: 895px) {
+  .team li {
+    width: 48%;
+    padding:0 0 20px 0;
+  }
+  .team li img {
+    margin: 0 auto;
+  }
+  .projects img {
+    width: 50%;
+  }
+
 }
