@@ -112,6 +112,10 @@ footer a:before {
   background-size: 24px;
 }
 
+footer a:hover:before {
+  background-color: #00bf8f
+}
+
 a.twitter:hover:before {
 }
 
