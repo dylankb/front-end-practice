@@ -39,3 +39,18 @@ textarea {
   height: auto;
   resize: vertical;
 }
+
+.three-col {
+  overflow: hidden;
+}
+
+.three-col .col {
+  float: left;
+  width: 33%;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.three-col .col select#state  {
+  width: 100%;
+}
