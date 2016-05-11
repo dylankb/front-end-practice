@@ -71,8 +71,21 @@ input[type="checkbox"]:checked + figure img {
   left: 50%;
   width: 400px;
   height: auto;
-  margin-left: -200px
+  margin-left: -200px;
+  z-index: 2;
 }
+
+input:checked + figure:after {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+  background: rgba(0, 0, 0, .4);
+}
+
 
 
 
