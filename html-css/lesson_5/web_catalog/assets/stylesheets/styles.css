@@ -50,12 +50,31 @@ li {
   box-sizing: border-box;
 }
 
+figure {
+  width: 100%;
+  height: 160px;
+}
+
 li img {
   display: block;
   height: 140px;
   margin: 0 auto;
   padding-bottom: 25px;
 }
+
+input[type="checkbox"] {display: none;}
+
+
+input[type="checkbox"]:checked + figure img {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 400px;
+  height: auto;
+  margin-left: -200px
+}
+
+
 
 
 
