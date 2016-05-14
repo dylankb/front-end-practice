@@ -32,7 +32,6 @@ header img {
 }
 
 header ul {
-  font-size: 0;
   text-align: center;
 }
 
@@ -45,8 +44,14 @@ header nav a:active {
 }
 
 header ul li {
-  display: inline-block;
+  display: inline;
   padding: 0 30px;
+}
+
+main {
+  max-width: 1000px;
+  padding: 0 80px;
+  margin: 0 auto;
 }
 
 main a:link {
@@ -57,25 +62,38 @@ main article {
   padding: 90px 100px 0 100px;
 }
 
-main #articles h2 {
+#articles {
+  float: left;
+  width: 65%;
+  padding-right: 11.5%;
+}
+
+#sidebar {
+  overflow: hidden;
+  float: right;
+  background: #f6f7f8;
+  font-size: 14px;
+}
+
+#articles h2 {
   font-size: 36px;
 }
 
-main #articles p {
+#articles p {
   text-align: justify;
   line-height: 28px;
 }
 
-main #articles p:first-of-type {
+#articles p:first-of-type {
   padding: 30px 0 15px 0;
 }
 
-main #articles ul {
+#articles ul {
   font-size: 0;
   padding: 100px 0 100px 90px;
 }
 
-main #articles li {
+#articles li {
   width: 85px;
   height: 30px;
   vertical-align: center; /*  Not working */
@@ -86,52 +104,32 @@ main #articles li {
   margin: 0 5px;
 }
 
-main #articles li:first-of-type {
+#articles li:first-of-type {
   background: #d2d5da;
   color: #e3e4e7;
 }
 
-main #articles li:last-of-type {
+#articles li:last-of-type {
   background: #50c3af;
 }
 
-#articles, 
-#sidebar {
-  float: left;
-}
-
-#articles {
-  width: 66%;
-}
-
-#sidebar {
-  width: 33%;
-}
-
-main #sidebar {
-  background: #f6f7f8;
-  width: 235px;
-  margin-top: 90px;
-  font-size: 14px;
-}
-
-main #sidebar h2 {
+#sidebar h2 {
   font-size: 16px;
   padding: 30px 0px 30px 40px;
 }
 
-main #sidebar ul,
-main #sidebar p {
+#sidebar ul,
+#sidebar p {
   padding-left: 40px;
   text-align: justify;
 }
 
-main #sidebar ul {
+#sidebar ul {
   padding-bottom: 115px;
   line-height: 28px;
 }
 
-main #sidebar p {
+#sidebar p {
   padding-bottom: 210px;
   padding-right: 50px;
 }
