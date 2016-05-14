@@ -5,23 +5,27 @@ body {
   font: 20px Arial, sans-serif;
 }
 
-header {
+body > header {
   background: #3d3d3d;
   width: 100%;
   color: #fff;
+  padding: 130px 0 50px 0;
 }
 
-header h1 {
+body > header h1 {
   font-size: 68px;
   text-align: center;
-  padding: 145px;
+}
+
+header img {
+  display: block;
+  margin: 60px auto;
 }
 
 header ul {
   font-size: 0;
   display: block;
   text-align: center;
-  padding: 60px;
 }
 
 header ul li {
