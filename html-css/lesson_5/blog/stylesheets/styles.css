@@ -2,7 +2,7 @@
 
 body {
   width: 1200px;
-  font: 20px Arial, sans-serif;
+  font: normal 20px Arial, sans-serif;
 }
 
 a {
@@ -33,13 +33,19 @@ header img {
 
 header ul {
   font-size: 0;
-  display: block;
   text-align: center;
+}
+
+header nav a {
+  color: #fff;
+}
+
+header nav a:active {
+  color: #50c3af
 }
 
 header ul li {
   display: inline-block;
-  font-size: 20px;
   padding: 0 30px;
 }
 
@@ -90,7 +96,7 @@ main #articles li:last-of-type {
 }
 
 #articles, 
-#nav {
+#sidebar {
   float: left;
 }
 
@@ -98,34 +104,34 @@ main #articles li:last-of-type {
   width: 66%;
 }
 
-#nav {
+#sidebar {
   width: 33%;
 }
 
-main #nav {
+main #sidebar {
   background: #f6f7f8;
   width: 235px;
   margin-top: 90px;
   font-size: 14px;
 }
 
-main #nav h2 {
+main #sidebar h2 {
   font-size: 16px;
   padding: 30px 0px 30px 40px;
 }
 
-main #nav ul,
-main #nav p {
+main #sidebar ul,
+main #sidebar p {
   padding-left: 40px;
   text-align: justify;
 }
 
-main #nav ul {
+main #sidebar ul {
   padding-bottom: 115px;
   line-height: 28px;
 }
 
-main #nav p {
+main #sidebar p {
   padding-bottom: 210px;
   padding-right: 50px;
 }
