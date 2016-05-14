@@ -34,21 +34,30 @@ h2 {
   font-weight: 950;
 }
 
-dl {
+header dl {
   display: inline-block;
   width: 49%;
+}
+
+header dl:first-of-type dt {
+  font-weight: 600;
+}
+
+dl {
+  padding: 0;
+  margin: 0;
 }
 
 dl:nth-of-type(2) {
   text-align: right;
 }
 
-dl dt {
-  display: inline-block;
+dt {
+  display: inline;
 }
 
-dl dd {
-  display: inline-block;
+dd {
+  display: inline;
 }
 
 table {
@@ -60,12 +69,20 @@ thead th {
 }
 
 tr {
-  border-bottom: 1px solid black;
   padding: 3px 5px 0 0;
+  /*border-top: 1px solid black;*/
 }
 
-tr td:nth-child(3),
-tr td:nth-child(4) {
+tbody td,
+tbody th {
+  border-top: 1px solid black;
+}
+
+th dd {
+  font-weight: 400;
+}
+
+tr td:last-of-type {
   text-align: right;
 }
 
@@ -76,15 +93,24 @@ tfoot::after {
   height: 5px;
 }
 
-tfoot tr {
-  border-bottom: 0px;
+tbody tr th {
+  text-align: left;
 }
 
 tfoot,
-main table:last-child {
+table:last-child {
   font-size: 20px;
 }
 
-footer table {
+table:last-child {
   border-top: 0px;
+}
+
+table:last-child tr:first-of-type {
+  border-bottom: 1px solid black;
+}
+
+.indent {
+  padding-left: 50px;
+  font-weight: 400;
 }
