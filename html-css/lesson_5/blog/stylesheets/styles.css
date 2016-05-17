@@ -143,13 +143,12 @@ main:after {
   content: "";
 }
 
-footer hr {
-  display: block;
-  margin: 0 90px;
-}
-
-footer p {
+footer {
+  max-width: 1000px;
+  margin: 0 auto;
   font-size: 12px;
-  padding: 20px 0px 60px 90px;
+  color: #a0a3a7;
+  border-top: 1px solid #d0d0d0;
+  padding: 20px 0px 60px 0px;
 }
 
