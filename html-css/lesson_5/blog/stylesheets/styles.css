@@ -1,7 +1,6 @@
 @import url("whitespace-reset.css");
 
 body {
-  width: 1200px;
   font: normal 20px Arial, sans-serif;
 }
 
@@ -83,7 +82,6 @@ article h2 a {
 
 #sidebar {
   overflow: hidden;
-  float: right;
   background: #f6f7f8;
   font-size: 14px;
 }
