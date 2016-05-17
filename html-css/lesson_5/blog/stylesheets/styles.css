@@ -7,6 +7,18 @@ body {
 
 a {
   text-decoration: none;
+  color: #7ed0c1;
+}
+
+h2 {
+  font-size: 36px;
+  color: #45494d;
+}
+
+h3 {
+  font-size: 16px;
+  padding: 30px 0px 30px 30px;
+  text-transform: uppercase;
 }
 
 body > header {
@@ -54,18 +66,19 @@ main {
   margin: 0 auto;
 }
 
-main a:link {
-  color: #7ed0c1;
+article {
+  padding-top: 90px;
 }
 
-main article {
-  padding: 90px 100px 0 100px;
+article h2 a {
+  color: inherit;
 }
 
 #articles {
   float: left;
   width: 65%;
   padding-right: 11.5%;
+  overflow: hidden;
 }
 
 #sidebar {
@@ -73,10 +86,6 @@ main article {
   float: right;
   background: #f6f7f8;
   font-size: 14px;
-}
-
-#articles h2 {
-  font-size: 36px;
 }
 
 #articles p {
@@ -113,20 +122,16 @@ main article {
   background: #50c3af;
 }
 
-#sidebar h2 {
-  font-size: 16px;
-  padding: 30px 0px 30px 40px;
-}
-
 #sidebar ul,
 #sidebar p {
-  padding-left: 40px;
+  padding-left: 50px;
   text-align: justify;
 }
 
 #sidebar ul {
   padding-bottom: 115px;
   line-height: 28px;
+  list-style: url("../images/bl_arrow.png")
 }
 
 #sidebar p {
