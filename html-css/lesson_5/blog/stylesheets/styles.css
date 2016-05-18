@@ -16,7 +16,7 @@ h2 {
 
 h3 {
   font-size: 16px;
-  padding: 30px 0px 30px 30px;
+  padding-bottom: 25px;
   text-transform: uppercase;
 }
 
@@ -61,12 +61,8 @@ header ul li {
 
 main {
   max-width: 1000px;
-  padding: 0 80px;
+  padding: 80px 0px;
   margin: 0 auto;
-}
-
-article {
-  padding-top: 90px;
 }
 
 article h2 a {
@@ -77,7 +73,6 @@ article h2 a {
   float: left;
   width: 65%;
   padding-right: 11.5%;
-  overflow: hidden;
 }
 
 #sidebar {
@@ -120,21 +115,23 @@ article h2 a {
   background: #50c3af;
 }
 
+#sidebar {
+  padding: 35px;
+}
+
 #sidebar ul,
 #sidebar p {
   text-align: justify;
 }
 
 #sidebar ul {
-  padding-left: 50px;
-  padding-bottom: 115px;
+  padding: 0 0 115px 20px;
   line-height: 28px;
   list-style: url("../images/bl_arrow.png")
 }
 
 #sidebar p {
   padding-bottom: 210px;
-  padding-right: 50px;
 }
 
 main:after {
@@ -150,5 +147,13 @@ footer {
   color: #a0a3a7;
   border-top: 1px solid #d0d0d0;
   padding: 20px 0px 60px 0px;
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px){
+
 }
 
