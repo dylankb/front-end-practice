@@ -100,7 +100,7 @@ article h2 a {
 }
 
 .pagination {
-  padding: 60px 0 60px 0;
+  padding: 60px 0;
 }
 
 .button {
@@ -128,7 +128,7 @@ article h2 a {
 
 #sidebar ul,
 #sidebar p {
-  text-align: justify;
+  line-height: 150%;
 }
 
 #sidebar ul {
@@ -236,27 +236,64 @@ input[type="checkbox"]:checked + form {display: block;}*/
   
   #articles {
     float: none;
+    width: auto;
+    padding: 0 25px;
   }
-  #sidebar {
-    font-size: 0;
-    box-sizing: border-box;
-    height: 15%;
-  }
-
   .block {
     display: inline-block;
-    width: 50%;
-    font-size: 14px;
+    width: 49%;
+    vertical-align: top;
   }
-
-/*  .block::after {
-    display: block;
-    clear: both;
-    content: "";
-  }*/
+  #sidebar ul {
+    padding: 0 0 0 20px;
+  }
+  #sidebar p {
+    padding-bottom: 0;
+  }
+  .pagination {
+    padding-top: 40px;
+  }
 }
 
 @media (max-width: 480px){
+
+  body > header {
+    padding-bottom: 0;
+  }
+
+  body > header h1 {
+    font-size: 40px;
+    background-size: 90% auto;
+    padding-bottom: 90px;
+    margin-bottom: 50px;
+  }
+
+  .block {
+    display: block;
+    margin: 25px 0;
+    background: #f6f7f8;
+    width: auto;
+    vertical-align: center;
+    padding: 20px;
+  }
+
+  #sidebar {
+    background: none;
+  }
+
+  header nav li {
+    display: inline-block;
+    width: 49%;
+    padding: 10px 0;
+  }
+
+  .pagination {
+    padding: 20px 0;
+  }
+
+  main {
+    padding: 80px 0 0px 0;
+  }
 
 }
 
