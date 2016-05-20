@@ -83,6 +83,7 @@ article h2 a {
   overflow: hidden;
   background: #f6f7f8;
   font-size: 14px;
+  padding: 35px;
 }
 
 #sidebar li a {
@@ -123,10 +124,6 @@ article h2 a {
 .pagination .next,
 .post{
   background: #50c3af;
-}
-
-#sidebar {
-  padding: 35px;
 }
 
 #sidebar ul,
@@ -218,18 +215,45 @@ input[type="checkbox"]:checked + form {display: block;}*/
 @media (max-width: 768px) {
   
   body > header {
-    padding-top: 100px;
+    padding: 40px 0;
+  }
+  body > header h1 {
+    font-size: 50px;
   }
   h2 {
     font-size: 24px;
   }
   main {
-    padding-top: 60px;
+    padding-top: 80px;
   }
   header ul li {
     padding: 0 15px;
   }
 
+}
+
+@media (max-width: 600px) {
+  
+  #articles {
+    float: none;
+  }
+  #sidebar {
+    font-size: 0;
+    box-sizing: border-box;
+    height: 15%;
+  }
+
+  .block {
+    display: inline-block;
+    width: 50%;
+    font-size: 14px;
+  }
+
+/*  .block::after {
+    display: block;
+    clear: both;
+    content: "";
+  }*/
 }
 
 @media (max-width: 480px){
