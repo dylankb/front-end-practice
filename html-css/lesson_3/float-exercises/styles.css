@@ -1,0 +1,30 @@
+body { background: #cccccc; }
+
+section {
+  width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  /*overflow: hidden;*/
+}
+
+article {
+  overflow: hidden;
+  background: #ffffcc;
+}
+
+aside { 
+  width: 300px;
+  float: left;
+  background: #ccffcc;
+}
+
+div {
+ width: 200px;
+ background: red;
+}
+
+/*section:after {
+  display: block;
+  content: "";
+  clear: both;
+}*/
