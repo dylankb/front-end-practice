@@ -48,14 +48,10 @@ caption {
   font-size: 22px;
 }
 
-/*td {
-  padding: 0;
-}
-*/
-/*th, td, dl { 
+th, td, dl { 
   padding-top: 2px;
   padding-bottom: 2px;
-}*/
+}
 
 header dt {
   padding-right: 5px;
@@ -131,13 +127,10 @@ table:nth-of-type(3) caption {
   text-indent: -.7rem;
 }
 
-table:nth-of-type(3) caption::before {
-  content: "* ";
-}
-
 table:nth-of-type(2) th,
 table:nth-of-type(2) td {
   border-bottom: 1px solid black;
+  border-top: none;
 }
 
 table:nth-of-type(3) th {
