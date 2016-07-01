@@ -1,0 +1,163 @@
+@import url('whitespace-reset.css');
+
+body {
+  font: normal 16px Helvetica, Arial, sans-serif;
+}
+
+article {
+  max-width: 680px;
+  border: 2px solid black;
+  padding: 0 20px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 54px;
+}
+
+h2 {
+  font-weight: normal; 
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: bold;
+  border-top: 30px solid black;
+/*  border-bottom: 1px solid black;*/
+}
+
+header {
+  font-size: 0px;
+}
+
+header dl {
+  display: inline-block;
+}
+
+header dl {
+  width: 50%;
+}
+
+header dt,
+header dd,
+th,
+td,
+caption {
+  font-size: 22px;
+}
+
+/*td {
+  padding: 0;
+}
+*/
+/*th, td, dl { 
+  padding-top: 2px;
+  padding-bottom: 2px;
+}*/
+
+header dt {
+  padding-right: 5px;
+}
+
+header dl + dl {
+  text-align: right;
+}
+
+header dl + dl dt {
+  font-weight: normal;
+}
+
+dd,
+dt {
+  display: inline;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  font-weight: normal;
+}
+th {
+  font-weight: normal;
+}
+
+header {
+  border-bottom: 15px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table td {
+  text-align: right;
+}
+
+dl,
+td {
+  border-top: 1px solid black;
+  padding: 2px 0;
+}
+
+table tbody th {
+  text-align: left;
+}
+
+table:first-of-type {
+  border-bottom: 30px solid black;
+}
+
+table:first-of-type td {
+  font-weight: bold;
+}
+
+table:first-of-type thead th {
+  text-align: right;
+  font-weight: bold;
+}
+
+table:nth-of-type(2) {
+  margin-bottom: 10px;
+}
+
+table:nth-of-type(3) caption {
+  text-align: left;
+  margin-left: 10px;
+  text-indent: -.7rem;
+}
+
+table:nth-of-type(3) caption::before {
+  content: "* ";
+}
+
+table:nth-of-type(2) th,
+table:nth-of-type(2) td {
+  border-bottom: 1px solid black;
+}
+
+table:nth-of-type(3) th {
+  font-weight: normal;
+}
+
+table:nth-of-type(3) thead th {
+  text-align: right;
+}
+
+table:nth-of-type(3) td,
+table:nth-of-type(3) th {
+  border-top: none;
+}
+
+.indent {
+  margin-left: 30px;
+}
+
+.indent dt {
+  font-weight: normal;
+}
+
