@@ -1,7 +1,7 @@
 body { background: #e0e0e0; }
 
 #columns {
-  margin: 0 0 0 220px;
+  width: 800px;
 }
 
 #primary, #secondary {
@@ -12,11 +12,9 @@ body { background: #e0e0e0; }
 
 #primary {
   float: right;
-  width: 100%;
+  width: 65%;
 }
 
 #secondary {
-  float: left;
-  width: 200px;
-  margin: 0 0 0 -220px;
+  overflow: hidden;
 }
