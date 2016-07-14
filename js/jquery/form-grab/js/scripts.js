@@ -5,9 +5,9 @@ $(document).ready(function() {
     var lastName = $("#last-name").val();
     var age = $("#age").val();
 
-    $(".first-name").append(firstName)
-    $(".last-name").append(lastName);
-    $(".age").append(age);
+    $(".first-name").text(firstName)
+    $(".last-name").text(lastName);
+    $(".age").text(age);
 
     $(".intro").show();
 
