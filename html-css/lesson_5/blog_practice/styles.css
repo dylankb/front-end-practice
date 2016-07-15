@@ -56,11 +56,6 @@ main {
   margin: 0 auto;
 }
 
-/*.content,
-.sidebar {
-  float: left;
-}*/
-
 .content {
   float: left;
   width: 65%;
@@ -73,10 +68,6 @@ main {
   background: #f6f7f8;
   padding: 30px 0 50px 0;
 }
-
-/*.sidebar {
-  width: 33%;
-}*/
 
 .block {
   padding: 0 20px 100px 30px;
@@ -111,7 +102,7 @@ main::after {
 }
 
 .content article {
-  padding-bottom: 90px;
+  padding-bottom: 80px;
 }
 
 .content .button {
@@ -119,12 +110,13 @@ main::after {
   border-radius: 15px;
   text-align: center;
   background: #50c3af;
-  padding: 5px 20px;
+  padding: 5px 25px;
   color: #fff;
 }
 
-.disabled {
+.content .disabled {
   background: #d2d5da;
+  margin-right: 30px;
 }
 
 .action {
@@ -174,10 +166,20 @@ footer {
   padding-bottom: 45px;
 }
 
+.comments img {
+  border-radius: 100%;
+}
+
 .comments p:first-of-type {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.action {
+  cursor: pointer;
 }
 
 .post {
@@ -217,3 +219,100 @@ textarea {
   width: 100%;
   resize: none;
 }
+
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 40px 0;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .content h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    overflow: visible;
+  }
+
+  .content {
+    float: none;
+    width: 90%;
+    margin: 0 auto;
+    padding-right: 0;
+  }
+  .block {
+    display: inline-block;
+    width: 48%;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    vertical-align: top;
+  }
+
+@media (max-width: 480px) {
+
+  header li {
+    width: 49%;
+    padding: 10px 0;
+  }
+
+  h1 {
+    margin-bottom: 40px;
+    background-size: 90%;
+  }
+
+  .content h2 {
+    font-size: 24px;
+  }
+
+  header {
+    padding-bottom: 0;
+  }
+
+  .block {
+    display: block;
+    margin: 0 20px 25px 20px;
+    background: #f6f7f8;
+    width: auto;
+  }
+
+  .sidebar {
+    background: #fff;
+    padding-bottom: 110px;
+    padding-top: 15px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding-bottom: 30px;
+  }
+
+  .action {
+    padding-bottom: 20px;
+  }
+
+  .content article {
+    padding-bottom: 60px;
+  }
+
+  .block li {
+    padding-bottom: 4px;
+  }
+
+  .block ul {
+    padding-bottom: 10px;
+  }
+/*480
+convert sidebar to it's own column
+smaller header
+stack nav links two by two*/
+
+}
+
+

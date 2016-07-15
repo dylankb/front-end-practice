@@ -52,14 +52,6 @@ figure {
   padding: 10px 0;
 }
 
-/*figure:nth-of-type(4)::after {
-  display: block;
-  content: "";
-  clear: both;
-} */
-
-/*Is this necessary?*/
-
 main::after {
   display: block;
   content: "";
