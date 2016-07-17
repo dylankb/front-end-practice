@@ -1,0 +1,171 @@
+@import url('whitespace-reset.css');
+
+body {
+  font: 14px/150% "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #293f50;
+  color: white;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+header {
+  padding: 45px 45px 70px 45px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+header section {
+/*  display: block;
+  content: "";
+  clear: both;*/
+  overflow: hidden;
+}
+
+nav li {
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h2 {
+  font-size: 30px;
+  padding-bottom: 5px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: #648880;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+
+h4 {
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+header h4 {
+  color: #648880;
+}
+
+main {
+  background-color: #fff;
+  color: #cecece;
+  padding: 60px 45px;
+}
+
+main a {
+  color: #648880;
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+footer {
+  padding: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+footer p {
+  float: left;
+  text-align: left;
+  color: #648880;
+}
+
+footer nav {
+  float: right;
+  text-align: right;
+}
+
+footer nav li {
+  text-transform: none;
+  font-weight: normal;
+}
+
+a:hover {
+  color: #648880
+}
+
+main a:hover {
+  color: lightgrey;
+}
+
+.description {
+  display: inline-block;
+  width: 33%;
+  box-sizing: border-box;
+  vertical-align: top;
+  padding: 0 10px;
+}
+
+.description h4 {
+  color: #648880;
+  padding: 15px 0;
+}
+
+.description p {
+  font-size: 16px;
+  color: darkgrey;
+}
+
+.navigation {
+  float: right;
+  width: 50%;
+/*  height: 80px;
+*/  text-align: right;
+  box-sizing: border-box;
+}
+
+.navigation h4 {
+  padding-bottom: 10px;
+}
+
+.cta {
+  text-align: center;
+  padding-top: 60px;
+  line-height: 200%
+}
+
+.button {
+  display: inline-block;
+  text-transform: uppercase;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 20px 30px;
+  margin-top: 30px;
+}
+
+.logo {
+  float: left;
+  width: 50%;
+  text-align: left;
+  box-sizing: border-box;
+  line-height: 100%;
+}
+
