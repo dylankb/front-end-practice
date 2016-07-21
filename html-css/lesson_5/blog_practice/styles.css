@@ -184,7 +184,7 @@ input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]:checked ~ .post {
+input[type="checkbox"]:checked + .post {
   display: block;
 }
 

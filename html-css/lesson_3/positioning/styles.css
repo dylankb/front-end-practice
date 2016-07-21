@@ -1,6 +1,7 @@
-/*section {
-  width: 800px
-}*/
+section {
+  width: 800px;
+  position: relative;
+}
 
 .positioned {
   position: absolute;
