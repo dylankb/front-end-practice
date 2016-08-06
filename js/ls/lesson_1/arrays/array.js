@@ -47,12 +47,12 @@
 
 // var names = ["Steve", "Martha", "Pat"];
 
-function stringify(arr) {
-  var output = "";
-  for(i = 0; i < arr.length; i++) {
-    output += arr[i];
-  }
-  return output;
-}
+// function stringify(arr) {
+//   var output = "";
+//   for(i = 0; i < arr.length; i++) {
+//     output += arr[i];
+//   }
+//   return output;
+// }
 
 
