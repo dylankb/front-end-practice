@@ -1,7 +1,7 @@
 class Greeter {
   greeting: string;
 
-  constructor ( public message: string) {
+  constructor ( message: string) {
     this.greeting = message;
   }
 
