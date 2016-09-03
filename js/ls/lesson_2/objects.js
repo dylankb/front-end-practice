@@ -1,4 +1,4 @@
-var invoices = { 
+var invoices = {
   unpaid : []
 };
 
@@ -12,12 +12,12 @@ invoices.add = function(name, amount) {
 invoices.totalDue = function() {
   var total = 0;
   for (var i=0; i<this.unpaid.length; i++) {
-    total += this.unpaid[i].amount
+    total += this.unpaid[i].amount;
   }
   return total;
 };
 
-invoices.paid = []
+invoices.paid = [];
 
 invoices.payInvoice = function(name) {
   var unpaid = [];
@@ -25,7 +25,7 @@ invoices.payInvoice = function(name) {
   for (var i=0; i<this.unpaid.length; i++) {
     if (name === this.unpaid[i].name) {
       this.paid.push(this.unpaid[i]);
-    } 
+    }
     else {
       unpaid.push(this.unpaid[i]);
     }

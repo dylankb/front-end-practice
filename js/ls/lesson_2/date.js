@@ -11,7 +11,7 @@ function dateSuffix(day) {
   lastDigit = dayString.charAt(dayString.length-1);
   if (lastDigit === 1) {
     return dayString + "st";
-  } 
+  }
   else if (lastDigit === 2) {
     return dayString + "nd";
   }
@@ -25,20 +25,20 @@ function dateSuffix(day) {
 
 function formattedDay(date) {
   var days_of_week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
+
   return days_of_week[date.getDay()];
 }
 
 function formattedMonth(date) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  
+
   return months[date.getMonth()];
 }
 
 function formattedDate(date) {
   var day = formattedDay(date),
     month = formattedMonth(date);
-  
+
   console.log("Today's date is " + day + " " + month + " " + dateSuffix(date.getDate()));
 }
 
@@ -48,8 +48,6 @@ function formattedTime(date) {
     return hourString = "0" + hourString + ":" + date.getMinutes();
   }
   else {
-    return hourString + ":" + date.getMinutes()
+    return hourString + ":" + date.getMinutes();
   }
 }
-
- 
