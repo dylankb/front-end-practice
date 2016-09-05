@@ -45,7 +45,8 @@ function formattedDate(date) {
 function formattedTime(date) {
   var hourString = date.getHours() + "";
   if (date.getHours < 10) {
-    return hourString = "0" + hourString + ":" + date.getMinutes();
+    hourString = "0" + hourString + ":" + date.getMinutes();
+    return hourString;
   }
   else {
     return hourString + ":" + date.getMinutes();

@@ -7,3 +7,19 @@ var incrementor = 1;
 var start = incrementor;
 var end;
 var difference;
+
+incrementor += 1;
+incrementor += 1;
+incrementor += 1;
+
+incrementor++;
+incrementor++;
+
+end = incrementor;
+difference = end - start;
+
+console.log("end", end);
+console.log("difference", difference);
+
+answer = (11 + 31) * 3;
+console.log('answer', answer);
