@@ -111,9 +111,6 @@ var computer = {
 
 console.log(computer.total());
 
-
-
-
 var computer = {
   price: 30000,
   shipping: 2000,
