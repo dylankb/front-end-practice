@@ -31,7 +31,6 @@ function shallowCopy(object) {
   // var protoProperties = Object.getPrototypeOf(object);
   var result = Object.create(Object.getPrototypeOf(object));
   for (var prop in object) {
-    debugger;
     if (object.hasOwnProperty(prop)) {
       result[prop] = object[prop];
     }
