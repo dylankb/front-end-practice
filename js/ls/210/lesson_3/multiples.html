@@ -1,0 +1,15 @@
+<body>
+  <!-- Odd multiples less than 100 -->
+  <script>
+    function printMultiples(number) {
+      var multiple = Math.floor(100/number);
+      while ( multiple > 0 ) {
+        if ( multiple % 2 !== 0 ) {
+          console.log(multiple * number);
+          multiple -= 2;
+        }
+      }
+    }
+    printMultiples(17);
+  </script>
+</body>
