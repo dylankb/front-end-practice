@@ -1,0 +1,16 @@
+<body>
+  <script>
+    function startsWith(string, searchString) {
+      var match = true;
+      var i = 0;
+      while (match===true && i < searchString.length) {
+        if (string[i] !== searchString[i]) {
+          match = false;
+        }
+        i++;
+      }
+      return match;
+    }
+    console.log(startsWith('hippopatamus', 'hit'));
+  </script>
+</body>

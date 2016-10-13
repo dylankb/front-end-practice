@@ -1,0 +1,24 @@
+<body>
+  <script>
+    function splitString(str, delimiter) {
+      var results = [[]];
+
+      for(var i = 0; i < str.length; i++) {
+        if (delimiter === "") {
+          results.push(new Array)
+          results[results.length-1].push(str[i])
+        }
+        else if (str[i] === delimiter) {
+          results.push(new Array)
+        }
+        else {
+          results[results.length-1].push(str[i])
+        }
+      }
+      results.forEach(function(partial) {
+        console.log(partial.join(""));
+      })
+    }
+    splitString('abc,123','');
+  </script>
+</body>
