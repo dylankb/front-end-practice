@@ -6,5 +6,4 @@ function reverse(string) {
   console.log(result);
 }
 
-
 reverse("hello");
