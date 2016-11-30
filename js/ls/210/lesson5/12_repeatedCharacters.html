@@ -7,7 +7,7 @@
     });
     for (var i = 0; i < characters.length; i++) {
       var character = characters[i];
-      if (counts[character] === 1) {
+      if (counts[character]) {
         counts[character] += 1;
       } else {
         counts[character] = 1;

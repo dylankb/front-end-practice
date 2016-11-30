@@ -1,0 +1,17 @@
+<body>
+  <script>
+    function toLowerCase(word) {
+      function lowerChar(letter) {
+        var asciiNumeric = letter.charCodeAt(0);
+        if (asciiNumeric >= 'A'.charCodeAt(0) && asciiNumeric <= 'Z'.charCodeAt(0)) {
+          asciiNumeric += 32;
+        }
+        return String.fromCharCode(asciiNumeric);
+      }
+      var chars = word.split("");
+      var lowers = chars.map(lowerChar);
+      return lowers.join("");
+    }
+    console.log(toLowerCase("CaT"));
+  </script>
+</body>
