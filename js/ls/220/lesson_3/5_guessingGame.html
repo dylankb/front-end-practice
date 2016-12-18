@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <h1>Guessing Game</h1>
+      <p class="message"></p>
+      <form method="post">
+        <fieldset>
+          <input type="text" />
+          <input type="submit" value="Guess" />
+        </fieldset>
+      </form>
+      <ul>
+      </ul>
+    </ul>
+    <script>
+
+
+      $(function() {
+        
+        var answer = Math.ceil(Math.random() * 100)
+        var $p = $("p");
+        var $ul = $('ul');
+
+        $("form").on("submit", function(e) {
+          e.preventDefault();
+          var $guess = Number($(this).find('input[type="text"]').val());
+
+          debugger;
+          if ($guess > answer) {
+            $p.text("Lower!");
+            $ul.append($("<li>").text($guess));
+          }
+          else if ($guess < answer) {
+            $p.text("Higher!");
+            $ul.append($("<li>").text($guess));
+          }
+
+          else if ($guess === answer) {
+            $ul.append($("<li>").text($guess));
+            $p.text("Correct!");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

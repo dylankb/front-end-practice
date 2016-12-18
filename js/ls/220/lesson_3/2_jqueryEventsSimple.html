@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <ul>
+      <p>
+
+      </p>
+      <li><a href="#">Apples</a></li>
+      <li><a href="#">Bananas</a></li>
+      <li><a href="#">Oranges</a></li>
+    </ul>
+    <form class="" method="post">
+      <fieldset>
+        <input type="text" />
+        <input type="submit" value="Choose" />
+      </fieldset>
+    </form>
+
+    </form>
+    <script>
+      var $p = $("p");
+
+      $(function() {
+        $("a").on("click", function(e) {
+          e.preventDefault();
+          var $e = $(this);
+
+          $p.text($e.text());
+        });
+
+        $("form").on("submit", function(e) {
+          e.preventDefault();
+          // var $input = $('input[type="text"]');
+          var $input = $(this).find('input[type="text"]');
+
+          $p.text($input.val());
+        });
+      });
+    </script>
+  </body>
+</html>
