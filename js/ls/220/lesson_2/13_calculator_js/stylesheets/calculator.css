@@ -1,0 +1,10 @@
+.calculator {
+  text-align: center;
+}
+
+input[type="submit"] {
+  color: red;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
