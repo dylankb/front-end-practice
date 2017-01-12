@@ -1,29 +1,33 @@
 function $(id_selector) {
-  return document.getElementByID(id_selector);
+  return document.getElementById(id_selector);
 }
 
-$('calculator').onsubmit = function(e) {
+window.onload = function() {
 
-  var val1 = $('val1').innerHTML;
-  var val2 = $('val2').innerHTML;
-  debugger;
-  var operator = $('.operator').innerHTML;
+  $("calculator").onsubmit = function(e) {
 
-  var result;
+    e.preventDefault();
 
-  if (operator === "+") {
-    result = val1 + val2;
-  }
-  else if (operator === "-") {
-    result = val1 - val2;
-  }
-  else if (operator === "*") {
-    result = val1 * val2;
-  }
-  else if (operator === "/") {
-    result = val1 / val2;
-  }
+    var val1 = +$('val1').value;
+    var val2 = +$('val2').value;
+    var operator = $('operator').value;
 
-  // $('result').innerHTML =
+    var result = 0;
 
+    if (operator === "+") {
+      result = val1 + val2;
+    }
+    else if (operator === "-") {
+      result = val1 - val2;
+    }
+    else if (operator === "*") {
+      result = val1 * val2;
+    }
+    else if (operator === "/") {
+      result = val1 / val2;
+    }
+
+    $('result').innerHTML =result;
+
+  };
 }

@@ -1,0 +1,76 @@
+body {
+  background: #16B892;
+  font-family: Helvetica, Arial;
+}
+
+main {
+  padding: 20px;
+  background: #fefefe;
+  max-width: 450px;
+  margin: 50px auto;
+  box-sizing: border-box;
+}
+
+h1,
+label {
+  color: #108268;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0 0 20px 0;
+}
+
+label {
+  display: block;
+}
+
+.input-field,
+.add-item {
+  display: block;
+}
+
+.input-field {
+  border: 1px solid #cecece;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding-left: 5px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  height: 40px;
+}
+
+.name {
+  width: 100%;
+}
+
+.quantity {
+  width: 15%;
+}
+
+.add-item {
+  width: 100%;
+  font-size: 26px;
+  padding: 15px 0;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid #A80A1A;
+  background: linear-gradient(to bottom, #D40D20 0%, #A80A1A 100%);
+}
+
+h2 {
+  padding: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #D40D20;
+  text-align: center;
+}
+
+.list {
+  color: #16B892;
+}
+
+.list li + li {
+  border-top: 1px solid #cecece;
+}
