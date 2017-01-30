@@ -22,6 +22,6 @@ $(function() {
 
       $blind.finish();
       $blind.removeAttr("style");
-    });
+    }, 1000);
   });
 });
