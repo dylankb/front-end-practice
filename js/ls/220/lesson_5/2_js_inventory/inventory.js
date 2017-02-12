@@ -26,18 +26,51 @@ var inventory;
 
       $('#inventory').append($item);
     },
-    remove: function(idx) {
+    findParent: function(target) {
+      return $(target).closest('tr');
+    },
+    findId: function(item) {
+      return item.find('input[type="hidden"]').val();
+    },
+    getItem: function(id) {
+      var foundItem = inventory.collection.filter(function(item, index) {
+        return item.id === Number(id);
+      });
 
+      return foundItem[0];
+    },
+    remove: function(idx) {
+      this.collection = inventory.collection.filter(function(item, index) {
+        return item.id !== Number(idx);
+      });
     },
     deleteItem: function(e) {
       e.preventDefault();
-      var item = $(e.target).closest('tr').remove();
-      this.remove($item.find('input[type="hidden"]').val());
-      // $($('input[name=item_id_1]').parent().parent().remove());
+      var item = this.findParent(e.target).remove();
+      this.remove(this.findId(item));
+    },
+    update: function(id, target) {
+      var item = this.getItem(id);
+
+      if (target.name.match(/name/)) {
+        item.name = $(target).val();
+      }
+      else if (target.name.match(/stock/)) {
+        item.stockNumber = $(target).val();
+      }
+      else if (target.name.match(/quantity/)) {
+        item.quantity = $(target).val();
+      }
+    },
+    updateItem: function(e) {
+      var id = this.findId(this.findParent(e.target));
+      this.update(id, e.target);
+      // Could consider sending parent object into update instead
     },
     bindEvents: function() {
       $('#add_item').on("click", $.proxy(this.newItem, this));
       $('#inventory').on("click", ".delete", $.proxy(this.deleteItem, this));
+      $('#inventory').on("keyup", "input", $.proxy(this.updateItem, this));
     },
     cacheTemplate: function() {
       $inventoryTemplate = $('#inventory_item').remove();
