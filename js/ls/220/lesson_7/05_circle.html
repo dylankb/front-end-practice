@@ -1,0 +1,26 @@
+<body>
+  <script>
+    var Circle = function(radius) {
+      this.radius = radius;
+    };
+
+    Circle.prototype.area = function() {
+      return Math.PI * this.radius * this.radius;
+    }
+
+    // function Circle(radius) {   // Also works
+    //
+    //   return {
+    //     area: function() {
+    //       return radius * 3.14;
+    //     }
+    //   }
+    // }
+
+    var a = new Circle(3);
+    var b = new Circle(4);
+
+    console.log(a.area().toFixed(2)); // 28.27
+    console.log(b.area().toFixed(2)); // 50.27
+  </script>
+</body>
