@@ -1,0 +1,19 @@
+<body>
+  <script>
+    function createObject(obj) {
+
+      function Temp() {}
+      Temp.prototype = obj;
+
+      return new Temp();
+    }
+
+    var foo = {
+      a: 1,
+    };
+
+    var bar = createObject(foo);
+
+    console.log(foo.isPrototypeOf(bar));         // true
+  </script>
+</body>

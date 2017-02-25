@@ -3,17 +3,11 @@
     function shallowCopy(object) {
       var copy = {};
 
-      while (object) {
-        var propertyNames = Object.getOwnPropertyNames(object);
-
-        for (var i =0; i < propertyNames.length; i++) {
-          copy[propertyNames[i]] = object[propertyNames[i]];
-        }
+      while (object && !object.hasOwnProperty(propKey)) {
+        debugger;
 
         object = Object.getPrototypeOf(object);
       }
-
-      return copy;
     }
 
     var foo = {
