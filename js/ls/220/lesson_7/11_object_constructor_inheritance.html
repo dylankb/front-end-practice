@@ -1,0 +1,44 @@
+<body>
+  <script>
+    // function Vehicle() { // Directly sets properties
+    //   this.doors = 4;
+    //   this.wheels = 4;
+    // }
+    function Vehicle() {}
+    Vehicle.prototype = {
+      doors: 4,
+      wheels: 4,
+    };
+
+    var sedan = new Vehicle();
+    var coupe = new Vehicle();
+
+    console.log(sedan.hasOwnProperty("doors"));
+    console.log(coupe.hasOwnProperty("doors"));
+
+    function Coupe() {}
+    Coupe.prototype = new Vehicle();
+    Coupe.prototype.doors = 2;
+
+    function Motorcycle() {}
+    Motorcycle.prototype = new Vehicle();
+
+    Coupe.prototype.constructor = Coupe
+    Motorcycle.prototype.constructor = Motorcycle
+
+    var newCoupe = new Coupe();
+    var motorcyle = new Motorcycle();
+
+    // console.log(newCoupe instanceof Coupe);
+    // console.log(newCoupe.isPrototypeOf(Coupe.prototype));
+    // console.log(motorcyle instanceof Motorcycle);
+
+    function Sedan() {};
+    Sedan.prototype = Object.create(Vehicle.prototype)
+
+    var newSedan = new Sedan()
+    // console.log(newSedan instanceof Sedan);
+    // console.log(newSedan instanceof Vehicle);
+    // console.log(Sedan.prototype.isPrototypeOf(newSedan));
+  </script>
+</body>
