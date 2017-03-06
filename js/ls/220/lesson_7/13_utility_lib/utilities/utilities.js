@@ -184,7 +184,6 @@
 
   _.isBoolean = function(obj) {
     return toString.call(obj) === "[object Boolean]";
-    // return obj === true || false; // Doesn't account for primitives - new Boolean(false)
   };
 
   _.isString = function(obj) {
