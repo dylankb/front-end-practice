@@ -4,15 +4,30 @@
     <meta charset="utf-8">
     <title>Word Guess</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
-  <body>
+  <body class="lose">
     <main>
       <div class="tree">
-        <div class="apple">
+        <div class="apple"></div>
       </div>
+
+      <p class="message"></p>
+
+      <div class="spaces">
+        <h2>Word:</h2>
+        <span>C</span>
+        <span>A</span>
+        <span>T</span>
       </div>
-      <h2>Word:</h2>
-      <h2>Guesses:</h2>
+
+      <div class="guesses">
+        <h2>Guesses:</h2>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </main>
+    <script src="javascripts/guess-word.js"></script>
   </body>
 </html>
