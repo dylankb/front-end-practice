@@ -45,7 +45,7 @@
         }
 
         if (args.length === 0) {
-          return element[0];
+          return element[getRandomEle(0)];
         } else {
           while (arr.length < size) {
             index = getRandomEle(size);
