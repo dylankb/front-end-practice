@@ -1,0 +1,55 @@
+<body>
+  <script>
+    // Manual solution
+
+    // function searchWord(word, text) {
+    //   var textList = text.split('');
+    //   var textListLower = textList.map(function(word) { return word.toLowerCase() });
+    //   var lowerWord = word.toLowerCase();
+    //
+    //   var hasMoreInstances = true;
+    //   var startingIndex = 0;
+    //   var indices = [];
+    //
+    //   while (hasMoreInstances) {
+    //     result = textListLower.indexOf(lowerWord, startingIndex);
+    //
+    //     if (result !== -1) {
+    //       startingIndex = result;
+    //       indices.push(startingIndex);
+    //     } else {
+    //       hasMoreInstances = false;
+    //     }
+    //   }
+    //
+    //   textList.map(function(item, index) {
+    //     if (indices.indexOf(index)) {
+    //       return '**' + item.toUpperCase() + '**';
+    //     }
+    //   });
+    //
+    //   return textList.join('');
+    // }
+
+    function searchWord(word, text) {
+      var search = '(\\b' + word + '\\b)';
+      var re = new RegExp(search, 'gi');
+      newText = text.replace(re, `**${word.toUpperCase()}**`);
+      return newText;
+    }
+
+    console.log(searchWord('hi', 'hello world')); //=> 'hello world')
+    console.log(searchWord('hello', 'Hello World')); //=> '**HELLO** World')
+    console.log(searchWord('hello', 'Hello World hello'));// => '**HELLO** World **HELLO')
+    console.log(searchWord('hello', 'hellosir world')); //=> 'hellosir world')
+
+   // FIND INSTANCES
+   // Array of lowercase words
+   // Find index of first word
+
+   // FORMAT INSTANCES
+   // Format that word
+   // Update latest index
+   // Repeat until no more instances of word
+  </script>
+</body>
