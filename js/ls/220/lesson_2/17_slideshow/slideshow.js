@@ -14,7 +14,7 @@ $(function() {
 
   $('.arrow').on('click', function() {
 
-    function scrollRight(li) {
+    function scrollRight() {
       if (currentLiIndex === 0) {
         newLi = $li.eq(-1);
       } else {
@@ -23,7 +23,7 @@ $(function() {
       return newLi;
     }
 
-    function scrollLeft(li) {
+    function scrollLeft() {
       if (currentLiIndex === $li.length - 1) {
         newLi = $li.eq(0);
       } else {
@@ -41,10 +41,10 @@ $(function() {
     var $newLi;
 
     if ($ele.attr('class') === 'arrow right-arrow') {
-      $newLi = scrollLeft($newLi);
+      $newLi = scrollLeft();
     }
     else if ($ele.attr('class') === 'arrow left-arrow') {
-      $newLi = scrollRight($newLi);
+      $newLi = scrollRight();
     }
 
     $currentLi.find('img').removeClass('active');

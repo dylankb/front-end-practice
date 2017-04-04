@@ -19,7 +19,7 @@ $(function() {
   $(".modal-overlay, a.close").on("click", function(e) {
     e.preventDefault();
 
-    // On clicking close, the visible modal & overlay fade out
+    // On clicking close, find the visible modal & overlay to fade out
     $(".modal-overlay, .modal").filter(":visible").fadeOut(400);
   });
 });

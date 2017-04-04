@@ -1,5 +1,5 @@
 $(function() {
-  $blinds = $('[id^=blind]');
+  var $blinds = $('[id^=blind]');
 
   var speed = 250;
   var delayVariable = 1500;

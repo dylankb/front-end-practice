@@ -46,6 +46,7 @@ $(function() {
   var $titles = $('li');
 
   $categories.on('change', function() {
+    // Get toggled checkbox, value, and checked state
     var $checkbox = $(this);
     var category = $checkbox.val();
     var checked = $checkbox.is(":checked");
@@ -57,13 +58,14 @@ $(function() {
     //   $('li').filter(':contains(' + category + ')').hide();
     // }
 
-    // Official solution (match by data-id)
+    // Get JSON objects matching chechbox value (category)
     var $categoryItems = catalog.filter(function(item) {
       return item.category === category;
     });
 
-    categoryItems.forEach(function(item) {
-      $items.filter("[data-id=" + item.id + "]").toggle(checked);
+    // Show or hide DOM elements with matching IDs based on their previous show/hide state (toggle)
+    $categoryItems.forEach(function(item) {
+      $titles.filter("[data-id=" + item.id + "]").toggle(checked);
     });
 
   });
