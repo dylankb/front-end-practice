@@ -1,11 +1,17 @@
+/**
+  1) Initial page load - set... functions execute. They will pass in nil parameters, so they will exit early and not do any page updates
+
+  2) After an action has happened set... functions will execute. Inside the function bodies the DOM will update and the values will be saved to local storage.
+*/
 $(function() {
+  var $tabs = $('nav li');
 
   $('nav a').on('click', function(e) {
     e.preventDefault();
     var $clickedTab = $(this).parent();
     var index = $tabs.index($clickedTab);
 
-    setTab(index);
+    updateActiveTab(index);
     localStorage.setItem('index', index);
   });
 
@@ -20,12 +26,13 @@ $(function() {
     localStorage.setItem('note', $('textarea').val());
   });
 
+  // These set page settings previously saved on load
   setBackgroundColor(localStorage.getItem('color'));
-  setTab(localStorage.getItem('index'));
+  updateActiveTab(localStorage.getItem('index'));
   setNote(localStorage.getItem('note'));
 });
 
-function setTab(savedIndex) {
+function updateActiveTab(savedIndex) {
   if (savedIndex === null) { return; }
   toggleTab(savedIndex);
   updateContent(savedIndex);
@@ -44,20 +51,16 @@ function updateContent(index) {
 function setBackgroundColor(color) {
   if (color === null) { return; }
   $("[value=" + color + "]").prop("checked", true).change();
+  // change() triggers :radio on change callback
 }
 
 function setNote(savedNote) {
   $('textarea').text(savedNote);
 }
 
-/**
-  1) Initial page load - set... functions execute. They will pass in nil parameters, so they will exit early and not do any page updates
-  2) After an action has happened set... functions will execute. Inside the function bodies the DOM will update and the values will be saved to local storage.
-*/
+// functions called by updateActiveTab could also be included in callback, and updateActiveTab could just trigger the `click()`
 
-// functions called by setTab could also be included in callback, and set tab could just trigger the `click()`
-
-// function setTab(savedIndex) {
+// function updateActiveTab(savedIndex) {
 //   if (savedIndex === null) { return; }
 //   $('nav a').eq(idx).click();
 // }

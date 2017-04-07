@@ -23,7 +23,9 @@
           <p>Tags:</p>
           {{#if tags}}
             {{#each tags}}
-              {{>tag}}
+              <!-- <strong>{{this}}</strong> -->
+              <!-- <strong>{{.}}</strong> -->
+              <strong>{{> tag}}</strong>
             {{/each}}
           {{else}}
             <p>Not tagged</p>
