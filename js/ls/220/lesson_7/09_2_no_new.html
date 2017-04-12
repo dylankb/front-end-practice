@@ -6,8 +6,17 @@
     //   return { name: this.first + ' ' + this.last };
     // }
 
+    // function User(first, last) {
+    //   obj = Object.create(Object.prototype);
+    //
+    //   obj.first = first;
+    //   obj.last = last;
+    //   obj.name = obj.first + ' ' + obj.last;
+    //
+    //   return obj;
+    // }
+
     function User(first, last) {
-      debugger;
       if (!(this instanceof User)) {
         return new User(first, last);
       }

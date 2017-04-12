@@ -5,14 +5,40 @@
       for (var prop in element) {
         if (prop === key) {
           if (pick) { obj[key] = element[key]; }
-        }
-        if (prop !== key) {
+        } else {
           if (omit) { obj[key] = element[key]; }
         }
       }
     });
 
     return obj;
+  }
+
+  function findObjs(element, searchObj, { multiple } = {}) {
+    var match = multiple ? [] : undefined;
+    /*
+      We use `Array.prototype.some()` here rather than a `forEach` in order to short circut the iteration if a true value is returned in the callback. By default, you cannot break out of a `forEach` method.
+    */
+    element.some(function(obj) {
+      var allMatch = true;
+      for (var prop in searchObj) {
+        if (obj[prop] !== searchObj[prop]) {
+          allMatch = false;
+        }
+      }
+
+      if (allMatch) {
+        if (multiple) {
+          match.push(obj);
+        }
+        else {
+          match = obj;
+          return true;  // Short circuts callback, so search stops
+        }
+      }
+    });
+
+    return match;
   }
 
   var _ = function(element) {
@@ -35,20 +61,18 @@
       lastIndexOf: function(value) {
         return element.lastIndexOf(value);
       },
-      sample: function() {
+      sample: function(qty) {
         var arr = [];
-        var args = Array.prototype.slice.call(arguments);
-        var size = args[0];
 
-        function getRandomEle(size) {
-          return Math.floor(Math.random() * size);
+        function getRandomEle(max) {
+          return Math.floor(Math.random() * max);
         }
 
-        if (args.length === 0) {
+        if (!qty) {
           return element[getRandomEle(0)];
         } else {
-          while (arr.length < size) {
-            index = getRandomEle(size);
+          while (arr.length < qty) {
+            index = getRandomEle(qty);
             if (arr.indexOf(element[index]) === -1) {
               arr.push(element[index]);
             }
@@ -57,37 +81,21 @@
         return arr;
       },
       findWhere: function(searchObj) {
-        var match;
-
-        element.some(function(obj) {
-          var allMatch = true;
-
-          for (var prop in searchObj) {
-            if (obj[prop] !== searchObj[prop]) {
-              allMatch = false;
-            }
-          }
-
-          if (allMatch) {
-            match = obj;
-            return true;
-          }
-        });
-
-        return match;
+        return findObjs(element, searchObj, { multiple: false });
       },
       where: function(searchObj) {
-        var arr = [];
-
-        element.forEach(function(obj) {
-          for (var prop in searchObj) {
-            if (obj[prop] === searchObj[prop]) {
-              arr.push(obj);
-            }
-          }
-        });
-
-        return arr;
+        return findObjs(element, searchObj, { multiple: true });
+        // var arr = [];
+        //
+        // element.forEach(function(obj) {
+        //   for (var prop in searchObj) {
+        //     if (obj[prop] === searchObj[prop]) {
+        //       arr.push(obj);
+        //     }
+        //   }
+        // });
+        //
+        // return arr;
       },
       pluck: function(searchKey) {
         var arr = [];

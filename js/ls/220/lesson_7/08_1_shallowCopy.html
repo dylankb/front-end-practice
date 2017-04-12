@@ -1,13 +1,15 @@
 <body>
   <script>
     function shallowCopy(object) {
-      var copy = {};
-
-      while (object && !object.hasOwnProperty(propKey)) {
+      var result = Object.create(Object.getPrototypeOf(object));
+      for (var prop in object) {
         debugger;
-
-        object = Object.getPrototypeOf(object);
+        if (Object.prototype.hasOwnProperty.call(object, prop)) {
+          result[prop] = object[prop];
+        }
       }
+
+      return result;
     }
 
     var foo = {
