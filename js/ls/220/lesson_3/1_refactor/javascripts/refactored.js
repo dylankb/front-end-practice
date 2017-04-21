@@ -62,7 +62,7 @@ $(function() {
       if (i % 2 == 1) {
         num = (+num * 2) + "";
         if (num.length > 1) {
-          num = +num[0] + +num[1];
+          num = Number(num[0]) + Number(num[1]);
         }
         else {
           num = +num;
