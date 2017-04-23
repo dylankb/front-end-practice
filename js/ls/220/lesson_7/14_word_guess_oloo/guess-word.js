@@ -28,7 +28,7 @@ var Game = {
   gameMessage: '',
 
   word: function() {
-    tempWord = randomWord();
+    var tempWord = randomWord();
 
     if (!tempWord) {
       this.displayMessage("Sorry, I've run out of words!");
@@ -156,50 +156,9 @@ function isValidGuess(charCode, letter, lettersGuessed) {
   return isALetter(charCode) && !lettersGuessed.includes(letter);
 }
 
-game = new Game();
+var game = Object.create(Game).init();
 
 $replay.on("click", function(e) {
   e.preventDefault();
   new Game();
 });
-
-// OLOO Solution
-// var Game = {
-//
-//   createBlanks: function() {
-    // for (var i=0; i < this.word.length; i++) {
-    //   $guesses.append('<span></span>');
-    //   $words.append('<span></span>');
-    // }
-//   },
-//
-//   init: function() {
-  //   this.lettersGuessed = [];
-  //   this.allowedGuesses = 6;
-  //   this.incorrectGuesses = 0;
-  //   this.correctSpaces = 0;
-  //   this.displayResult = '';
-  //
-  //   this.word = randomWord();
-  //   if (!this.word) {
-  //     this.displayResult = "Sorry, I've run out of words!";
-  //   } else {
-  //     this.displayResult = this.word;
-  //   }
-  //
-  //   return this;
-  // }
-// };
-//
-// game = Object.create(Game).init();
-// console.log(game.allowedGuesses);
-// console.log(game.word);
-// console.log(game.displayResult);
-// game2 = Object.create(Game).init();
-// console.log(game2.word);
-// console.log(game2.displayResult);
-// game3 = Object.create(Game).init();
-// console.log(game3.word);
-// console.log(game3.displayResult);
-// game4 = Object.create(Game).init();
-// console.log(game4.displayResult);
