@@ -24,10 +24,8 @@ $(function() {
         success: function(json) {
           photosJSON = json;
           this.renderPhotos();
-          socialInfo.renderPhotoInformation(0);
-          socialInfo.init();
-          // Need to render photo_information before init -
-          // in order to attach event listener need button rendered first
+          socialInfo.renderPhotoInformation(0); // Render button elements before binding events
+          socialInfo.bindEvents();
           comments.getCommentsFor(photosJSON[0].id);
           console.log(json);
         }
@@ -64,7 +62,6 @@ $(function() {
 
       socialInfo.renderPhotoInformation(currentIndex);
       comments.getCommentsFor(photosJSON[currentIndex].id);
-      socialInfo.init();
     },
     previousPhoto: function(e) {
       e.preventDefault();
@@ -84,11 +81,42 @@ $(function() {
 
       socialInfo.renderPhotoInformation(currentIndex);
       comments.getCommentsFor(photosJSON[currentIndex].id);
-      socialInfo.init();
     }
   };
 
+
+  $('form').on('submit', function(e) {
+    e.preventDefault();
+    var $form = $(e.target);
+
+    $.ajax({
+      url: "/comments/new",
+      type: "POST",
+      data: $form.serialize(),
+      success: function(commentJSON) {
+        var newComment = templates.comment(commentJSON);
+        $('#comments > ul').append(newComment);
+      }
+    });
+  });
+
+
   var comments = {
+    // bindEvent: function() {
+    //   $('form').on('submit', this.post);
+    // },
+    // post: function(e) {
+    //   e.preventDefault();
+    //   $.ajax({
+    //     url: "/comments/new",
+    //     type: "POST",
+    //     data: $form.serialize(),
+    //     success: function(commentJSON) {
+    //       var newComment = templates.comment(commentJSON);
+    //       $('#comments > ul').append(newComment);
+    //     }
+    //   });
+    // },
     getCommentsFor: function(id) {
       $.ajax({
         url: "/comments",
@@ -96,6 +124,7 @@ $(function() {
         context: this,
         success: function(commentJSON) {
           this.display(commentJSON);
+          // this.bindEvent();   // Ensure that binding occurs after successful rendering of content
         }
       });
     },
@@ -105,39 +134,24 @@ $(function() {
   };
 
   var socialInfo = {
-    init: function() {
-      $('a.button.like').on('click', this.like.bind(this));
-      $('a.button.favorite').on('click', this.favorite.bind(this));
+    bindEvents: function() {
+      $('section > header').on('click', ".actions a", socialInfo.get);
     },
     renderPhotoInformation: function(index) {
       $('section > header').html(templates.photo_information(photosJSON[index]));
     },
-    like: function(e) {
+    get: function(e) {
       e.preventDefault();
+      var $e = $(e.target);
+
       $.ajax({
-        url: "/photos/like",
+        url: $e.attr("href"),
         type: "POST",
-        context: this,
-        data: "photo_id=" + photosJSON[currentIndex].id,
-        success: function(json) {
-          photosJSON[currentIndex].likes = json.total;
-          this.renderPhotoInformation(currentIndex);
-          this.init();
-        }
-      });
-    },
-    favorite: function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: "/photos/favorite",
-        type: "POST",
-        context: this,
-        data: "photo_id=" + photosJSON[currentIndex].id,
-        success: function(json) {
-          photosJSON[currentIndex].favorites = json.total;
-          this.renderPhotoInformation(currentIndex);
-          this.init();
-        }
+        data: "photo_id=" + $e.attr("data-id"),
+      }).done(function(json) {
+        var socialTypePlural = this.url.substring(this.url.lastIndexOf('/') + 1) + "s"; // returns either favorites or likes
+        photosJSON[currentIndex][socialTypePlural] = json.total;
+        $('section > header').html(templates.photo_information(photosJSON[currentIndex]));
       });
     }
   };
