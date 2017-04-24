@@ -84,39 +84,24 @@ $(function() {
     }
   };
 
-
-  $('form').on('submit', function(e) {
-    e.preventDefault();
-    var $form = $(e.target);
-
-    $.ajax({
-      url: "/comments/new",
-      type: "POST",
-      data: $form.serialize(),
-      success: function(commentJSON) {
-        var newComment = templates.comment(commentJSON);
-        $('#comments > ul').append(newComment);
-      }
-    });
-  });
-
-
   var comments = {
-    // bindEvent: function() {
-    //   $('form').on('submit', this.post);
-    // },
-    // post: function(e) {
-    //   e.preventDefault();
-    //   $.ajax({
-    //     url: "/comments/new",
-    //     type: "POST",
-    //     data: $form.serialize(),
-    //     success: function(commentJSON) {
-    //       var newComment = templates.comment(commentJSON);
-    //       $('#comments > ul').append(newComment);
-    //     }
-    //   });
-    // },
+    bindEvent: function() {
+      $('form').on('submit', this.post);
+    },
+    post: function(e) {
+      e.preventDefault();
+      var $form = $(e.target);
+
+      $.ajax({
+        url: "/comments/new",
+        type: "POST",
+        data: $form.serialize(),
+        success: function(commentJSON) {
+          var newComment = templates.comment(commentJSON);
+          $('#comments > ul').append(newComment);
+        }
+      });
+    },
     getCommentsFor: function(id) {
       $.ajax({
         url: "/comments",
@@ -124,7 +109,7 @@ $(function() {
         context: this,
         success: function(commentJSON) {
           this.display(commentJSON);
-          // this.bindEvent();   // Ensure that binding occurs after successful rendering of content
+          this.bindEvent();   // Ensure that binding occurs after successful rendering of content
         }
       });
     },
@@ -135,7 +120,7 @@ $(function() {
 
   var socialInfo = {
     bindEvents: function() {
-      $('section > header').on('click', ".actions a", socialInfo.get);
+      $('section > header').on('click', ".actions a", socialInfo.get.bind(this));
     },
     renderPhotoInformation: function(index) {
       $('section > header').html(templates.photo_information(photosJSON[index]));
@@ -148,10 +133,13 @@ $(function() {
         url: $e.attr("href"),
         type: "POST",
         data: "photo_id=" + $e.attr("data-id"),
+        context: $.extend(e, this),
       }).done(function(json) {
-        var socialTypePlural = this.url.substring(this.url.lastIndexOf('/') + 1) + "s"; // returns either favorites or likes
+        var $e = $(this.target);
+        var url = $e.attr("href");
+        var socialTypePlural = url.substring(url.lastIndexOf('/') + 1) + "s"; // returns either favorites or likes
         photosJSON[currentIndex][socialTypePlural] = json.total;
-        $('section > header').html(templates.photo_information(photosJSON[currentIndex]));
+        this.renderPhotoInformation(currentIndex);
       });
     }
   };
