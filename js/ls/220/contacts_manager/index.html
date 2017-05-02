@@ -45,7 +45,6 @@
           --><dd>
             <input type="text" name="tagName" id="tag-name" value={{tagName}}>
           </dd>
-          <input type="hidden" value={{id}}>
         </dl>
         <ul class="button-container-full button-container-form">
           <input type="submit" class="button button-large form-button">
@@ -53,22 +52,22 @@
         </ul>
     </script>
 
-    <script id="tags" type="text/x-handlebars">
+    <script id="contactFormTags" type="text/x-handlebars">
       {{#each tags}}
-        {{> tag}}
+        {{> formTag}}
       {{/each}}
     </script>
 
-    <script id="tag" type="text/x-handlebars" data-type="partial">
+    <script id="formTag" type="text/x-handlebars" data-type="partial">
       <dt>
         <label for="tag-{{id}}">{{tagName}}</label>
       </dt><!--
       --><dd>
-        <input type="checkbox" id="tag-{{id}}" name=tags value={{id}}>
+        <input type="checkbox" id="tag-{{id}}" name="tagIds" value={{id}}>
       </dd>
     </script>
 
-    <script id="contactTags" type="text/x-handlebars">
+    <script id="contactDisplayTags" type="text/x-handlebars">
       <dt class="tag-list">Tags</dt>
       {{#each contactTags}}
         {{> contactTag}}
@@ -149,7 +148,7 @@
     <script id="resultsMessage" data-type="partial" type="text/x-handlebars">
       <section class="well search-results">
         <div class="close">X</div>
-        <p class="large-text">
+        <p class="message-text">
           <span class="search-text"></span>
         </p>
       </section>
