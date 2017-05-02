@@ -68,12 +68,12 @@ $(function() {
       tags[newTag.id] = newTag;
     },
     bindEvents: function() {
-      $('.new-contact').on('click', this.showContactForm);
-      $('.new-tag').on('click', this.showTagForm);
+      $('.new-contact').on('click', this.showContactForm.bind(this));
+      $('.new-tag').on('click', this.showTagForm.bind(this));
       $('.sections').on('submit', '.contact-form', this.processContactInfo.bind(this));
       $('.sections').on('submit', '.tag-form', this.processTagInfo.bind(this));
       $('.toolbar').on('keyup', '#search-field', this.displaySearchResults.bind(this));
-      $('.results').on('click', '.edit-contact', this.displayEditContactForm);
+      $('.results').on('click', '.edit-contact', this.displayEditContactForm.bind(this));
       $('.results').on('click', '.delete-contact', this.deleteContact.bind(this));
       $('.sections').on('click', '.cancel-button', this.transitionFromInputToResults);
       $('.results').on('click', '.tag', this.displayTaggedContacts.bind(this));
@@ -94,6 +94,8 @@ $(function() {
       e.preventDefault();
 
       $('.search-results').remove();
+      $('#search-field').val("");
+
       this.displayContacts(contacts);
     },
     deleteContact: function(e) {
@@ -120,6 +122,7 @@ $(function() {
 
         // Display tags next to contact
         var contactTags = contacts[contact.id].tags();
+        console.log(contactTags);
         $contactLi.find('.info').append(templates.contactDisplayTags({ contactTags: contactTags }));
       });
 
@@ -130,23 +133,24 @@ $(function() {
     },
     displayEditContactForm: function(e) {
       e.preventDefault();
-
-      var id = $(this).parents("li").data('id');
-
+      var id = $(e.currentTarget).parents("li").data('id');
       this.clearContactsAndToolbar();
+
       $('.sections').append(templates.contactForm(contacts[id]));
       $('.tagSelectOptions').html(templates.contactFormTags({ tags: tags}));
 
-      // Pre-check selected tags in DOM
       if (contacts[id].tagIds) {
-        $(".tagSelectOptions input[type='checkbox']").each(function() {
-          var tagId = Number(this.value);
-
-          if (contacts[id].tagIds.indexOf(tagId) !== -1) {
-            this.checked = true;
-          }
-        });
+        this.markCurrentTagsOnForm(id);
       }
+    },
+    markCurrentTagsOnForm: function(id) {
+      $(".tagSelectOptions input[type='checkbox']").each(function() {
+        var tagId = Number(this.value);
+
+        if (contacts[id].tagIds.indexOf(tagId) !== -1) {
+          this.checked = true;
+        }
+      });
     },
     displayTaggedContacts: function(e) {
       e.preventDefault();
@@ -161,36 +165,18 @@ $(function() {
         $('.results').prepend(templates.resultsMessage());
       }
 
-      this.displayResultsMessage("Contacts tagged with ");
-      $('.search-text').text(tag.tagName);
+      this.displayResultsMessage("Contacts tagged with ", tag.tagName);
     },
-    displayResultsMessage: function(message) {
-      $('.message-text')[0].firstChild.textContent = message;
+    displayResultsMessage: function(message, searchQuery) {
+      $('.message-text').text(message);
+      $('.search-text').text(searchQuery);
     },
-    displaySearchResults: function(e) {
-      var $searchResults = $('.search-results');
+    displaySearchResults: function() {
       var searchQuery = $('#search-field').val();
       var contactResults = this.searchContacts(searchQuery);
+      this.displayContacts(contacts);
 
-      if (!$searchResults.length) {
-        $('.results').prepend(templates.resultsMessage());
-      }
-
-      if (!searchQuery) {
-        $searchResults.remove();
-        this.displayContacts(contacts);
-        return;
-      }
-
-      $('.search-text').text(searchQuery);
-
-      if (contactResults.length === 0) {
-        this.displayResultsMessage("There is no contact starting with ");
-      } else {
-        this.displayResultsMessage("Contacts starting with ");
-      }
-
-      this.displayContacts(contactResults);
+      this.updateSearchResultsMessage(contactResults, searchQuery);
     },
     /*
       Adds tags key value pair values to an array. Other input are key value only
@@ -279,6 +265,8 @@ $(function() {
       }
     },
     searchContacts: function(query) {
+      if (!query) { return contacts; }
+
       var contactObjects = Object.values(contacts);
       var contactResults = contactObjects.filter(function(contact) {
         return contact.name.indexOf(query) !== -1;
@@ -318,6 +306,23 @@ $(function() {
       contacts[id] = Object.assign(contacts[id], contactInfo);
       window.localStorage.setItem('contacts', JSON.stringify(contacts));
     },
+    updateSearchResultsMessage: function(contactResults, searchQuery) {
+      var $searchResults = $('.search-results');
+      if (!$searchResults.length) {
+        $('.results').prepend(templates.resultsMessage());
+      }
+
+      if (!searchQuery) {
+        $searchResults.remove();
+        return;
+      }
+
+      if (contactResults.length === 0) {
+        this.displayResultsMessage("There is no contact starting with ", searchQuery);
+      } else {
+        this.displayResultsMessage("Contacts starting with ", searchQuery);
+      }
+    }
 
   };
 
