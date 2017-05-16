@@ -1,3 +1,21 @@
+function scrollRight() {
+  if (currentLiIndex === 0) {
+    newLi = $li.eq(-1);
+  } else {
+    newLi = $currentLi.prev();
+  }
+  return newLi;
+}
+
+function scrollLeft() {
+  if (currentLiIndex === $li.length - 1) {
+    newLi = $li.eq(0);
+  } else {
+    newLi = $currentLi.next();
+  }
+  return newLi;
+}
+
 $(function() {
   var $mainImg = $('main figure img');
   var $li = $('li');
@@ -13,24 +31,6 @@ $(function() {
   });
 
   $('.arrow').on('click', function() {
-
-    function scrollRight() {
-      if (currentLiIndex === 0) {
-        newLi = $li.eq(-1);
-      } else {
-        newLi = $currentLi.prev();
-      }
-      return newLi;
-    }
-
-    function scrollLeft() {
-      if (currentLiIndex === $li.length - 1) {
-        newLi = $li.eq(0);
-      } else {
-        newLi = $currentLi.next();
-      }
-      return newLi;
-    }
 
     var $ele = $(this);
     var $imgSrc = $mainImg.attr('src');

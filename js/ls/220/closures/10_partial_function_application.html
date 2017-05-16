@@ -15,6 +15,13 @@
     //   }
     // }
 
+    // 2) w/out partial
+    // function greet(greetString) {
+    //   return function(nameString) {
+    //     return greetString[0].toUpperCase() + greetString.slice(1) + ', ' + nameString + '!';
+    //   }
+    // }
+
     function greet(greeting, name) {
       var capitalizedGreet = greeting[0].toUpperCase() + greeting.slice(1);
       return `${capitalizedGreet} ${name}!`
