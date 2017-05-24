@@ -1,13 +1,16 @@
 /*jshint esversion: 6 */
 var ProductModel = Backbone.Model.extend({
   setDate: function() {
-    var date = new Date(this.get('date'));
-    var dateFormatted = formatDate(date);
+    // var date = new Date(this.get('date'));
+    // var dateFormatted = formatDate(date);
+    var dateFormatted = moment().format('MMMM Do YYYY, h:mm:ss a');
+    // debugger;
     this.set('date_formatted', dateFormatted);
   },
   setDatetime: function() {
-    var date = new Date(this.get('date'));
-    var dateTime = formatDatetime(date);
+    // var date = new Date(this.get('date'));
+    // var dateTime = formatDatetime(date);
+    var dateTime = moment().format();
     this.set('datetime', dateTime);
   },
   renderForm: function() {
@@ -37,8 +40,10 @@ $('form').on('submit', function(e) {
   }, {});
   var date = new Date();
   formInfo.date = date.valueOf();
-  formInfo.datetime = formatDatetime(date);
-  formInfo.date_formatted = formatDate(date);
+  // formInfo.datetime = formatDatetime(date);
+  // formInfo.date_formatted = formatDate(date);
+  formInfo.datetime = moment.format();
+  formInfo.date_formatted = moment().format('MMMM Do YYYY, h:mm:ss a');
 
   product.set(formInfo);
 });
@@ -52,33 +57,31 @@ $('[type="text/x-handlebars"]').each(function() {
 
 var product = new ProductModel(product_json);
 
-var dateObj = new Date();
-
-function formatDatetime(date) {
-  var day = date.getDate();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  return `${year}-${leftPad(month)}-${leftPad(day)}T-${formatTime(date)}`;
-}
-
-function formatTime(date) {
-  return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-}
-
-function formatDate(date) {
-  var day = date.getDate();
-  var year = date.getFullYear();
-  var month = date.toLocaleString("en", { month: "long" });
-  var suffixes = ['st', 'nd', 'rd', 'th'];
-  var suffixIdx = onesDigit(day) <= 3 ? onesDigit(day) - 1 : suffixes.length - 1;
-  return `${month}, ${day}${suffixes[suffixIdx]}, ${year} ${formatTime(date)}`;
-}
-
-function onesDigit(num){
-  return Number(String(num).match(/.$/g)[0]);
-}
-
-function leftPad(day) {
-  var dayString = String(day);
-  return dayString && dayString.length < 2 ? "0" + dayString : dayString;
-}
+// function formatDatetime(date) {
+//   var day = date.getDate();
+//   var year = date.getFullYear();
+//   var month = date.getMonth() + 1;
+//   return `${year}-${leftPad(month)}-${leftPad(day)}T-${formatTime(date)}`;
+// }
+//
+// function formatTime(date) {
+//   return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+// }
+//
+// function formatDate(date) {
+//   var day = date.getDate();
+//   var year = date.getFullYear();
+//   var month = date.toLocaleString("en", { month: "long" });
+//   var suffixes = ['st', 'nd', 'rd', 'th'];
+//   var suffixIdx = onesDigit(day) <= 3 ? onesDigit(day) - 1 : suffixes.length - 1;
+//   return `${month}, ${day}${suffixes[suffixIdx]}, ${year} ${formatTime(date)}`;
+// }
+//
+// function onesDigit(num){
+//   return Number(String(num).match(/.$/g)[0]);
+// }
+//
+// function leftPad(day) {
+//   var dayString = String(day);
+//   return dayString && dayString.length < 2 ? "0" + dayString : dayString;
+// }
