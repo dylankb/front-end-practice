@@ -353,7 +353,6 @@ Simpler method
 !!(0)     // false
 ```
 
-
 ### Global object
 
 Global variables are properties of the global `window` object
@@ -1029,7 +1028,7 @@ function Car(params) {
 
 ### Prototype
 
-All objects have a prototype chain, and a `prototype` property. When an object is created it receives an internal prototype property (although it's possible for it to be blank - `Object.create(null)`) which references another object.
+All objects have a prototype chain, and a `prototype` property. When an object is created it receives an internal prototype property (although it's possible for it to be blank - `Object.create(null)`) - which references another object.
 
 What does this linkage do? If a property or method is called on an object which doesn't have that property itself, it will look up the prototype chain for the first instance of that property.
 
@@ -1248,6 +1247,8 @@ bar.hasOwnProperty('a');            // true
 Object.getOwnPropertyNames(bar);    // ["b"]
 ```
 
+**Other prototype methods**
+
 `Object.prototype.toString()`: returns a string representation of the object
 `Object.prototype.isPrototypeOf(obj)`: tests if the object is in another object's prototype chain
 `Object.prototype.hasOwnProperty(prop)`: tests whether the property is defined on the object itself
@@ -1379,7 +1380,7 @@ Note that `poodle`s constructor is `Dog` but the prototype is `Poodle.prototype`
 
 **Modify the constructor prototype, not the constructed object**
 
-We do `Poodle.prototype = Object.create(Dog.prototype)`, not `poodle.prototype = Object.create(Dog.prototype)`. It's not writeable in this way. In ES6 you can use `Object.setPrototypeOf`.
+We do `Poodle.prototype = Object.create(Dog.prototype)`, not `poodle.prototype = Object.create(Dog.prototype)`. An instance of the object is not writeable in this way. In ES6 you can use `Object.setPrototypeOf`.
 
 ##### Directly setting prototypes
 
@@ -2139,13 +2140,36 @@ This would still work if `name` was defined in the global scope, above `beginGre
 
 This same principle works for objects, and functions within objects
 
+```js
+var b = 1;
+
+function makeObj() {
+  var a = 0;
+  return {
+    returnA: function() {
+      return a;
+    },
+    returnB: function() {
+      return b;
+    },
+  }
+}
+```
+
+Upper (or parent) scopes and available to lower (nested) scopes. 
+
+Objects within functions have the same scope as the function are they are in.
+
 **Lexical Scoping**
 
 JS uses the structure of the source code to determine the variable's scope.
 
+* It can access any variables defined within it.
+It can access any variables that were in scope code can access from the context where the function was defined.
+
 **Shadowing**
 
-When searching for a variable, JS stops and returns the first variable it finds with a matching name.
+When searching for a variable, JS searches this hierarchy from the *bottom* to the *top*. It stops and returns the first variable it finds with a matching name. This means that variables in a _lower scope_ can shadow, or hide, a variable with the same name in a _higher scope_.
 
 ```js
 var name = 'Julian';
@@ -2911,6 +2935,66 @@ document.addEventListener('click', function(event) {
 Cons
 
 * Code that has to handle multiple situations will become more complicated
+
+#### Event loop
+
+```js
+function delayLog() {
+    for (var i = 1; i <= 10; i += 1) {
+        setTimeout(function(){
+            console.log(i);
+        }, i * 1000);
+    }
+}
+delayLog();
+```
+
+JavaScript runtime has to finish executing one piece of code before it goes on to execute other code like the function you pass to `setTimeout`. A piece of code or a function that has to be executed asynchronously  is stacked up in something called the event loop. So the `for` loop has to finish before your anonymous function gets called even if the timeout is 0 seconds.
+
+After the loop is finished and after the given time out the anonymous functions are executed one by one. However since every anonymous function refers to the variable `i` via closure, and the value of `i` is now `11`, 11 is logged ten times.
+
+There are two main ways to stop that from happening, one is to make a new scope so that a new variable is declared in each iteration.
+
+```
+for (var i = 1; i <= 10; i += 1) {
+  (function(j) {
+    setTimeout(function(){
+      console.log(j);
+    }, 0);
+  })(i);
+}
+```
+
+The other solution is based on the ES6 `let` keyword. If you use `let` instead of `var` in your `for `loop what effectively happens is that in every iteration the variable `i` is redefined for you.
+
+```
+for (let i = 1; i <= 10; i += 1) {
+   setTimeout(function(){
+     console.log(i);
+    }, 0);
+}
+```
+
+## Window
+
+### `Window.history`
+
+### `Window.location`
+
+`location.hash` - URL params after `#`
+
+`location.pathname` - current root url + dir paths
+
+`e.originalState.state` ? - not sure what data structure is
+
+Example:
+
+```js
+$('window').on('popstate', function(e) {
+  var state = e.originalEvent.state;
+  
+  if (location.hash) { switchPage(location.hash) }
+)};
 
 ### Tricks
 
@@ -4036,6 +4120,18 @@ $('#list').html(itemsTemplate({ items: products }));
 
 [Handlebars codepen example](https://codepen.io/dylankb/pen/dvLaPM?editors=1011)
 
+**Checking for a partial**
+
+Type `Handlebars.partials` into the console to see registered partials
+
+You could render an object `item` using a partial named `item` like so:
+
+```js
+Handlebars.partials.item(item.toJSON()));
+```
+
+**Handlebars keywords**
+
 `>` - tells Handlebars to look for a partial with the name `basicTemplate`  
 `@key` - current key of iteration  
 `@index` - current index of iteration  
@@ -4084,7 +4180,7 @@ Cookies
 
 `localStorage.setItem(keyString, valueString)`
 
-**Dealing with Objects Strings**
+**Dealing with Objects/Strings**
 
 Non-string values will have `toString()` called on them. So how do you save objects? The solution is to use `JSON.parse` and `JSON.stringify`
 
@@ -4113,73 +4209,72 @@ $(window).on("unload", function() {
     localStorage.setItem("note", $("textarea").val());
 });
 
-### Node modules
+### ES6
 
-Sample structure
-
-```js
-// js/pingpong.js
-function Calculator(constructorParameter) {
-  // constructor
-}
-
-Calculator.prototype.pingPong = function(methodParameter) {
-  // method code
-}
-
-exports.calculatorModule = Calculator;
-
-// And in our front-end file:
-
-js/pingpong-interface.js
-var Calculator = require('./../js/pingpong.js').calculatorModule;
-
-$(document).ready(function() {
-  var simpleCalculator = new Calculator("a string");
-  var output = simpleCalculator.pingPong(1000);
-});
-```
-
-**Workflow**
-
-* When we start a new project, we run the `$ npm init` command.
-* Then, we download each package that our project needs using either the `--save-dev` flag for development dependencies or the `--save flag` for dependencies that are used in production.
-* Commit the package.json file with the project but not the node_modules/ folder.
-* When we clone a project to continue working on it, we simply run $ npm install and all packages saved to the manifest file will be downloaded into a new node_modules/ folder
-* Once you concatenate files, remember to update your script `src` paths.
-
-### Gulp
-
-`npm install gulp --save-dev`
-
---save-dev mean's it's a development dependency (not production)
-
-Gulp tasks like say `gulp.task('bower', ['bowerJS', 'bowerCSS']);` where there are multiple dependency tasks (`bowerJS` and `bowerCSS`) run concurrently. Dependency tasks can be organizational, but they can also solve depency issues if you need a task run before another.
-
-### Browserify
-
-he browserify package is responsible for using these keywords to translate the code into new JavaScript code that our browser does understand. It follows each file path used by require like a treasure map, and collects all the code into some less readable code that will make sense to our browser.
-
-### Environment
-
-Creating an environment variable.
-
-A production enviornment variable inside a build gulp task.
-
-gulp build --production
-
-`var utilities = require('gulp-util');`
-Place after `require` commands
-
-### Cleaning
+#### Shorthand property declaration
 
 ```js
-gulp.task("clean", function(){
-  return del(['build', 'tmp']);
-});
+// ES5
+var a = 5;
+var objA = { a: a };
 ```
 
-We pass del an array of the paths to delete and it removes them. Here, we're telling it to delete the entire build and tmp folders
+```js
+// ES6
+let a = 5;
+let objA = { a };
+```
+
+#### Splat operator
+
+**Combining objects**
+
+1) spread operator
+
+```js
+// ES6
+let b = 5;
+let objB = { b };
+
+let c = { ...objA, ...objB }
+```
+
+The spread operator iterates over the properties in `objA` and assigns them to the new object
+
+2) `Object.assign()`
+
+```js
+...
+let c = Object.assign( {}, objA, objB);
+```
+
+#### Destructuring
+
+Both arrays and object can assign values to named variables :
+
+```js
+// const blop = blep.blop;
+const { blop } = blep;
+blop; // 'blop'
+```
+
+#### Rest
+
+Rest gathers individual elements together into an array
+
+```
+const aTail = (head, ...tail) => tail;
+aTail(1, 2, 3); // [2, 3]
+```
+
+#### Spread
+
+Spread does the opposite: it spreads the elements from an array to individual elements. 
+
+```js
+const shiftToLast = (head, ...tail) => [...tail, head];
+shiftToLast(1, 2, 3); // [2, 3, 1]
+```
 
 ### Other notes
 
