@@ -14,10 +14,11 @@ module.exports = function(app) {
   router.get('/', function(req, res, next) {
     var title = "Home";
 
-    setActiveNavTo(title)
-    res.render('index', {
-      title: title,
-    });
+    setActiveNavTo(title);
+
+    res.sendFile(__dirname.replace(/routes/, 'views') + '/index.html'); // , {
+    //   title: title,
+    // });
   });
 
   router.get('/about', function(req, res, next) {
