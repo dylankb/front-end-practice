@@ -1,6 +1,6 @@
 module.exports = {
   links: [{
-    title: "Home",
+    title: "Web Store",
     href: "/"
   }, {
     title: "About",

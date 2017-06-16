@@ -2,13 +2,26 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet' href='/stylesheets/application.css')
+    link(href="http://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css")
   body
-    header
-      nav
-        ul
-          each link in links
-            li
-              a(href="#{link.href}" class="#{link.active ? 'active' : ''}")= link.title
+    main
+      h1 Products
+      #cart
+        h3
+          a(href="#") Cartspan<span>4</span>
+        #items
+          ul
+            li ActRaiser x 1
+              span $50.00
+            li Metroid Prime x 2
+              span $21.00
+            li Silent Hill 3 x 1
+              span $25.00
+            li strong Total
+              strong
+                span $96.00
+          a(href="#") Checkout
 
-    block content
+      block content
+    script(src="/javascripts/cart.js")

@@ -12,13 +12,14 @@ module.exports = function(app) {
 
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    var title = "Home";
+    var title = "Web Store";
 
     setActiveNavTo(title);
 
-    res.sendFile(__dirname.replace(/routes/, 'views') + '/index.html'); // , {
-    //   title: title,
-    // });
+    // res.sendFile(__dirname.replace(/routes/, 'views') + '/index.html'); // , {
+    res.render('index', {
+      title: title,
+    });
   });
 
   router.get('/about', function(req, res, next) {
