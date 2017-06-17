@@ -48,7 +48,7 @@ var Router = Backbone.Router.extend({
     }
   },
   initialize: function() {
-    this.route(/^\/?$/, 'index', this.index);
+    this.route(/^\/?$/, 'index', this.index);  // listen for a path that starts with a forward slash
   },
 });
 
@@ -59,7 +59,8 @@ Backbone.history.start({
   pushState: true,
 });
 
+// listen for any anchors that start with a root path
 $(document).on('click', 'a[href^="/"]', function(e) {
   e.preventDefault();
-  router.navigate($(e.currentTarget).attr('href').replace(/^\//, ''), { trigger: true });
+  router.navigate($(e.currentTarget).attr('href').replace(/^\//, ''), { trigger: true }); // triggers to update the history
 });
