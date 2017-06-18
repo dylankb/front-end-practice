@@ -40,4 +40,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.locals.basedir = path.join(__dirname, 'views');
+
 module.exports = app;
