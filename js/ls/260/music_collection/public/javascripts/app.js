@@ -62,5 +62,7 @@ Backbone.history.start({
 // listen for any anchors that start with a root path
 $(document).on('click', 'a[href^="/"]', function(e) {
   e.preventDefault();
-  router.navigate($(e.currentTarget).attr('href').replace(/^\//, ''), { trigger: true }); // triggers to update the history
+  router.navigate($(e.currentTarget).attr('href').replace(/^\//, ''), { trigger: true });
+  // navigate to href (minus leading /)
+  // triggers to update the history
 });
