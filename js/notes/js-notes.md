@@ -2832,7 +2832,9 @@ function $(id_selector) {
 
 **Event** - an object that represents some occurrence and contains a variety of information about what and where it happened. Events can be triggered by the browser as it loads a page, by a user as they interact with the page, and by the browser as it performs work as directed by a program.
 
-**Event listeners** - callbacks that will be invoked whenever a matching event is detected (The code that is run in response to an event firing)
+#### Adding event listeners 
+
+**Event listener** - callbacks that will be invoked whenever a matching event is detected (The code that is run in response to an event firing)
 
 Setting up an event listener
 
@@ -2842,6 +2844,52 @@ Setting up an event listener
 4. _Register the Function as an event listener_. This is where the first three steps come together into a working system.
 
 `element.addEventListener` or GlobalEventHandlers like `element.onclick` are used to register listeners.
+
+**GlobalEventHandler**
+
+```js
+<button onclick="console.log('clicked', event)">
+  Click me
+</button>
+```
+Notes:
+
+- You must refer to the event as `event`. Passing in an e will not work.
+- You can also technically pass in `this` to grab the target element, but `event.target` is probably more standary
+
+**addEventListener**
+
+```js
+document.addEventListener('click',
+  function(e) { console.log('clicked!', e) };
+);
+```
+
+#### Removing EventListeners
+
+Event listeners must be removed according to the approach by which they were added to the node.
+
+**addEventListener**
+
+For event listeners registered with addEventListener, the DOM node method removeEventListener must be used:
+
+`eventTarget.removeEventListener(eventType, eventHandler);`
+
+Following this pattern, we would remove the event listener we set above as follows:
+
+`document.removeEventListener('click', handler);`
+
+It's important to note that, because handler must refer to the same Function object used when it was registered, an event listener added with an anonymous function expression cannot be removed with removeEventListener.
+
+**GlobalEventHandler**
+
+The object-property style of GlobalEventHandler makes removing an event listener added with this approach somewhat easier: simply set the desired eventProperty to undefined.
+
+`eventTarget.eventProperty = undefined;`
+
+Following this pattern, we would remove the event listener set above like this:
+
+`document.onclick = undefined;`
 
 #### Page life-cycle events
 
@@ -3460,9 +3508,38 @@ and `prepend` can prepend multiple content arguments*
 
 \* - A jQuery selector can select multiple elements, I was just emphasizing multiple selectors or arguments could be passed to each. This is also a slightly untrue in the case of ... ?
 
-#### Modal toggling
+#### jQuery patterns
+
+##### Modal toggling
 
 Using pure jQuery, one way to close a modal you would first filter for visibile modals, then hide or fade those modals out while revealing the newly clicked one.
+
+##### Tabular navigation
+
+Hide all other tabs besides the first
+
+```css
+ele + ele { display: none }
+```
+
+On click, hide all tabs and display the one you clicked on
+
+```js
+  $('parent').on('click', 'a', function(e) {
+    e.preventDefault();
+    var $e = $(e.target),
+        idx = $e.attr('href');
+
+    $('ele').hide().filter(idx).show();
+```
+
+You might also want to toggle the active class
+
+```js
+    ...
+    $('ele').removeClass('active');
+    $e.addClass('active');
+```
 
 ### Animations
 
