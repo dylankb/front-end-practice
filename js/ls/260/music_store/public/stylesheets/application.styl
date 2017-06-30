@@ -1,0 +1,35 @@
+@import "whitespace-reset.css";
+@import "mixins"
+
+body
+  font: normal 16px "Lato" sans-serif
+  color: colors.text
+h1
+  padding-bottom: 25px
+  font-size: 2em
+
+main
+  width: 800px
+  margin: 0 auto
+  padding: 25px 40px
+  background: colors.main
+ul
+  padding: 0 0 40px 0
+  margin: 0 0 0 -20px
+  li
+    display: inline-block
+    width: 20%
+    padding: 0 0 25px 20px
+    vertical-align: top
+    box-sizing: border-box
+    img
+      width: 100%
+      margin-bottom: 10px
+    h2, h3, p
+      padding-bottom: 5px
+    h2
+      font-size: 1.5em
+    h3
+      font-size: 1.2em
+a.button, input[type='submit']
+  cart-button()

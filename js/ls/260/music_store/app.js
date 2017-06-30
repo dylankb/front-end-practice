@@ -39,6 +39,10 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// To make jade mixins work
+// Creating a string called current directory + views - "./views"
+app.locals.basedir = path.join(__dirname, 'views');
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
