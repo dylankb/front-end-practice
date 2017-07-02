@@ -1862,7 +1862,7 @@ obj.foo();        // undefined undefined
 
 Nested functions (within an object) lose context, which is a problem.
 
-Even though `foo` executes within the `obj` context, the call to `bar()` on line 9 does not provide an explicit context, which means that JavaScript binds the global object to the function. Function invocations do not As a result, `this` on line 6 is the global object, not `obj`
+Even though `foo` executes within the `obj` context, the call to `bar()` on line 9 does not provide an explicit context, which means that JavaScript binds the global object to the function. Function invocations do not... As a result, `this` on line 6 is the global object, not `obj`, thus `a` and `b` are undefined.
 
 **Side note: Nested functions outside an object**
 
@@ -2156,7 +2156,7 @@ function makeObj() {
 }
 ```
 
-Upper (or parent) scopes and available to lower (nested) scopes. 
+Upper (or parent) scopes and available to lower (nested) scopes.
 
 Objects within functions have the same scope as the function are they are in.
 
@@ -2465,7 +2465,7 @@ This works the same if you're referencing a function expression assigned to a va
 function worker() {
   var title = 'garbage man';
   var logTitle = function() { console.log(title); };
-  
+
   return {
     publicLogTitle: function() { logTitle() }
   }
@@ -2740,9 +2740,9 @@ Element properties do not include `textNodes`, so use `textContent` to element t
 
 
 ```html
-    <p>
-      You can <a href="?page=2">step backward</a> or <a href="/page/3">continue</a>.
-    </p>
+<p>
+  You can <a href="?page=2">step backward</a> or <a href="/page/3">continue</a>.
+  </p>
 ```
 ```js
 var p = document.querySelector('p')
@@ -2832,7 +2832,7 @@ function $(id_selector) {
 
 **Event** - an object that represents some occurrence and contains a variety of information about what and where it happened. Events can be triggered by the browser as it loads a page, by a user as they interact with the page, and by the browser as it performs work as directed by a program.
 
-#### Adding event listeners 
+#### Adding event listeners
 
 **Event listener** - callbacks that will be invoked whenever a matching event is detected (The code that is run in response to an event firing)
 
@@ -2854,8 +2854,15 @@ Setting up an event listener
 ```
 Notes:
 
-- You must refer to the event as `event`. Passing in an e will not work.
+- You must refer to the event as `event`. Passing in an `e` will not work.
 - You can also technically pass in `this` to grab the target element, but `event.target` is probably more standary
+- You can also use an IIFE     
+
+```js
+<button onclick="(function(e) { console.log(event); })()">
+  Click me
+</button>
+```
 
 **addEventListener**
 
@@ -3040,7 +3047,7 @@ Example:
 ```js
 $('window').on('popstate', function(e) {
   var state = e.originalEvent.state;
-  
+
   if (location.hash) { switchPage(location.hash) }
 )};
 
@@ -3888,18 +3895,18 @@ It's often a good idea to remove previously bound events when creating new ones
 
 `$(document).off("keypress").on("keypress", function(e) {`
 
-#### Stopping event propogration
+#### Stopping event propogation
 
 It's common to want to stop the click event action from happening
 
 ```js
-$('a').on('click, function(e) {
+$('a').on('click', function(e) {
   e.preventDefault();
 ```
 
 The event will continue to travel up the DOM tree, and might travel on a path that looks similar to this
 
-```
+```html
 <a>
 <li>
 <ul #list>
@@ -3914,7 +3921,7 @@ To stop the event from propogating further you can call `e.stopPropogation()`
 If you wanted to prevent default and stop propogation, you could return false from the function. Here's an example of doing so in a one-liner.
 
 ```js
-$('a').on('click, false)
+$('a').on('click', false)
 ```
 
 #### Specifying a default event with `on()`
@@ -3930,9 +3937,9 @@ This method executes a click event on page load.
 ```js
 $('a.drawing-method').on('click', function(e) {
   e.preventDefault();
-  
+
   $(this).closest("ul").find('.active').removeClass('.active');
-  $(this).addClass('active')'
+  $(this).addClass('active')
 }).eq(0).click();
 ```
 
@@ -4346,11 +4353,45 @@ aTail(1, 2, 3); // [2, 3]
 
 #### Spread
 
-Spread does the opposite: it spreads the elements from an array to individual elements. 
+Spread does the opposite: it spreads the elements from an array to individual elements.
 
 ```js
 const shiftToLast = (head, ...tail) => [...tail, head];
 shiftToLast(1, 2, 3); // [2, 3, 1]
+```
+
+#### Classes
+
+Is this ES2017?
+
+```js
+class Me {
+  constructor(name) {
+    this.name = name;
+  };
+
+  sayHello() {
+    console.log('Hi ' + this.name);
+    return 1;
+  }
+}
+
+const _Me = new Me('Dylan');
+
+console.log(_Me.sayHello()); // 'Hi Dylan'
+```
+
+#### Module import / export
+
+```js
+export const routeByWindowWidth = (props, nextProps, route, maxWidth) => {
+    const { router, windowWidth } = props;
+    if (nextProps.windowWidth !== windowWidth && nextProps.windowWidth < maxWidth) {
+        router.push(route);
+    }
+};
+
+import { routeByWindowWidth } from './utils/routeByWindowWidth';
 ```
 
 ### Other notes
