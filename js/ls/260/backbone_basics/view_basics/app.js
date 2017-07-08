@@ -13,6 +13,12 @@ var App = {
     this.listView = new ListView({ collection: this.list });
     this.listView.render();
   },
-}
+};
+
+_.extend(App, Backbone.Events);
+
+App.on('ADD_PERSON', function(data) {
+  App.list.add(data);
+});
 
 App.init();

@@ -10,19 +10,19 @@ var ListView = Backbone.View.extend({
     var listItemView = new ListItemView({ model: model });
     this.$el.append(listItemView.render());
   },
-  addPerson: function(e) {
-    e.preventDefault();
-    var $form = $(e.target).closest('form');
-    var person = {
-      name: $form.find('.name').val(),
-      colors: [ $form.find('.color1').val(),
-                $form.find('.color2').val(),
-                $form.find('.color3').val(), ],
-    };
-
-    App.list.add(person);
-  },
-  events: {
-    'click .btn-add': 'addPerson',
-  },
+  // addPerson: function(e) {
+  //   e.preventDefault();
+  //   var $form = $(e.target).closest('form');
+  //   var person = {
+  //     name: $form.find('.name').val(),
+  //     colors: [ $form.find('.color1').val(),
+  //               $form.find('.color2').val(),
+  //               $form.find('.color3').val(), ],
+  //   };
+  //
+  //   App.list.add(person);
+  // },
+  // events: {
+  //   'click .btn-add': 'addPerson',
+  // },
 });
