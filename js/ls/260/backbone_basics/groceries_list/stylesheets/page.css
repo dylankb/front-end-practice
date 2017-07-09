@@ -50,9 +50,8 @@ input[type="text"], textarea {
   box-shadow: inset 0 0 8px #ececec;
   box-sizing: border-box;
 }
-textarea {
-  height: auto;
-  resize: vertical;
+input[name="quantity"] {
+  width: 50px;
 }
 input[type="submit"] {
   padding: 12px 20px;
@@ -66,4 +65,47 @@ input[type="submit"] {
 input[type="submit"]:hover {
   color: #ffffff;
   background: #8C6B4F;
+}
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+th {
+  padding: 0 5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+td {
+  padding: 5px;
+}
+
+td a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  text-indent: -8685px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 100%;
+  background: #b00b00;
+}
+td a:after {
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  text-indent: 0;
+  content: "X";
+}
+
+tbody tr:nth-of-type(even) td {
+  background: #f0f0f0;
+}
+
+p { text-align: right; }
+p a {
+  color: #58788C;
 }
