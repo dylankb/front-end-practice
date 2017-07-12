@@ -1,7 +1,9 @@
-var Items = {
+var App = {
   init: function() {
-    Handlebars.registerPartial('item', $('#item').html());
-    this.seedCollection();
+    this.createTemplates();
+    this.Items = new ItemsCollection(items_json);
+    this.Items.comparator = 'name';
+    this.Items.sort();
     this.bindEvents();
   },
   addItem: function(e) {
@@ -13,8 +15,7 @@ var Items = {
       "quantity": $form.find('input[name=quantity]').val(),
     };
 
-    var item = new ItemModel(itemData);
-    this.collection.push(item);
+    this.Items.add(itemData);
   },
   bindEvents: function() {
     $('form').on('submit', this.addItem.bind(this));
@@ -22,57 +23,56 @@ var Items = {
     $('p a').on('click', this.deleteAll.bind(this));
     $('thead th').on('click', this.sortSelect.bind(this));
   },
-  collection: [],
+  createTemplates: function() {
+    Handlebars.registerPartial('item', $('#item').html());
+    this.templates.items = Handlebars.compile($('#items').html());
+    this.templates.item = Handlebars.compile($('#item').html());
+  },
   deleteAll: function(e) {
-    this.collection = [];
-    this.render();
+    this.Items.reset();
   },
   deleteItem: function(e) {
     e.preventDefault();
 
     var target = e.target
     var id = Number(target.dataset.id);
-    var item = _.find(this.collection, function(item) {
-      return item.get('id') === id;
-    });
+    var item = this.Items.findWhere({ id: id });
 
-    this.collection = _.without(this.collection, item);
+    this.Items.remove(item);
     $(target).closest('tr').remove();
   },
-  lastID: 0,
-  template: Handlebars.compile($('#items').html()),
-  render: function() {
-    $('tbody').html(this.template({ items: this.collection }));
-  },
-  seedCollection: function() {
-    items_json.forEach(function(item) {
-      var newItem = new ItemModel(item);
-      this.collection.push(newItem);
-    }, this);
-  },
+  templates: {},
   sortSelect: function(e) {
     e.preventDefault();
-
     var prop = e.target.dataset.prop;
-    this.collection = _.sortBy(this.collection, function(item) {
-      return item.get(prop);
-    });
-    this.render();
-  }
+
+    this.Items.comparator = prop;
+    this.Items.sort();
+  },
 };
 
 var ItemModel = Backbone.Model.extend({
   initialize: function() {
     this.setID();
-    this.render();
+    this.renderItem();
   },
-  render: function(data) {
-    $('tbody').append(this.template(this.toJSON()));
-  },
-  template: Handlebars.compile($('#item').html()),
   setID: function() {
-    this.set('id', ++Items.lastID);
+    this.set('id', ++this.collection.lastID);
+  },
+  renderItem: function() {
+    $('tbody').append(App.templates.item(this.toJSON()));
   }
 });
 
-Items.init();
+var ItemsCollection = Backbone.Collection.extend({
+  initialize: function() {
+    this.on('sort reset', this.render);
+  },
+  model: ItemModel,
+  lastID: 0,
+  render: function() {
+    $('tbody').html(App.templates.items({ items: this.models }));
+  },
+});
+
+App.init();
