@@ -1866,6 +1866,8 @@ Even though `foo` executes within the `obj` context, the call to `bar()` on line
 
 **Side note: Nested functions outside an object**
 
+Closure allow methods constructed with nested function to note experience this problem.
+
 ```js
 var obj = {
   a: "hello",
@@ -1883,7 +1885,7 @@ var obj = {
   },
 }
 
-obj(); // bye world
+obj.foo(); // bye world
 ```
 
 ##### Solution 1: Preserve context with a local variable
@@ -2961,6 +2963,7 @@ By default, event listeners will listen for events that are triggered during the
 **Controlling default behavior**
 
 * `event.preventDefault()` - used to prevent default browser behavior in response to an event
+  * Submit event browser reset! - If you don't `preventDefault` when a form is submitted, the whole browser will refresh which acts can make you think something unrelated is wrong with your app :S 
 * `event.stopPropagation()` - stops the event from being triggered on other containing or contained elements
 
 It is a good practice to call `preventDefault()` or `stopPropagation()` as early as possible in an event handler to show clear intent.
@@ -4086,7 +4089,15 @@ This should return something
 
 #### Get or set the value of an HTML data attribute
 
+**jQuery**
+
 Use the `.attr()` method. As a setter method, `attr()` will change the HTML markup.
+
+**JS**
+
+`attributes` - `e.target.attributes['data-id'].value`
+
+`dataset` - `e.target.dataset.id`
 
 #### Set and retrieve custom data on an element after the page has been rendered
 
@@ -4238,6 +4249,17 @@ console.log(render(data));
 // first:Hello!
 // second:World!
 ```
+
+#### Precompiled scripts
+
+Compilation is the most expensive part of Handlebars, so we can do it ahead of time. 
+
+- `npm install handlebars -g`
+- Follow the rest of these instructions for how to precompile your templates [here](https://github.com/sitepoint-editors/handlebars-precompilation-demo)
+
+Handy command:
+
+`handlebars templates/ -f fileNameOfCompiledTemplates.js`
 
 ### Localstorage
 
