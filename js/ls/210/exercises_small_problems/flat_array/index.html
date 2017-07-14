@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    var destination = [];
+    var source = [[1,2,[3,4],[5]],6];
+
+    function walk(arr) {
+      for (var i = 0; i < arr.length; i++) { // for each nested element
+        if (arr[i].length > 0) {             // recursively call walk() if an array
+          walk(arr[i]);
+        } else {
+          destination.push(arr[i]);          // or push the value
+        }
+      }
+    }
+
+    walk(source);
+    console.log(destination);
+
+
+    </script>
+  </body>
+</html>
