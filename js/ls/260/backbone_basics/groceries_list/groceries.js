@@ -2,6 +2,7 @@ var App = {
   init: function() {
     this.createTemplates();
     this.Items = new ItemsCollection(items_json);
+    this.View = new ItemsView({ collection: this.Items }),
     this.Items.comparator = 'name';
     this.Items.sort();
     this.bindEvents();
@@ -19,14 +20,11 @@ var App = {
   },
   bindEvents: function() {
     $('form').on('submit', this.addItem.bind(this));
-    $('tbody').on('click', 'a', this.deleteItem.bind(this));
     $('p a').on('click', this.deleteAll.bind(this));
     $('thead th').on('click', this.sortSelect.bind(this));
   },
   createTemplates: function() {
     Handlebars.registerPartial('item', $('#item').html());
-    this.templates.items = Handlebars.compile($('#items').html());
-    this.templates.item = Handlebars.compile($('#item').html());
   },
   deleteAll: function(e) {
     this.Items.reset();
@@ -41,7 +39,6 @@ var App = {
     this.Items.remove(item);
     $(target).closest('tr').remove();
   },
-  templates: {},
   sortSelect: function(e) {
     e.preventDefault();
     var prop = e.target.dataset.prop;
@@ -51,28 +48,52 @@ var App = {
   },
 };
 
+var ItemsView = Backbone.View.extend({
+  initialize: function() {
+    this.listenTo(this.collection, 'sync reset', this.render);
+  },
+  deleteItem: function(e) {
+    e.preventDefault();
+
+    var target = e.target;
+    var id = Number(target.dataset.id);
+    var item = this.collection.findWhere({ id: id });
+
+    this.collection.remove(item);
+    $(target).closest('tr').remove();
+  },
+  el: 'tbody',
+  events: {
+    'click a': 'deleteItem',
+  },
+  template: Handlebars.compile($('#items').html()),
+  render: function() {
+    this.$el.html(this.template({items: this.collection }));
+  },
+});
+
+var ItemView = Backbone.View.extend({
+  template: Handlebars.compile($('#item').html()),
+  render: function() {
+    $('tbody').append(this.template(this.model.toJSON()));
+  },
+});
+
+// create item model view on init
 var ItemModel = Backbone.Model.extend({
   initialize: function() {
     this.setID();
-    this.renderItem();
+    this.View = new ItemView({ model: this });
+    this.View.render();
   },
   setID: function() {
     this.set('id', ++this.collection.lastID);
   },
-  renderItem: function() {
-    $('tbody').append(App.templates.item(this.toJSON()));
-  }
 });
 
 var ItemsCollection = Backbone.Collection.extend({
-  initialize: function() {
-    this.on('sort reset', this.render);
-  },
   model: ItemModel,
   lastID: 0,
-  render: function() {
-    $('tbody').html(App.templates.items({ items: this.models }));
-  },
 });
 
 App.init();
