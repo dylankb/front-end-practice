@@ -7,6 +7,22 @@ h1 {
   padding-bottom: 25px;
   font-size: 2em;
 }
+form dt {
+  padding-bottom: 5px;
+}
+form dd {
+  padding-bottom: 20px;
+}
+form input[type="text"],
+form input[type="date"],
+form input[type="url"] {
+  width: 100%;
+  height: 30px;
+  padding: 5px 8px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
 main {
   width: 800px;
   margin: 0 auto;
