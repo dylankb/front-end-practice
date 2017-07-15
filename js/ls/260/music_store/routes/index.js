@@ -9,9 +9,9 @@ function getAlbums() {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
-/* GET home page. */
-router.get('/', function(req, res, next) {      // responding to index path
-  res.render('index', { albums: getAlbums() }); // take index jade view, and pass it data
-});
-
-module.exports = router;
+module.exports = function(router) {
+  /* GET home page. */
+  router.get('/', function(req, res, next) {      // responding to index path
+    res.render('index', { albums: getAlbums() }); // take index jade view, and pass it data
+  });
+}
