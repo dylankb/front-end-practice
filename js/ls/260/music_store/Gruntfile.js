@@ -15,15 +15,37 @@ module.exports = function(grunt) {
           "public/javascripts/vendor/all.js" : ["public/javascripts/vendor/all.js"]
         }
       }
+    },
+    handlebars: {
+      all: {
+        files: {
+          // All files within handlebars dir and child directories
+          "public/javascripts/handlebars_templates.js": ["handlebars/**/*.hbs"]
+        },
+        options: {
+          processContent: removeWhitespace,
+          processName: extractFileName
+        }
+      }
     }
   });
 
   [
     "grunt-bower-concat",
-    "grunt-contrib-uglify"
+    "grunt-contrib-uglify",
+    "grunt-contrib-handlebars"
   ].forEach(function(task) {
     grunt.loadNpmTasks(task);
   });
 
   grunt.registerTask("default", ["bower_concat", "uglify"]);
 };
+
+function removeWhitespace(template) {
+  return template.replace(/ {2,}/mg, "").replace(/\r|\n/mg, "");
+}
+
+function extractFileName(file) {
+  // handlebars/album.hbs
+  return file.match(/\/(.+)\.hbs$/).pop();
+}
