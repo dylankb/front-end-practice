@@ -33,6 +33,8 @@ module.exports = function(router) {
 
   /* GET /albums/new. */
   router.get('/albums/new', function(req, res) {
-    res.render('new');
+    res.render('new', {
+      albums: Albums.get()
+    });
   });
 }

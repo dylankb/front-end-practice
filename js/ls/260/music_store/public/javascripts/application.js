@@ -8,6 +8,7 @@ var App = {
   renderIndexView: function() {
     this.IndexView = new IndexView();
     this.renderAlbums();
+    this.bindEvents();
   },
   init: function() {
     this.renderIndexView();

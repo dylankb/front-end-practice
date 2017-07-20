@@ -12,7 +12,6 @@ var IndexView = Backbone.View.extend({
   },
   renderForm: function(e) {
     e.preventDefault();
-    // debugger;
     this.trigger("SHOW_NEW_ALBUM")
   },
   events: {
