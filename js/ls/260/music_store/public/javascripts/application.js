@@ -7,6 +7,7 @@ var App = {
   $el: $('main'),
   renderIndexView: function() {
     this.IndexView = new IndexView();
+    this.CartView = new CartView();
     this.renderAlbums();
     this.bindEvents();
   },

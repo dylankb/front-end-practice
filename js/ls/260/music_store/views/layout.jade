@@ -9,13 +9,15 @@ html
     +javascript_include_tag("vendor/all")
     +javascript_include_tag("handlebars_templates")
   body
+    header
+    
     main
       block content
     
     +javascript_include_tag("application")
     +javascript_include_tag("model/album")
     +javascript_include_tag("collection/albums")
-    +javascript_include_tag("view/album", "view/new", "view/index")    
+    +javascript_include_tag("view/album", "view/new", "view/index", "view/cart")    
     script(type="text/javascript").
       App.albums = new Albums(!{ JSON.stringify(albums) });
     +javascript_include_tag("router")

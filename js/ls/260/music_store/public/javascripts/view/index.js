@@ -1,11 +1,11 @@
 var IndexView = Backbone.View.extend({
   attributes: {
-    id: 'index'
+    id: 'index',
   },
   template: App.templates.index,
   render: function() {
     this.$el.html(this.template()); // Create el html
-    App.$el.html(this.$el);  // Attach el to static content
+    App.$el.html(this.$el);         // Attach el to static content
   },
   initialize: function() {
     this.render();
