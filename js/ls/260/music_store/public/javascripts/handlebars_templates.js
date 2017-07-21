@@ -37,7 +37,7 @@ this["JST"]["cart"] = Handlebars.template({"1":function(container,depth0,helpers
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
     + "</small></li>";
 },"4":function(container,depth0,helpers,partials,data) {
-    return "<p>0 items</p>";
+    return "<p class=\"no-items\">0 items</p>";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
