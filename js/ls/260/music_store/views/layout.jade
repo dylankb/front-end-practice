@@ -14,10 +14,10 @@ html
     main
       block content
     
-    +javascript_include_tag("collection/cart")
     +javascript_include_tag("application")
     +javascript_include_tag("model/album")
     +javascript_include_tag("collection/albums")
+    +javascript_include_tag("collection/cart")
     +javascript_include_tag("view/album", "view/new", "view/index", "view/cart")    
     script(type="text/javascript").
       App.albums = new Albums(!{ JSON.stringify(albums) });
