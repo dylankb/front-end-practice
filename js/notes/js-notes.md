@@ -3092,6 +3092,10 @@ You could map over the result and collect the index to create a 1..N array of nu
 
 `$_` - last returned value (in Chrome)
 
+`$0` - last selected element (at least in Chrom)
+
+`getEventListeners(obj)` - object of event listeners on element
+
 ### Debugging
 
 * Check console for load issues
