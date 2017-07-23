@@ -27,4 +27,9 @@ var CartItems = Backbone.Collection.extend({
     this.setQuantity().setTotal();
     this.trigger('CART_UPDATED');
   },
+  deleteItem: function(id) {
+    this.remove(id);
+    this.setQuantity().setTotal();
+    this.trigger('CART_UPDATED');
+  },
 });
