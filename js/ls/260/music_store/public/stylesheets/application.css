@@ -137,29 +137,23 @@ main {
   position: relative;
   width: 12px;
   height: 12px;
-  margin-right: 5px;
+  margin-right: 15px;
   text-indent: 8685px;
-  transform: rotate(45deg);
 }
 .cart #items a:before,
 .cart #items a:after {
   position: absolute;
   content: "";
   background: #b00b00;
+  width: 12px;
+  height: 2px;
+  top: 40%;
 }
 .cart #items a:before {
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  margin-left: -1px;
+  transform: rotate(45deg);
 }
 .cart #items a:after {
-  top: 50%;
-  right: 0;
-  left: 0;
-  height: 2px;
-  margin-top: -1px;
+  transform: rotate(-45deg);
 }
 .cart .total {
   font-size: 16px;

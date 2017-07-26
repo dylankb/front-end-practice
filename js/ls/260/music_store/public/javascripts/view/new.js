@@ -12,6 +12,7 @@ var NewAlbumView = Backbone.View.extend({
       data: $f.serialize(),
       success: function(json) {
         App.albums.add(json);   // JSON we get back is new model
+        history.back();         // App.render does not work
       },
     });
   },
@@ -20,7 +21,7 @@ var NewAlbumView = Backbone.View.extend({
   },
   template: App.templates.new,
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template);
     App.$el.html(this.$el);
   },
   initialize: function() {

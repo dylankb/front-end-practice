@@ -94,25 +94,20 @@ main
       position: relative
       width: 12px
       height: 12px
-      margin-right: 5px
+      margin-right: 15px
       text-indent: 8685px
-      transform: rotate(45deg)
+
       &:before,
       &:after
         position: absolute
         content: ""
         background: colors.delete
-      &:before
-        top: 0
-        bottom: 0
-        left: 50%
-        width: 2px
-        margin-left: -1px
-      &:after
-        top: 50%
-        right: 0
-        left: 0
+        width: 12px
         height: 2px
-        margin-top: -1px
+        top: 40%
+      &:before
+        transform: rotate(45deg)
+      &:after
+        transform: rotate(-45deg)
   .total
     font-size: 16px
