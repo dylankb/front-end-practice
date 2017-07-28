@@ -3,6 +3,7 @@ var App = {
     _.extend(this, Backbone.Events) // Gain access to event publishers/subscribers
     this.listenTo(this.IndexView, "SHOW_NEW_ALBUM", this.renderNewAlbum); // context set to
     this.on('ADD_TO_CART', this.Cart.addItem.bind(this.Cart));
+    this.on('DELETE_FROM_CART', this.Cart.deleteItem.bind(this.Cart));
   },
   createCart: function() {
     this.Cart = new CartItems();

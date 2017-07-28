@@ -11,30 +11,33 @@ this["JST"]["album"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":fun
     + alias1(((helper = (helper = helpers.artist || (depth0 != null ? depth0.artist : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"artist","hash":{},"data":data}) : helper)))
     + "</h3><p>"
     + alias1(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"date","hash":{},"data":data}) : helper)))
-    + "</p><p>"
+    + "</p><p>$"
     + alias1((helpers.format_price || (depth0 && depth0.format_price) || alias3).call(alias2,(depth0 != null ? depth0.price : depth0),{"name":"format_price","hash":{},"data":data}))
     + "</p><p><a class=\"button add-album\" href=\"#\">Add to cart</a></p>";
 },"useData":true});
 
 this["JST"]["cart"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=container.escapeExpression, alias3=helpers.helperMissing;
 
-  return "<section class=\"cart\"><label for=\"cart-toggle\">"
-    + alias4(((helper = (helper = helpers.quantity || (depth0 != null ? depth0.quantity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"quantity","hash":{},"data":data}) : helper)))
+  return alias2(helpers.log.call(alias1,(depth0 != null ? depth0.quantity : depth0),{"name":"log","hash":{},"data":data}))
+    + "<section class=\"cart\"><label for=\"cart-toggle\">"
+    + alias2(((helper = (helper = helpers.quantity || (depth0 != null ? depth0.quantity : depth0)) != null ? helper : alias3),(typeof helper === "function" ? helper.call(alias1,{"name":"quantity","hash":{},"data":data}) : helper)))
     + " items</label><input type=\"checkbox\" id=\"cart-toggle\"><div id=\"items\"><ul>"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.albums : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</ul><p>$19.00</p></div><p>$"
-    + alias4(((helper = (helper = helpers.total || (depth0 != null ? depth0.total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"total","hash":{},"data":data}) : helper)))
-    + "</p></section>";
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul><p class=\"total\">$"
+    + alias2((helpers.format_price || (depth0 && depth0.format_price) || alias3).call(alias1,(depth0 != null ? depth0.total : depth0),{"name":"format_price","hash":{},"data":data}))
+    + "</p></div></section>";
 },"2":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<li><a href=\"#\"></a>Remove "
+  return "<li><a data-id="
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + " href=\"#\"></a>Remove "
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + " x "
     + alias4(((helper = (helper = helpers.quantity || (depth0 != null ? depth0.quantity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"quantity","hash":{},"data":data}) : helper)))
-    + "<small>"
-    + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
+    + "&mdash;<small>$"
+    + alias4((helpers.format_price || (depth0 && depth0.format_price) || alias2).call(alias1,(depth0 != null ? depth0.price : depth0),{"name":"format_price","hash":{},"data":data}))
     + "</small></li>";
 },"4":function(container,depth0,helpers,partials,data) {
     return "<p class=\"no-items\">0 items</p>";

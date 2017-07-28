@@ -1,21 +1,49 @@
 var CartItems = Backbone.Collection.extend({
-  getTotal: function() { this.total; },
+  initialize: function() {
+    this.readStorage();
+  },
+  getTotal: function() { return this.total; },
   setTotal: function() {
     this.total = this.toJSON().reduce(function(acc, album) {
-      return total + album.price * album.quantity;
+      return acc + album.price * album.quantity;
     }, 0);
+
+    return this;
   },
-  getQuantity: function() { this.quantity; },
+  getQuantity: function() { return this.quantity; },
   setQuantity: function() {
     this.quantity = this.toJSON().reduce(function(acc, album) {
       return acc + album.quantity;
     }, 0);
+
+    return this;
   },
   addItem: function(item) {
-    item = item.clone();
-    item.set('quantity', 1);
-    this.add(item);
-    this.setQuantity();
+    var existing = this.get(item.get('id')); // Check for existing item in collection
+    if (existing) {
+      existing.set('quantity', existing.get('quantity') + 1);
+    } else {
+      item = item.clone();
+      item.set('quantity', 1);
+      this.add(item);
+    }
+    this.update();
     this.trigger('CART_UPDATED');
   },
+  deleteItem: function(id) {
+    this.remove(id);
+    this.update();
+    this.trigger('CART_UPDATED');
+  },
+  readStorage: function() {
+    var storedCart = JSON.parse(localStorage.getItem('cart'));
+    this.reset(storedCart);
+    this.setQuantity().setTotal();
+  },
+  updateStorage: function() {
+    localStorage.setItem('cart', JSON.stringify(this.toJSON())); // Convert collection to string
+  },
+  update: function() {
+    this.setQuantity().setTotal().updateStorage();
+  }
 });

@@ -4,7 +4,7 @@ var IndexView = Backbone.View.extend({
   },
   template: App.templates.index,
   render: function() {
-    this.$el.html(this.template()); // Create el html
+    this.$el.html(this.template);   // Create el html
     App.$el.html(this.$el);         // Attach el to static content
   },
   initialize: function() {
