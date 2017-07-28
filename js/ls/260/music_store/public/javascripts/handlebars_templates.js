@@ -15,7 +15,9 @@ this["JST"]["album"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":fun
     + alias1(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"date","hash":{},"data":data}) : helper)))
     + "</p><p>$"
     + alias1((helpers.format_price || (depth0 && depth0.format_price) || alias3).call(alias2,(depth0 != null ? depth0.price : depth0),{"name":"format_price","hash":{},"data":data}))
-    + "</p><p><a class=\"button add-album\" href=\"#\">Add to cart</a></p>";
+    + "</p><p><a href=\"albums/"
+    + alias1(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">Edit</a><p><a class=\"button add-album\" href=\"#\">Add to cart</a></p>";
 },"useData":true});
 
 this["JST"]["cart"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
