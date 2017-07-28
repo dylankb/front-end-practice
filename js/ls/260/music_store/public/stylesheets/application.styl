@@ -37,7 +37,7 @@ main
   li
     display: inline-block
     width: 20%
-    padding: 0 0 25px 20px
+    padding: 0 0 25px 30px
     vertical-align: top
     box-sizing: border-box
     img
@@ -90,24 +90,45 @@ main
       float: right
       margin-bottom: 10px
       font-size: 11px
-    a
-      position: relative
+    .album-remove-cart
       width: 12px
       height: 12px
       margin-right: 15px
       text-indent: 8685px
-
       &:before,
       &:after
-        position: absolute
-        content: ""
-        background: colors.delete
-        width: 12px
-        height: 2px
         top: 40%
-      &:before
-        transform: rotate(45deg)
-      &:after
-        transform: rotate(-45deg)
+
   .total
     font-size: 16px
+
+.album-remove
+  position: relative
+
+  &:before,
+  &:after
+    position: absolute
+    content: ""
+    background: colors.delete
+    width: 12px
+    height: 2px
+  &:before
+    transform: rotate(45deg)
+    left: 2px
+  &:after
+    transform: rotate(-45deg)
+    left: 2px
+
+.album-remove-index
+  text-indent: 100%
+  overflow: hidden;
+  display: block;
+  width: 20px;
+  cursor: pointer;
+  &:before,
+  &:after
+    top: 20%
+  &:before
+    right: 10px
+  &:after
+    right: 10px
