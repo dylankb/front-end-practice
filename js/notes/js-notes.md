@@ -96,6 +96,15 @@ var lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \
 eiusmod tempor incididunt ut labore et dolore magna aliqua."
 ```
 
+#### Concatenation - ES6
+
+IN ES6 you can use interpolation to combine variables and strings.
+
+```js
+let name = "world" 
+console.log(`Hello ${name}`)
+```
+
 ### Numbers
 
 Use whole numbers (1 cent rather than .01 dollars) - division with floats is less precise.
