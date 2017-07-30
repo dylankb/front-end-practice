@@ -12,7 +12,7 @@ module.exports = function(router) {
     // var albums = Albums.get();
     // var currentAlbum = _(albums).findWhere({ id: Number(req.params.id) });
     // res.json(currentAlbum);
-  // });
+  });
 
   router.route("/albums").get(function(req, res) {
     res.json(Albums.get());  // Unecessary with Backbone config

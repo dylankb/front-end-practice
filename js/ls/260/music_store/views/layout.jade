@@ -18,11 +18,9 @@ html
     +javascript_include_tag("model/album")
     +javascript_include_tag("collection/albums")
     +javascript_include_tag("collection/cart")
-    +javascript_include_tag("view/album", "view/new", "view/index", "view/cart")    
+    +javascript_include_tag("view/album", "view/new", "view/index", "view/cart", "view/detail")    
     script(type="text/javascript").
-      App.albums = new Albums(!{ JSON.stringify(albums) });
-    script(type="text/javascript").
-      App.CartCollection = new Albums(!{ JSON.stringify(albums) });
       App.albums = new Albums(!{ JSON.stringify(albums) }); // ** Sending in with HTML file for faster initialization (reduces number of HTTP requests)
     +javascript_include_tag("router")
     block scripts
+    
