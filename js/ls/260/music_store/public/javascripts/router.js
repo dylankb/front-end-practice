@@ -1,11 +1,15 @@
 var router = new (Backbone.Router.extend({
   routes: {
     'albums/new': App.renderNewAlbum,
+    '': 'index',
+    'albums/:id': 'albumDetail'
   },
-  index: function() { App.renderIndexView(); },
-  initialize: function() {
-    this.route(/^\/?$/, 'index', this.index);
+  index: function() {
+    App.renderIndexView();
   },
+  // initialize: function() {
+  //    this.route(/^\/?$/, 'index'); Can be replaced by the above routes hash entry
+  // },
 }))(); // don't need to use router anywhere else
 
 // Singleton object, lower-case (not a constructor)

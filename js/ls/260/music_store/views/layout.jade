@@ -23,5 +23,6 @@ html
       App.albums = new Albums(!{ JSON.stringify(albums) });
     script(type="text/javascript").
       App.CartCollection = new Albums(!{ JSON.stringify(albums) });
+      App.albums = new Albums(!{ JSON.stringify(albums) }); // ** Sending in with HTML file for faster initialization (reduces number of HTTP requests)
     +javascript_include_tag("router")
     block scripts
