@@ -5,8 +5,10 @@ var Albums = require(path.resolve(path.dirname(__dirname), "modules/albums"));
 
 module.exports = function(router) {
   // router.route("/albums/:id")
-  //   .get(function(req, res) {
-  //   res.render('album', { albums: Albums.get() });
+    // .get(function(req, res) {
+    // res.render('album', { albums: Albums.get() });
+    // res.render('album');
+
 
     /* If you wanted a JSON response */
     // var albums = Albums.get();
