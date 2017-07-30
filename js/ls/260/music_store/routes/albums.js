@@ -4,9 +4,9 @@ var Albums = require(path.resolve(path.dirname(__dirname), "modules/albums"));
 // Relative path for the module
 
 module.exports = function(router) {
-  router.route("/albums/:id")
-    .get(function(req, res) {
-    res.render('album', { albums: Albums.get() });
+  // router.route("/albums/:id")
+  //   .get(function(req, res) {
+  //   res.render('album', { albums: Albums.get() });
 
     /* If you wanted a JSON response */
     // var albums = Albums.get();
