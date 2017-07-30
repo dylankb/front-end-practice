@@ -10,6 +10,7 @@ var AlbumView = Backbone.View.extend({
   tagName: 'li',
   template: App.templates.album,
   render: function() {
+    // console.log(App.albums.toJSON().length);
     var id = this.model.get('id');
 
     this.$el.attr('id', 'album_' + id);
