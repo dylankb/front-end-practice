@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks(task);
   });
 
-  grunt.registerTask("default", ["bower_concat", "uglify"]);
+  grunt.registerTask("default", ["handlebars", "bower_concat", "uglify"]);
 };
 
 function removeWhitespace(template) {
