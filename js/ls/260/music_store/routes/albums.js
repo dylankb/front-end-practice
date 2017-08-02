@@ -4,6 +4,14 @@ var Albums = require(path.resolve(path.dirname(__dirname), "modules/albums"));
 // Relative path for the module
 
 module.exports = function(router) {
+
+  /* GET /albums/new. */
+  router.get('/albums/new', function(req, res) {
+    res.render('new', {
+      albums: Albums.get()
+    });
+  });
+
   router.route("/albums/:id")
     .get(function(req, res) {
     res.render('album', { albums: Albums.get() });
@@ -41,11 +49,4 @@ module.exports = function(router) {
     res.status(200).end();
     // Response on delete method can be success since will be using ajax.
   });
-
-  /* GET /albums/new. */  // Unnecessary with current Backbone config
-  // router.get('/albums/new', function(req, res) {
-  //   res.render('new', {
-  //     albums: Albums.get()
-  //   });
-  // });
 }

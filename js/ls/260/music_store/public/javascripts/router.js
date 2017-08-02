@@ -23,8 +23,8 @@ Backbone.history.start({
 });
 
 // If visiting any forward slash links, defer to router
-$(document).on('click', 'footer a[href^="/"]', function(e) {
+$(document).on('click', 'a[href^="/"]', function(e) {
   e.preventDefault();
   // remove leading slash because Backbone expects it to be there.
-  router.navigate($(e.target).attr('href').replace(/^\//, ''), { trigger: true });   // { trigger: true } - trigger push state
+  router.navigate($(e.target).attr('href').replace(/^\//, ''), { trigger: true }); // { trigger: true } - trigger route mapped functions in the router's routes hash
 });
