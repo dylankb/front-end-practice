@@ -1,7 +1,7 @@
 var App = {
   bindEvents: function() {
     _.extend(this, Backbone.Events) // Gain access to event publishers/subscribers
-    this.listenTo(this.IndexView, "SHOW_NEW_ALBUM", this.renderNewAlbum); // context set to
+    this.listenTo(this.IndexView, "SHOW_NEW_ALBUM", this.renderNewAlbum); // Alternative is to include renderNewAlbum in route.js
     this.on('ADD_TO_CART', this.Cart.addItem.bind(this.Cart));
     this.on('DELETE_FROM_CART', this.Cart.deleteItem.bind(this.Cart));
   },
@@ -37,3 +37,5 @@ var App = {
 Handlebars.registerHelper("format_price", function(price) {
   return Number(price).toFixed(2);
 });
+
+Handlebars.registerPartial("newForm", App.templates.new);

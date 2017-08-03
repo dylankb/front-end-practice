@@ -14,12 +14,20 @@ module.exports = function(router) {
 
   router.route("/albums/:id")
     .get(function(req, res) {
-    res.render('album', { albums: Albums.get() });
+    res.render('detail', { albums: Albums.get() });
 
     /* If you wanted a JSON response */
     // var albums = Albums.get();
     // var currentAlbum = _(albums).findWhere({ id: Number(req.params.id) });
     // res.json(currentAlbum);
+  })
+  .put(function(req, res) {
+    var albums = Albums.get();
+    var currentAlbum = _(albums).findWhere({ id: req.body.id });
+
+    _.extend(currentAlbum, req.body);
+    Albums.set(albums);
+    res.json(currentAlbum);
   });
 
   router.route("/albums").get(function(req, res) {

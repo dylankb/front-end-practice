@@ -1,28 +1,27 @@
 <div id="album_new">
   <form action="/albums" method="post">
     <fieldset>
-      <h1>Add Album</h2>
       <dl>
         <dt>
           <label>Title</label>
         <dd>
-          <input type='text' name='title'>
+          <input type='text' name='title' value="{{title}}">
         <dt>
           <label>Artist</label>
         <dd>
-          <input type='text' name='artist'>
+          <input type='text' name='artist' value="{{artist}}">
         <dt>
           <label>Date</label>
         <dd>
-          <input type='date' name='date'>
+          <input type='date' name='date' value="{{date}}">
         <dt>
           <label>Cover</label>
         <dd>
-          <input type='url' name='cover'>
+          <input type='url' name='cover' value="{{cover}}">
         <dt>
           <label>Price</label>
         <dd>
-          <input type='text' name='price'>
+          <input type='text' name='price' value="{{price}}">
         </dd>
 
       <fieldset class="actions">

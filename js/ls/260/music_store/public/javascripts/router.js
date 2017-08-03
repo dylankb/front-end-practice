@@ -8,9 +8,10 @@ var router = new (Backbone.Router.extend({
     App.renderIndexView();
   },
   albumDetail: function(id) {
-    new DetailView();
     var selectedAlbum = App.albums.get(id);
-    App.renderAlbumView(selectedAlbum);
+    new DetailView({
+      model: selectedAlbum,
+    });
   }
   // initialize: function() {
   //    this.route(/^\/?$/, 'index'); Can be replaced by the above routes hash entry
