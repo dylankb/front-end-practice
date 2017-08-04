@@ -53,18 +53,18 @@ this["JST"]["cart"] = Handlebars.template({"1":function(container,depth0,helpers
 this["JST"]["detail"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<h1 class=\"edit\">Edit Album</h1>"
-    + ((stack1 = container.invokePartial(partials.newForm,depth0,{"name":"newForm","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+  return "<h1>Edit Album</h1>"
+    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"type":"edit"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
 
-this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<h1>Albums</h1><ul class=\"albums\"></ul><footer><a class=\"button showForm\" href=\"/albums/new\">Add album</a></footer>";
-},"useData":true});
-
-this["JST"]["new"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div id=\"album_new\"><form action=\"/albums\" method=\"post\"><fieldset><dl><dt><label>Title</label><dd><input type='text' name='title' value=\""
+  return "<div data-id=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\" id=\"album-"
+    + alias4(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"type","hash":{},"data":data}) : helper)))
+    + "\"><form action=\"/albums\" method=\"post\"><fieldset><dl><dt><label>Title</label><dd><input type='text' name='title' value=\""
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "\"><dt><label>Artist</label><dd><input type='text' name='artist' value=\""
     + alias4(((helper = (helper = helpers.artist || (depth0 != null ? depth0.artist : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"artist","hash":{},"data":data}) : helper)))
@@ -76,3 +76,14 @@ this["JST"]["new"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":funct
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
     + "\"></dd><fieldset class=\"actions\"><input type=\"submit\" value=\"Create\"></fieldset></div>";
 },"useData":true});
+
+this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<h1>Albums</h1><ul class=\"albums\"></ul><footer><a class=\"button showForm\" href=\"/albums/new\">Add album</a></footer>";
+},"useData":true});
+
+this["JST"]["new"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<h1>Add Album</h1>"
+    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"type":"add"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"usePartial":true,"useData":true});
