@@ -14,7 +14,8 @@ module.exports = function(router) {
 
   router.route("/albums/:id")
     .get(function(req, res) {
-    res.render('detail', { albums: Albums.get() });
+      res.render('detail', { albums: Albums.get()
+    });
 
     /* If you wanted a JSON response */
     // var albums = Albums.get();
@@ -22,6 +23,7 @@ module.exports = function(router) {
     // res.json(currentAlbum);
   })
   .put(function(req, res) {
+    // debugger;
     var albums = Albums.get();
     var currentAlbum = _(albums).findWhere({ id: req.body.id });
 
@@ -30,10 +32,12 @@ module.exports = function(router) {
     res.json(currentAlbum);
   });
 
-  router.route("/albums").get(function(req, res) {
-    res.json(Albums.get());  // Unecessary with Backbone config
+  router.route("/albums")
+    .get(function(req, res) {
+    res.json(Albums.get());
   })
   .post(function(req, res) {
+    // debugger;
     var album = req.body;
     var albums = Albums.get();
 

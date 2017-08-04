@@ -38,4 +38,4 @@ Handlebars.registerHelper("format_price", function(price) {
   return Number(price).toFixed(2);
 });
 
-Handlebars.registerPartial("newForm", App.templates.new);
+Handlebars.registerPartial("form", App.templates.form);
