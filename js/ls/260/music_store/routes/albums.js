@@ -19,11 +19,10 @@ module.exports = function(router) {
 
     /* If you wanted a JSON response */
     // var albums = Albums.get();
-    // var currentAlbum = _(albums).findWhere({ id: Number(req.params.id) });
+    // var currentAlbum = _(albums).findWhere({ id: req.params.id });
     // res.json(currentAlbum);
   })
   .put(function(req, res) {
-    // debugger;
     var albums = Albums.get();
     var currentAlbum = _(albums).findWhere({ id: req.body.id });
 
@@ -37,11 +36,10 @@ module.exports = function(router) {
     res.json(Albums.get());
   })
   .post(function(req, res) {
-    // debugger;
     var album = req.body;
     var albums = Albums.get();
 
-    album.id = Albums.getLastId() + 1;
+    album.id = String(Number(Albums.getLastId()) + 1);
     albums.push(album);
     Albums.set(albums) // update data in file
     res.json(album);  // send a response back
