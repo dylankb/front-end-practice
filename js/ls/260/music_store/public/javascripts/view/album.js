@@ -1,4 +1,7 @@
 var AlbumView = Backbone.View.extend({
+  attributes: {
+    class: 'album-container'
+  },
   events: {
     'click .add-album': 'addToCart',
   },

@@ -27,33 +27,14 @@ form
 main, header
   width: 800px
   margin: 0 auto
-  padding: 25px 40px
 
 main
   background: colors.main
-.albums
-  padding: 0 0 40px 0
-  margin: 0 0 0 -20px
-  li
-    display: inline-block
-    width: 20%
-    padding: 0 0 25px 30px
-    vertical-align: top
-    box-sizing: border-box
-    img
-      width: 100%
-      margin-bottom: 10px
-    h2, h3, p
-      padding-bottom: 5px
-    h2
-      font-size: 1.5em
-    h3
-      font-size: 1.2em
-a.button, input[type='submit']
-  cart-button()
-
-main
+  padding: 0 40px 25px
   clear: both
+
+header
+  padding: 0 20px
 
 .no-items
   float: right
@@ -102,8 +83,39 @@ main
   .total
     font-size: 16px
 
+.albums
+  padding: 0 0 40px 0
+  margin: 0 0 0 -20px
+
+a.button, input[type='submit']
+  cart-button()
+
+.album-container
+  // border: 1px solid grey
+  display: inline-block
+  width: 20%
+  padding: 0 10px 10px 10px
+  vertical-align: top
+  img
+    width: 100%
+    margin-bottom: 10px
+  h2, h3, p
+    padding-bottom: 5px
+  h2
+    font-size: 1.5em
+  h3
+    font-size: 1.2em
+
+// .album-container:first-of-type
+//     border-right: none
+
+.album-content
+  padding: 20px
+  border: 1px solid grey
+
 .album-remove
   position: relative
+  margin: -10px 0 0 -15px
 
   &:before,
   &:after
