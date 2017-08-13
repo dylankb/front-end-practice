@@ -54,7 +54,7 @@ this["JST"]["detail"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":fu
     var stack1;
 
   return "<h1>Edit Album</h1>"
-    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"type":"edit"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"action":"Update","method":"put","type":"edit"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});
 
 this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -62,9 +62,13 @@ this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":func
 
   return "<div data-id=\""
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\" id=\"album-"
+    + "\"><form id=\"album-"
     + alias4(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"type","hash":{},"data":data}) : helper)))
-    + "\"><form action=\"/albums\" method=\"post\"><fieldset><dl><dt><label>Title</label><dd><input type='text' name='title' value=\""
+    + "\" action=\"/albums/"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\" method=\""
+    + alias4(((helper = (helper = helpers.method || (depth0 != null ? depth0.method : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"method","hash":{},"data":data}) : helper)))
+    + "\"><fieldset><dl><dt><label>Title</label><dd><input type='text' name='title' value=\""
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "\"><dt><label>Artist</label><dd><input type='text' name='artist' value=\""
     + alias4(((helper = (helper = helpers.artist || (depth0 != null ? depth0.artist : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"artist","hash":{},"data":data}) : helper)))
@@ -74,7 +78,9 @@ this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":func
     + alias4(((helper = (helper = helpers.cover || (depth0 != null ? depth0.cover : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cover","hash":{},"data":data}) : helper)))
     + "\"><dt><label>Price</label><dd><input type='text' name='price' value=\""
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
-    + "\"></dd><fieldset class=\"actions\"><input type=\"submit\" value=\"Create\"></fieldset></div>";
+    + "\"></dd></dl></fieldset><fieldset class=\"actions\"><input type=\"submit\" value=\""
+    + alias4(((helper = (helper = helpers.action || (depth0 != null ? depth0.action : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"action","hash":{},"data":data}) : helper)))
+    + "\"></fieldset></div>";
 },"useData":true});
 
 this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -85,5 +91,5 @@ this["JST"]["new"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":funct
     var stack1;
 
   return "<h1>Add Album</h1>"
-    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"type":"add"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+    + ((stack1 = container.invokePartial(partials.form,depth0,{"name":"form","hash":{"action":"Create","method":"post","type":"add"},"data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
 },"usePartial":true,"useData":true});

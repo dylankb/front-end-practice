@@ -1,5 +1,5 @@
-<div data-id="{{id}}" id="album-{{type}}">
-  <form action="/albums" method="post">
+<div data-id="{{id}}">
+  <form id="album-{{type}}" action="/albums/{{id}}" method="{{method}}">
     <fieldset>
       <dl>
         <dt>
@@ -23,8 +23,10 @@
         <dd>
           <input type='text' name='price' value="{{price}}">
         </dd>
+      </dl>
+    </fieldset>
 
       <fieldset class="actions">
-        <input type="submit" value="Create">
+        <input type="submit" value="{{action}}">
       </fieldset>
 </div>
