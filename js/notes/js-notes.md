@@ -2921,7 +2921,7 @@ Code that needs access to the DOM should be invoked after the `DOMContentLoaded`
 
 Event Type | Example Events
 -----------|---------------
-Keyboar | keydown, keyup, keypress
+Keyboard | keydown, keyup, keypress
 Mouse	| mouseenter, mouseleave, mousedown, mouseup, click
 Touch	| touchdown, touchup, touchmove
 Window	| scroll, resize
