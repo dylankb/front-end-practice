@@ -2,6 +2,7 @@ var NewAlbumView = Backbone.View.extend({
   create: function(e) {
     e.preventDefault();
     var $f = this.$('form');
+    debugger;
 
     $.ajax({
       url: $f.attr('action'),
