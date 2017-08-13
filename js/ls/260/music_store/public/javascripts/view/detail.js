@@ -9,22 +9,18 @@ var DetailView = Backbone.View.extend({
     App.$el.html(this.$el);
   },
   updateAlbum: function(e) {
-    // return;
     e.preventDefault();
-    var $form = e.target.closest('form');
-    var id = $form.closest('div').data('id');
+    var $form = $(e.target);
+    var id = $($form.closest('div')).data('id');
     var albumUpdate = $form.serialize();
-    // debugger;
 
     $.ajax({
-      url: '/albums/'+ id, // 62
+      url: '/albums/'+ id,
       type: 'PUT',
-      data: albumUpdate,
+      data: albumUpdate + '&id=' + id,
       success: function(json) {
-        // console.log('This is in detail view');
-        // alert('this is in detail view');
-        // console.log(json);
-        // history.back();
+        App.albums.get(id).set(json); // Update Backbone model so view can show changed attributes
+        history.back();
       }
     });
   }

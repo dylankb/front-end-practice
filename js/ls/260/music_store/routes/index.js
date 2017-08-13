@@ -3,7 +3,7 @@ var Albums = require(path.resolve(path.dirname(__dirname), "modules/albums.js"))
 
 module.exports = function(router) {
   /* GET home page. */
-  router.get('/', function(req, res, next) {      // responding to index path
+  router.get('/', function(req, res, next) {       // responding to index path
     res.render('index', { albums: Albums.get() }); // take index jade view, and pass it data
   });
 
