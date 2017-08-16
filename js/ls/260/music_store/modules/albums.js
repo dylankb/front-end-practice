@@ -1,10 +1,10 @@
 var path = require('path');
 var fs = require('fs');
-var file_path = path.resolve(path.dirname(__dirname), 'data/albums.json');
+var filePath = path.resolve(path.dirname(__dirname), 'data/albums.json');
 
 module.exports = {
   __readFile: function() {
-    return JSON.parse(fs.readFileSync(file_path, "utf8"));
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
   },
   getLastId: function() {
     return this.__readFile().last_id;
@@ -14,9 +14,9 @@ module.exports = {
   },
   set: function(data) {
     data.id = this.getLastId() + 1;
-    fs.writeFileSync(file_path, JSON.stringify({
+    fs.writeFileSync(filePath, JSON.stringify({
       last_id: data.id,
-      data: data
-    }), "utf8");
-  }
+      data: data,
+    }), 'utf8');
+  },
 };

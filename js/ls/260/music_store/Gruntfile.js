@@ -1,18 +1,18 @@
-module.exports = function(grunt) {
+module.exports = function gruntConfigFunc(grunt) {
   grunt.initConfig({
     bower_concat: {
       all: {
-        dest: "public/javascripts/vendor/all.js",
+        dest: 'public/javascripts/vendor/all.js',
         dependencies: {
-          "underscore": "jquery",
-          "backbone" : "underscore"
+          'underscore': 'jquery',
+          'backbone' : 'underscore'
         }
       }
     },
     uglify: {
       my_target: {
         files: {
-          "public/javascripts/vendor/all.js" : ["public/javascripts/vendor/all.js"]
+          'public/javascripts/vendor/all.js' : ['public/javascripts/vendor/all.js']
         }
       }
     },
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       all: {
         files: {
           // All files within handlebars dir and child directories
-          "public/javascripts/handlebars_templates.js": ["handlebars/**/*.hbs"]
+          'public/javascripts/handlebars_templates.js': ['handlebars/**/*.hbs']
         },
         options: {
           processContent: removeWhitespace,
@@ -31,18 +31,18 @@ module.exports = function(grunt) {
   });
 
   [
-    "grunt-bower-concat",
-    "grunt-contrib-uglify",
-    "grunt-contrib-handlebars"
-  ].forEach(function(task) {
+    'grunt-bower-concat',
+    'grunt-contrib-uglify',
+    'grunt-contrib-handlebars'
+  ].forEach(function doWork(task) {
     grunt.loadNpmTasks(task);
   });
 
-  grunt.registerTask("default", ["handlebars", "bower_concat", "uglify"]);
+  grunt.registerTask('default', ['handlebars', 'bower_concat', 'uglify']);
 };
 
 function removeWhitespace(template) {
-  return template.replace(/ {2,}/mg, "").replace(/\r|\n/mg, "");
+  return template.replace(/ {2,}/mg, '').replace(/\r|\n/mg, '');
 }
 
 function extractFileName(file) {

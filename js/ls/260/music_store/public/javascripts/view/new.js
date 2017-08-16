@@ -2,7 +2,6 @@ var NewAlbumView = Backbone.View.extend({
   create: function(e) {
     e.preventDefault();
     var $f = this.$('form');
-    debugger;
 
     $.ajax({
       url: $f.attr('action'),
@@ -15,7 +14,7 @@ var NewAlbumView = Backbone.View.extend({
     });
   },
   events: {
-    'submit #album-add': 'create'
+    'submit #album-add': 'create',
   },
   template: App.templates.new,
   render: function() {
