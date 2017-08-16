@@ -1,6 +1,6 @@
 var AlbumView = Backbone.View.extend({
   attributes: {
-    class: 'album-container'
+    class: 'album-container',
   },
   events: {
     'click .add-album': 'addToCart',
@@ -21,7 +21,7 @@ var AlbumView = Backbone.View.extend({
     this.$el.appendTo(App.$el.find('ul'));
   },
   initialize: function() {
-    this.render()
-    this.model.view = this
+    this.render();
+    this.model.view = this;
   },
 });

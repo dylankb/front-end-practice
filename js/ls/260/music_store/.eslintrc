@@ -16,6 +16,8 @@
     "vars-on-top": 1,
     "comma-dangle": ["error", "always-multiline"],
     "no-undef": 1,
+    "no-use-before-define": 1,
+    "no-debugger": 0,
   },
   "env": {
     "jasmine": true
