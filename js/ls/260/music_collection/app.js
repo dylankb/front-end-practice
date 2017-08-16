@@ -1,9 +1,10 @@
 var static = require('node-static');
 var http = require('http');
 
-var fileServer = new static.Server('./public');
+var fileServer = new static.Server('./public'); // ./public will serve as "root" of site
 
 http.createServer(function (request, response) {
+  // When request ends
   request.addListener('end', function () {
     fileServer.serve(request, response, function (err, result) {
       console.log(request.url);
