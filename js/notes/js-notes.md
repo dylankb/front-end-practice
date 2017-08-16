@@ -4516,3 +4516,24 @@ We have to the `super` keyword when we create a constructor in a child class
 Concatenate three files into `build/js/app.js`
 
 `tsc --out build/js/app.js app/to-do-create-tasks.ts app/to-do-classes-interfaces.ts app/to-do-people.ts`
+
+### Linting
+
+#### Airbnb rules (ES5)
+
+Setting up eslint with Airbnb rules in Atom
+
+Follow the steps in this blog post (mostly): 
+http://www.acuriousanimal.com/2016/08/14/configuring-atom-with-eslint.html
+
+but reference this comment to set up ES5 linting:
+https://github.com/airbnb/javascript/issues/451#issuecomment-275902038
+
+Alternatively you could use this package, but I haven't tried it:
+https://www.npmjs.com/package/eslint-config-airbnb-es5
+
+Make sure your tests are specified in the env option:
+https://github.com/tlvince/eslint-plugin-jasmine/issues/56
+
+
+
