@@ -4,36 +4,36 @@ module.exports = function gruntConfigFunc(grunt) {
       all: {
         dest: 'public/javascripts/vendor/all.js',
         dependencies: {
-          'underscore': 'jquery',
-          'backbone' : 'underscore'
-        }
-      }
+          underscore: 'jquery',
+          backbone: 'underscore',
+        },
+      },
     },
     uglify: {
       my_target: {
         files: {
-          'public/javascripts/vendor/all.js' : ['public/javascripts/vendor/all.js']
-        }
-      }
+          'public/javascripts/vendor/all.js': ['public/javascripts/vendor/all.js'],
+        },
+      },
     },
     handlebars: {
       all: {
         files: {
           // All files within handlebars dir and child directories
-          'public/javascripts/handlebars_templates.js': ['handlebars/**/*.hbs']
+          'public/javascripts/handlebars_templates.js': ['handlebars/**/*.hbs'],
         },
         options: {
           processContent: removeWhitespace,
-          processName: extractFileName
-        }
-      }
-    }
+          processName: extractFileName,
+        },
+      },
+    },
   });
 
   [
     'grunt-bower-concat',
     'grunt-contrib-uglify',
-    'grunt-contrib-handlebars'
+    'grunt-contrib-handlebars',
   ].forEach(function doWork(task) {
     grunt.loadNpmTasks(task);
   });

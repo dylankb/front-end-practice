@@ -4,15 +4,15 @@ var CartItems = Backbone.Collection.extend({
   },
   getTotal: function() { return this.total; },
   setTotal: function() {
-    this.total = this.toJSON().reduce(function(acc, album) {
-      return acc + album.price * album.quantity;
+    this.total = this.toJSON().reduce(function sumAlbumsPrice(acc, album) {
+      return acc + (album.price * album.quantity);
     }, 0);
 
     return this;
   },
   getQuantity: function() { return this.quantity; },
   setQuantity: function() {
-    this.quantity = this.toJSON().reduce(function(acc, album) {
+    this.quantity = this.toJSON().reduce(function sumTotalAlbums(acc, album) {
       return acc + album.quantity;
     }, 0);
 
@@ -45,5 +45,5 @@ var CartItems = Backbone.Collection.extend({
   },
   update: function() {
     this.setQuantity().setTotal().updateStorage();
-  }
+  },
 });
