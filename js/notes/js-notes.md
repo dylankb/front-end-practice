@@ -233,8 +233,6 @@ In other words, if the first expression is falsey, then it doesn't need to evalu
 
 `||` - Returns `expr1` if it can be converted to `true`; otherwise, returns `expr2`.
 
-If
-
 ```js
 var a = 1;
 var b = false;
@@ -4369,6 +4367,8 @@ let c = Object.assign( {}, objA, objB);
 
 #### Destructuring
 
+##### Object properties
+
 Both arrays and object can assign values to named variables :
 
 ```js
@@ -4377,11 +4377,61 @@ const { blop } = blep;
 blop; // 'blop'
 ```
 
+##### Using destructuring to make method invocations clearer
+
+If can't see how a function is defined, then code like this is down right confusing.
+
+```js
+Albums.set(albums, true, false)
+```
+
+We can probably intuit what the `albums` param is, but we have no idea what this darn false is.
+
+ES6 brings some new features to the table that makes this situation a bit better.
+
+**Default params**
+
+You can do some type checking in ES5 to get the same affect, but it's not very clean looking. In ES6 it's very simple, just use the `=` sign in the method signature.
+
+```js
+export default {
+  set(albums, incrementId=true, explodeBomb=false) {...};
+}
+```
+
+Default params / optional arguments are pretty cool, but they don't really help with making vague params like `true` make sense when you see them invoked.
+
+**Optional options object**
+
+Options object can help
+
+```js
+Albums.set(albums, {incrementId: true, explodeBomb: false});  
+```
+
+However, as is you need to pass in this options object every time. ES6 gives us some additional flexibility here.
+
+```js
+set(albums,{ initializeFooToOne: true, explodeBomb: false } = {}) {...};
+```
+
+Now we can leave off the options object if we want.
+
+```js
+Albums.set(albums, { explodeBomb: true });
+Albums.set(albums, { {initializeFooToOne: true });
+Albums.set(albums);
+```
+
+In the last three examples of `set` invocations the variable `initializeFooToOne` is always `true`.
+
+Background on this technique and dealing with destructred params in ES6 [here](http://2ality.com/2015/01/es6-destructuring.html#simulating-named-parameters-in-javascript)
+
 #### Rest
 
 Rest gathers individual elements together into an array
 
-```
+```js
 const aTail = (head, ...tail) => tail;
 aTail(1, 2, 3); // [2, 3]
 ```
