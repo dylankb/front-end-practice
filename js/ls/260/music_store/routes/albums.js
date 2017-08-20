@@ -34,20 +34,12 @@ module.exports = function routerFunc(router) {
 
       album.id = String(Number(Albums.getLastId()) + 1);
       albums.push(album);
-      Albums.set(albums); // update data in file
+      Albums.set(albums, true); // update data in file
       res.json(album); // send a response back
-    })
-    .put(function putRequest(req, res) {
-      var albums = Albums.get();
-      var currentAlbum = _(albums).findWhere({ id: req.body.id });
-
-      _.extend(currentAlbum, req.body);
-      Albums.set(albums);
-      res.json(currentAlbum);
     })
     .delete(function deleteRequest(req, res) {
       var albums = _(Albums.get()).reject(function findIdMatch(a) {
-        return a.id === +req.body.id;
+        return a.id === req.body.id;
       });
 
       Albums.set(albums);

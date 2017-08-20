@@ -80,7 +80,7 @@ this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":func
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
     + "\"></dd></dl></fieldset><fieldset class=\"actions\"><input type=\"submit\" value=\""
     + alias4(((helper = (helper = helpers.action || (depth0 != null ? depth0.action : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"action","hash":{},"data":data}) : helper)))
-    + "\"><fieldset class=\"actions\"><input type=\"submit\" value=\"Create\"></fieldset></div>";
+    + "\"></fieldset></div>";
 },"useData":true});
 
 this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
