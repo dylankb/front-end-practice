@@ -2,7 +2,7 @@ var router = new (Backbone.Router.extend({
   routes: {
     'albums/new': App.renderNewAlbum,
     '': 'index',
-    'albums/:id': 'albumDetail'
+    'albums/:id': 'albumDetail',
   },
   index: function() {
     App.renderIndexView();

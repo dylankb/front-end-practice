@@ -1,7 +1,7 @@
 var DetailView = Backbone.View.extend({
   initialize: function() { this.render(); },
   events: {
-    'submit #album-edit': 'updateAlbum'
+    'submit #album-edit': 'updateAlbum',
   },
   template: App.templates.detail,
   render: function() {
@@ -15,13 +15,13 @@ var DetailView = Backbone.View.extend({
     var albumUpdate = $form.serialize();
 
     $.ajax({
-      url: '/albums/'+ id,
+      url: '/albums/' + id,
       type: 'PUT',
       data: albumUpdate + '&id=' + id,
       success: function(json) {
         App.albums.get(id).set(json); // Update Backbone model so view can show changed attributes
         history.back();
-      }
+      },
     });
-  }
+  },
 });

@@ -12,12 +12,12 @@ var IndexView = Backbone.View.extend({
   },
   renderForm: function(e) {
     e.preventDefault();
-    this.trigger("SHOW_NEW_ALBUM")
+    this.trigger('SHOW_NEW_ALBUM');
   },
   deleteAlbum: function(e) {
-    e.preventDefault();
-    var $link = $(e.target)
+    var $link = $(e.target);
     var albumId = Number($link.data('id'));
+    e.preventDefault();
 
     $.ajax({
       url: '/albums',
@@ -25,7 +25,7 @@ var IndexView = Backbone.View.extend({
       data: { id: albumId },
       success: function() {
         $link.closest('li').remove();
-      }
+      },
     });
   },
   events: {
