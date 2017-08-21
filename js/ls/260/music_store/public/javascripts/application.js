@@ -20,10 +20,6 @@ var App = Object.assign({
     this.renderAlbums();
     this.bindEvents();
   },
-  init: function() {
-    this.renderIndexView();
-    this.bindEvents();
-  },
   renderAlbumView: function(album) {
     new AlbumView({ model: album });
   },
