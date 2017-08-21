@@ -1,4 +1,5 @@
-var App = {
+var testApp = testApp || undefined;
+var App = Object.assign({
   bindEvents: function() {
     _.extend(this, Backbone.Events); // Gain access to event publishers/subscribers
     this.listenTo(this.IndexView, 'SHOW_NEW_ALBUM', this.renderNewAlbum); // Alternative is to include renderNewAlbum in route.js
@@ -31,8 +32,8 @@ var App = {
   },
   renderNewAlbum: function() {
     new NewAlbumView();
-  }
-};
+  },
+}, testApp);
 
 Handlebars.registerHelper('format_price', function formatPriceDigits(price) {
   return Number(price).toFixed(2);
