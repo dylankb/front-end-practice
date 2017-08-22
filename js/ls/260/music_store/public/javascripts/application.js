@@ -12,22 +12,20 @@ var App = Object.assign({
       collection: this.Cart,
     });
   },
+  renderAlbums: function() {
+    this.AlbumsView = new AlbumsView({ collection: this.albums });
+    this.AlbumsView.$el.insertAfter(this.$el.find('.page-title'));
+  },
+  renderStaticElements: function() {
+    this.IndexView = new IndexView();
+  },
   templates: JST,
   $el: $('main'),
   renderIndexView: function() {
-    this.IndexView = new IndexView();
-    this.createCart();
+    this.renderStaticElements();
     this.renderAlbums();
+    this.createCart();
     this.bindEvents();
-  },
-  renderAlbumView: function(album) {
-    new AlbumView({ model: album });
-  },
-  renderAlbums: function() {
-    this.albums.each(this.renderAlbumView);
-  },
-  renderNewAlbum: function() {
-    new NewAlbumView();
   },
 }, testApp);
 

@@ -1,6 +1,6 @@
 var router = new (Backbone.Router.extend({
   routes: {
-    'albums/new': App.renderNewAlbum,
+    'albums/new': 'renderNewAlbum',
     '': 'index',
     'albums/:id': 'albumDetail',
   },
@@ -12,7 +12,10 @@ var router = new (Backbone.Router.extend({
     new DetailView({
       model: selectedAlbum,
     });
-  }
+  },
+  renderNewAlbum: function() {
+    new NewAlbumView();
+  },
   // initialize: function() {
   //    this.route(/^\/?$/, 'index'); Can be replaced by the above routes hash entry
   // },

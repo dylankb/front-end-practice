@@ -84,7 +84,7 @@ this["JST"]["form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":func
 },"useData":true});
 
 this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<h1>Albums</h1><ul class=\"albums\"></ul><footer><a class=\"button showForm\" href=\"/albums/new\">Add album</a></footer>";
+    return "<h1 class=\"page-title\">Albums</h1><footer><a class=\"button showForm\" href=\"/albums/new\">Add album</a></footer>";
 },"useData":true});
 
 this["JST"]["new"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
