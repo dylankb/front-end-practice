@@ -1,6 +1,5 @@
 var request = require('request');
 var root = 'http://localhost:3000/';
-// function setUp
 
 /* eslint-disable func-names */
 describe('Music store', function() {
@@ -13,20 +12,18 @@ describe('Music store', function() {
     });
   });
   describe('POST /', function() {
-    // var testBody = {
-    //   title: 'Another New Song',
-    // };
-    var testBody = { title: 'Test Title',
+    var testBody = {
+      title: 'Test Title',
       artist: 'Test Artist',
       date: '8888-08-08',
       cover: '',
-      price: 'Test',
+      price: '88',
     };
 
-    it('returns JSON response', function(done) {
-      request.post(root + 'albums', testBody, function(e, res) {
-        var id = res.body.id;
-
+    it('returns response', function(done) {
+      // Sourced from https://www.npmjs.com/package/request#multipartform-data-multipart-form-uploads
+      request.post({ url: root + 'albums', formData: testBody }, function(e, res, body) {
+        var id = JSON.parse(body).id;
         expect(res.statusCode).toEqual(200);
         expect(id).toBeDefined();
         done();
@@ -35,7 +32,6 @@ describe('Music store', function() {
     describe('GET /albums', function() {
       it('returns a valid 200 response', function(done) {
         request(root + 'albums', function(e, res) {
-          console.log(res.body);
           expect(res.statusCode).toEqual(200);
           done();
         });
