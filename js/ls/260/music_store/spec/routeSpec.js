@@ -22,7 +22,7 @@ describe('Music store', function() {
 
     it('returns response', function(done) {
       // Sourced from https://www.npmjs.com/package/request#multipartform-data-multipart-form-uploads
-      request.post({ url: root + 'albums', formData: testBody }, function(e, res, body) {
+      request.post({ url: root + 'albums', json: testBody }, function(e, res, body) {
         var id = JSON.parse(body).id;
         expect(res.statusCode).toEqual(200);
         expect(id).toBeDefined();
