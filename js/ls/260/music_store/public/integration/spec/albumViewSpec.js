@@ -8,10 +8,10 @@ describe('Album view', function() {
     expect(this.view.model).toBeDefined();
   });
 
-  it('should render something', function() {
-    this.view.render();
-    // debugger;
-    // console.log($('.albums').length)
-    // expect($('#album_90').length).toEqual(1);
+  it('should render an element with the model\'s id', function() {
+    var id = '9999999';
+    expect(this.view.model.toJSON().id).toEqual(id);
+    expect(this.view.el.id).toEqual('album_' + id);
+    expect(this.view.$el.find('a.album-remove').data('id')).toEqual(Number(id));
   });
 });
