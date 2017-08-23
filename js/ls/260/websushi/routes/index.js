@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
+var Sushi = require(path.resolve(path.dirname(__dirname), 'modules/sushi'));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function rootRoute(req, res) {
+  res.render('index', { sushis: Sushi.get() });
 });
 
 module.exports = router;
