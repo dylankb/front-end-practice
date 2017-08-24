@@ -1,7 +1,9 @@
+include /_mixins
+
 doctype html
 html
   head
-    title= Sushi
-    link(rel='stylesheet', href='/stylesheets/main.css')
+    title= 'Sushi'
+    +stylesheet_link_tag('main')
   body
     block content
