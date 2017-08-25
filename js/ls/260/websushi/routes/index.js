@@ -5,7 +5,7 @@ var Sushi = require(path.resolve(path.dirname(__dirname), 'modules/sushi'));
 
 /* GET home page. */
 router.get('/', function rootRoute(req, res) {
-  res.render('index', { sushis: Sushi.get() });
+  res.render('index', { sushiCollection: Sushi.get() });
 });
 
 module.exports = router;

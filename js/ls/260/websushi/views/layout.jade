@@ -3,7 +3,7 @@ include /_mixins
 doctype html
 html
   head
-    title= 'Sushi'
+    title= 'Sushi Restaurant Website'
     
     +stylesheet_link_tag('main')
     link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous")
@@ -16,7 +16,10 @@ html
       block content
 
     +javascript_include_tag("application")
-    +javascript_include_tag("views/header", "views/cart")
+    +javascript_include_tag("models/sushi")
+    +javascript_include_tag("collections/sushi")
     +javascript_include_tag("templatesCompiled")
-    script.
-      App.init();
+    +javascript_include_tag("views/header", "views/cart", "views/menu")
+    script(type="text/javascript").
+      App.SushiCollection = new SushiCollection(!{ JSON.stringify(sushiCollection) })
+      App.init()
