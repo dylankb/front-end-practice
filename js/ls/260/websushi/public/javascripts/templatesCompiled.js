@@ -11,7 +11,11 @@ templates['cartItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + "\" alt=\"cart-item\">\n</figure>\n<p>? x $?</p>\n";
 },"useData":true});
 templates['header'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<a class=\"logo\" href=\"/\"><img src=\"images/logo.png\" alt=\"logo\"></a>\n<div class=\"cart\">\n  <a href=\"/\">\n    <span class=\"left\">Shopping Cart</span><span class=\"right\"><!--\n    --><span class=\"count\">1</span>\n      item\n    </span>\n  </a>\n</div>\n";
+    var helper;
+
+  return "<a class=\"logo\" href=\"/\"><img src=\"images/logo.png\" alt=\"logo\"></a>\n<div class=\"cart\">\n  <a href=\"/\">\n    <span class=\"left\">Shopping Cart</span><span class=\"right\"><!--\n    --><span class=\"count\">"
+    + container.escapeExpression(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"count","hash":{},"data":data}) : helper)))
+    + "</span>\n      item\n    </span>\n  </a>\n</div>\n";
 },"useData":true});
 templates['menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<ul id=\"items\">\n</ul>\n";

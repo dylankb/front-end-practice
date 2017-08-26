@@ -2,11 +2,17 @@ var CartView = Backbone.View.extend({
   attributes: {
     id: 'cart',
   },
+  emptyCart: function(e) {
+    e.preventDefault();
+
+    App.trigger('EMPTY_CART');
+  },
+  events: {
+    'click .empty_cart': 'emptyCart',
+  },
   initialize: function() {
-
-    this.render(); // render each image (or just first) when view is created on initialization - will need to address what to do with saved images since only creates view on add atm
-
     this.listenTo(this.collection, 'add', this.renderCartImage);
+    this.render();
   },
   render: function() {
     this.$el.html(this.template);
