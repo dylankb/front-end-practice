@@ -2,27 +2,14 @@ var CartView = Backbone.View.extend({
   attributes: {
     id: 'cart',
   },
-  emptyCart: function(e) {
-    e.preventDefault();
-
-    App.trigger('EMPTY_CART');
-  },
-  events: {
-    'click .empty_cart': 'emptyCart',
-  },
   initialize: function() {
-    this.listenTo(this.collection, 'add', this.renderCartItem);
+    this.SummarySection = new CartSummaryView({ collection: this.collection });
+    this.ItemsList = new CartItemsView({ collection: this.collection });
     this.render();
   },
   render: function() {
-    this.$el.html(this.template);
+    this.$el.append(this.ItemsList.el);
+    this.$el.append(this.SummarySection.el);
     $('main').prepend(this.$el);
-
-    this.collection.each(this.renderCartItem, this);
   },
-  renderCartItem: function(item) {
-    var cartItem = new CartItemView({ model: item });
-    this.$el.find('.cart-items').append(cartItem.el);
-  },
-  template: Handlebars.templates.cart,
 });

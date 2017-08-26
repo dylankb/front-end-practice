@@ -1,7 +1,7 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['cart'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<ul class=\"cart-items\">\n</ul>\n<section>\n  <h3>Your<br>shopping cart</h3>\n  <p class=\"total\">$24.00</p>\n  <p></p>\n  <footer>\n    <a class=\"left empty_cart\" href=\"#\">Empty cart</a><!--\n    --><a class=\"right checkout\" href=\"/checkout\">Checkout</a>\n  </footer>\n</section>\n";
+    return "<ul class=\"cart-items\">\n</ul>\n";
 },"useData":true});
 templates['cartItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -13,6 +13,13 @@ templates['cartItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + " x $"
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
     + "</p>\n";
+},"useData":true});
+templates['cartSummary'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<h3>Your<br>shopping cart</h3>\n<p class=\"total\">$"
+    + container.escapeExpression(((helper = (helper = helpers.total || (depth0 != null ? depth0.total : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"total","hash":{},"data":data}) : helper)))
+    + "</p>\n<p></p>\n<footer>\n  <a class=\"left empty_cart\" href=\"#\">Empty cart</a><!--\n  --><a class=\"right checkout\" href=\"/checkout\">Checkout</a>\n</footer>\n";
 },"useData":true});
 templates['header'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper;
