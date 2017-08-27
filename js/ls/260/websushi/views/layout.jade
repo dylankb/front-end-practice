@@ -17,11 +17,12 @@ html
       block content
 
     +javascript_include_tag("application")
+    +javascript_include_tag("router")
     +javascript_include_tag("models/sushi")
     +javascript_include_tag("collections/sushi")
     +javascript_include_tag("collections/cart")
     +javascript_include_tag("templatesCompiled")
-    +javascript_include_tag("views/header", "views/cart", "views/cartItem", "views/cartItems", "views/menu", "views/menuItem", "views/cartSummary")
+    +javascript_include_tag("views/header", "views/cart", "views/cartItem", "views/cartItems", "views/menu", "views/menuItem", "views/cartSummary", "views/checkout", "views/checkoutItem", "views/checkoutItems")
     script(type="text/javascript").
       App.SushiCollection = new SushiCollection(!{ JSON.stringify(sushiCollection) })
       App.init()
