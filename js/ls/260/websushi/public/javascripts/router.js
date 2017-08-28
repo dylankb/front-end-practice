@@ -1,15 +1,21 @@
 var Router = Backbone.Router.extend({
-  },
   routes: {
+    '': 'renderIndexViews',
     'checkout': 'loadCheckoutPage',
   },
-  index: function() {
+  removeIndexViews: function() {
+    App.Cart.View.$el.detach();
+    // App.Cart.View.SummarySection.remove();
+    // App.Cart.View.ItemsList.remove();
+    App.MenuView.remove();
   },
   loadCheckoutPage: function() {
-    App.Cart.View.remove();
-    App.Cart.View.SummarySection.remove();
-    App.Cart.View.ItemsList.remove();
-    App.MenuView.remove();
+    this.removeIndexViews();
     App.CheckoutView = new CheckoutView({ collection: App.Cart });
+  },
+  renderIndexViews: function() {
+    App.MenuView.render();
+    if (App.CheckoutView) { App.CheckoutView.remove(); }
+    if (App.Cart.View) { App.Cart.View.render(); }
   },
 });

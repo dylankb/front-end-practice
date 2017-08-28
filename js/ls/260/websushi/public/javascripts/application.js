@@ -1,12 +1,12 @@
 var App = {
   init: function() {
     this.Cart = new CartCollection();
-    this.MenuView = new MenuView({ collection: this.SushiCollection });
 
     _.extend(this, Backbone.Events);
     this.on('ADD_TO_CART', this.Cart.addItem.bind(this.Cart));
     this.on('EMPTY_CART', this.Cart.emptyCart.bind(this.Cart));
 
+    this.setupIndexViews();
     this.setupRouter();
   },
   setupRouter: function setupRouter() {
@@ -24,5 +24,9 @@ var App = {
         App.Router.navigate(e.target.getAttribute('href'), { trigger: true });
       }
     });
+  },
+  setupIndexViews: function() {
+    App.MenuView = new MenuView({ collection: App.SushiCollection });
+    App.HeaderView = new HeaderView({ collection: App.Cart });
   },
 };

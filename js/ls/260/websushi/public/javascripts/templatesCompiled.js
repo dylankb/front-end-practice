@@ -28,7 +28,9 @@ templates['checkout'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
 templates['checkoutItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<td><img src=\"images/sashimi-salad.jpg\" alt=\"cart-item\"></td>\n<td>"
+  return "<td><img src=\"images/"
+    + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
+    + "\" alt=\"cart-item\"></td>\n<td>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</td>\n<td>\n  <span class=\"quantity_modifier\">\n    <i class=\"fa fa-minus\" aria-hidden=\"true\"></i>\n  </span>\n  <p>1</p>\n  <span class=\"quantity_modifier\">\n    <i class=\"fa fa-plus\" aria-hidden=\"true\"></i>\n  </span>\n</td>\n<td>$"
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))

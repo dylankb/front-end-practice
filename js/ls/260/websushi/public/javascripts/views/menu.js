@@ -2,11 +2,8 @@ var MenuView = Backbone.View.extend({
   attributes: {
     id: 'items',
   },
-  tagName: 'ul',
-  initialize: function() {
-    this.render();
-  },
   render: function() {
+    // this.$el.empty(); // Allows MenuItemView events to attach to DOM on re-render
     this.collection.each(this.renderMenuItem, this);
     $('.content').html(this.$el);
   },
@@ -14,4 +11,5 @@ var MenuView = Backbone.View.extend({
     var menuItem = new MenuItemView({ model: sushi });
     this.$el.append(menuItem.el);
   },
+  tagName: 'ul',
 });

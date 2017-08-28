@@ -1,7 +1,8 @@
 var CartCollection = Backbone.Collection.extend({
   initialize: function() {
     this.listenToOnce(this, 'add', this.createView);
-    this.HeaderView = new HeaderView({ collection: this });
+    // render view when first item added
+    // - will need to address what to do with saved images since only creates view on add atm
   },
   addItem: function(item) {
     if (this.get(item)) {
@@ -27,5 +28,6 @@ var CartCollection = Backbone.Collection.extend({
   emptyCart: function() {
     this.reset();
     this.View.remove();
+    // perhaps need to undelegateEvents here, but not sure
   },
 });

@@ -12,7 +12,6 @@ var CartSummaryView = Backbone.View.extend({
   },
   render: function() {
     this.$el.html(this.template({ total: this.collection.total }));
-    App.Cart.View.$el.append(this.$el);
   },
   tagName: 'section',
   template: Handlebars.templates.cartSummary,
