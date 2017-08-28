@@ -4,7 +4,9 @@ var CartCollection = Backbone.Collection.extend({
     // render view when first item added
     // - will need to address what to do with saved images since only creates view on add atm
   },
-  addItem: function(item) {
+  addItem: function(id) {
+    var item = App.SushiCollection.get(id);
+
     if (this.get(item)) {
       item.set('quantity', item.get('quantity') + 1);
     } else {

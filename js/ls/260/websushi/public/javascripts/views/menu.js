@@ -2,14 +2,19 @@ var MenuView = Backbone.View.extend({
   attributes: {
     id: 'items',
   },
+  addToCart: function(e) {
+    e.preventDefault();
+    var id = $(e.target.closest('li')).data('id');
+
+    App.trigger('ADD_TO_CART', id);
+  },
+  events: {
+    'click .add_cart': 'addToCart',
+  },
   render: function() {
-    // this.$el.empty(); // Allows MenuItemView events to attach to DOM on re-render
-    this.collection.each(this.renderMenuItem, this);
+    this.$el.html(this.template({ items: this.collection.toJSON() }));
     $('.content').html(this.$el);
   },
-  renderMenuItem: function(sushi) {
-    var menuItem = new MenuItemView({ model: sushi });
-    this.$el.append(menuItem.el);
-  },
   tagName: 'ul',
+  template: Handlebars.templates.menuItems,
 });
