@@ -2708,6 +2708,29 @@ p.className // "intro"
 
 JavaScript doesn't provide all these properties on every `Element` type: the `name` and `value` attributes, in particular, are invalid on most elements.
 
+#### href
+
+Understanding attribute properties is helpful when working with the `href` attribute.
+
+If you have selected an `a` tag element and try to access it's `href` property, most browers will supply the host and port and well.
+
+```js
+console.log(e.target.href) // http://localhost:3000/checkout
+```
+
+Say you were trying to test if you had a relative link - this wouldn't make things easier.
+
+However using `getAttribute(href)` gets you the href content, which is more helpful.
+
+```js
+> console.log(e.target.getAttribute(href))
+< /checkout
+```
+
+Incidentally, `pathname` seems like will also work here as it also gives you `/checkout`. Be careful though if you were checking for a leading `/` to see if the link was relative. An href like this, `href="#"`, will return a pathname of `/`.
+
+jQuery makes this process a bit easier, allowing you do to something like this `a[href=^'/']`.
+
 #### classList
 
 Working with the `class` attribute via `className` is inconvenient when elements have more than one class.
@@ -4263,6 +4286,8 @@ console.log(render(data));
 
 #### Precompiled scripts
 
+<a name="handlebars-precompiled>Reference Link</a>
+
 Compilation is the most expensive part of Handlebars, so we can do it ahead of time. 
 
 - `npm install handlebars -g`
@@ -4571,15 +4596,28 @@ Concatenate three files into `build/js/app.js`
 
 #### Airbnb rules (ES5)
 
-Setting up eslint with Airbnb rules in Atom
+Setting up eslint with Airbnb rules in Atom for ES5
 
-Follow the steps in this blog post (mostly): 
-http://www.acuriousanimal.com/2016/08/14/configuring-atom-with-eslint.html
+Reference [this comment](https://github.com/airbnb/javascript/issues/451#issuecomment-275902038) to learn about ES5 linting:
 
-but reference this comment to set up ES5 linting:
-https://github.com/airbnb/javascript/issues/451#issuecomment-275902038
+Basically make sure you're:
 
-Alternatively you could use this package, but I haven't tried it:
+1. Installing `eslint-config-airbnb-base`
+2. Extending `airbnb-base/legacy` in your `.eslintrc`
+3. Install package dependencies and the package itself with this fancy bash script:
+
+```bash
+export PKG=eslint-config-airbnb-base;
+npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG"
+```
+
+Bash script lifted from [this blog post](http://www.acuriousanimal.com/2016/08/14/configuring-atom-with-eslint.html).
+
+4. Install linter-eslint for Atom.
+
+Notes:
+
+Instead of using `airbnb-base/legacy` you might be able to use this package, but I haven't tried it:
 https://www.npmjs.com/package/eslint-config-airbnb-es5
 
 Make sure your tests are specified in the env option:
