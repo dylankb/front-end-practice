@@ -3,13 +3,18 @@ var MenuView = Backbone.View.extend({
     id: 'items',
   },
   initialize: function() {
-    this.collection.each(this.renderMenuItem, this);
+    this.collection.each(this.createMenuItem, this);
   },
+  createMenuItem: function(sushi) {
+    this.menuItems.push(new MenuItemView({ model: sushi }));
+  },
+  menuItems: [],
   render: function() {
+    _.each(this.menuItems, this.renderMenuItem, this);
     $('.content').html(this.$el);
   },
-  renderMenuItem: function(sushi) {
-    var menuItem = new MenuItemView({ model: sushi });
+  renderMenuItem: function(menuItem) {
+    menuItem.delegateEvents();
     this.$el.append(menuItem.el);
   },
   tagName: 'ul',
