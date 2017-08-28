@@ -1,4 +1,3 @@
-// var testApp = testApp || undefined;
 var App = {
   bindEvents: function() {
     _.extend(this, Backbone.Events); // Gain access to event publishers/subscribers
