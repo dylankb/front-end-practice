@@ -7,7 +7,7 @@ var Router = Backbone.Router.extend({
     App.Cart.View.$el.detach();
     // App.Cart.View.SummarySection.remove();
     // App.Cart.View.ItemsList.remove();
-    App.MenuView.remove();
+    App.MenuView.detach();
   },
   loadCheckoutPage: function() {
     this.removeIndexViews();
