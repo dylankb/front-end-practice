@@ -3,7 +3,6 @@ var MenuView = Backbone.View.extend({
     id: 'items',
   },
   render: function() {
-    // this.$el.empty(); // Allows MenuItemView events to attach to DOM on re-render
     this.collection.each(this.renderMenuItem, this);
     $('.content').html(this.$el);
   },
