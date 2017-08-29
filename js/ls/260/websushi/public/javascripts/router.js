@@ -1,12 +1,14 @@
 var Router = Backbone.Router.extend({
   routes: {
-    '': 'renderIndexViews',
+    '': 'defaultRoute',
+    'menu': 'renderIndexViews',
     'checkout': 'loadCheckoutPage',
+  },
+  defaultRoute: function() {
+    this.navigate('menu', { trigger: true });
   },
   removeIndexViews: function() {
     App.Cart.View.$el.detach();
-    // App.Cart.View.SummarySection.remove();
-    // App.Cart.View.ItemsList.remove();
     App.MenuView.$el.detach();
   },
   loadCheckoutPage: function() {
