@@ -8,4 +8,12 @@ router.get('/', function rootRoute(req, res) {
   res.render('index', { sushiCollection: Sushi.get() });
 });
 
+router.get('/checkout', function rootRoute(req, res) {
+  res.render('checkout', { sushiCollection: Sushi.get() });
+});
+
+router.get('/menu', function rootRoute(req, res) {
+  res.render('menu', { sushiCollection: Sushi.get() });
+});
+
 module.exports = router;
