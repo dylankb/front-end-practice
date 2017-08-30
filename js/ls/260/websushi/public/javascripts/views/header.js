@@ -4,7 +4,7 @@ var HeaderView = Backbone.View.extend({
     this.listenTo(this.collection, 'add reset', this.render);
   },
   render: function() {
-    this.$el.html(this.template({ count: this.collection.toJSON().length }));
+    this.$el.html(this.template({ count: this.collection.size() }));
     $('.page-header').html(this.$el);
   },
   template: Handlebars.templates.header,

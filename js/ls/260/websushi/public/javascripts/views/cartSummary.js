@@ -8,7 +8,7 @@ var CartSummaryView = Backbone.View.extend({
     'click .empty_cart': 'emptyCart',
   },
   initialize: function() {
-    this.listenTo(this.collection, 'CART_UPDATED', this.render);
+    this.listenTo(this.collection, 'DISPLAY_CART_SUMMARY', this.render);
   },
   render: function() {
     this.$el.html(this.template({ total: this.collection.total }));

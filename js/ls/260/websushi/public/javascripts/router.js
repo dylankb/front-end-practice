@@ -18,6 +18,5 @@ var Router = Backbone.Router.extend({
   renderIndexViews: function() {
     App.MenuView.render();
     if (App.CheckoutView) { App.CheckoutView.remove(); }
-    if (App.Cart.View) { App.Cart.View.render(); }
   },
 });
