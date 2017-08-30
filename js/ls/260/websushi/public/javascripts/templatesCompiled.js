@@ -23,7 +23,7 @@ templates['checkout'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
 
   return "<div class=\"img_top\"></div>\n<section>\n  <h1>Order Details</h1>\n  <table>\n    <thead>\n      <tr>\n        <th>Item</th>\n        <th></th>\n        <th>Quantity</th>\n        <th>Price</th>\n      </tr>\n    </thead>\n  </table>\n  <p>Total: <span class=\"total\">$"
     + container.escapeExpression(((helper = (helper = helpers.total || (depth0 != null ? depth0.total : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"total","hash":{},"data":data}) : helper)))
-    + "</span></p>\n  <footer>\n    <a class=\"cancel-order\" href=\"/\">Cancel order</a>\n    <form action=\"/\" method=\"post\">\n      <input type=\"submit\" value=\"ORDER NOW!\">\n    </form>\n  </footer>\n</section>\n<div class=\"img_bottom\"></div>\n";
+    + "</span></p>\n  <footer>\n    <a class=\"destroy-order\" href=\"/\">Cancel order</a>\n    <form class=\"destroy-order\" action=\"/\" method=\"post\">\n      <input type=\"submit\" value=\"ORDER NOW!\">\n    </form>\n  </footer>\n</section>\n<div class=\"img_bottom\"></div>\n";
 },"useData":true});
 templates['checkoutItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;

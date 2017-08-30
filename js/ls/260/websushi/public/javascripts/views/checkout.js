@@ -3,11 +3,10 @@ var CheckoutView = Backbone.View.extend({
     id: 'checkout',
   },
   destroyOrder: function() {
-    App.trigger('EMPTY_CART');
+    App.trigger('EMPTY_CART'); // prevent default action breaks document click/submit listeners
   },
   events: {
-    'click .cancel-order': 'destroyOrder',
-    'submit input': 'destroyOrder',
+    'click .destroy-order': 'destroyOrder',
   },
   initialize: function() {
     this.ItemsList = new CheckoutItems({ collection: this.collection });

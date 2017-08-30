@@ -17,11 +17,18 @@ var App = {
     });
 
     document.addEventListener('click', function findSiteLinkUrl(e) {
-      var href = e.target.getAttribute('href');
-      e.preventDefault();
+      var siteLink = e.target.getAttribute('href');
 
-      if (href && href.match(/^\//)) {
-        App.Router.navigate(e.target.getAttribute('href'), { trigger: true });
+      if (siteLink && siteLink.match(/^\//)) {
+        App.Router.navigate(siteLink, { trigger: true });
+      }
+    });
+
+    document.addEventListener('submit', function findSiteLinkPath(e) {
+      var siteLink = e.target.getAttribute('action');
+
+      if (siteLink && siteLink.match(/^\//)) {
+        App.Router.navigate(siteLink, { trigger: true });
       }
     });
   },
