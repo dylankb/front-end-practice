@@ -22,7 +22,7 @@ var CartCollection = Backbone.Collection.extend({
   },
   readStorage: function() {
     var existingCart = JSON.parse(window.localStorage.getItem('cart'));
-    if (existingCart.length) {
+    if (!_.isEmpty(existingCart)) {
       this.reset(existingCart);
       this.setupSavedCart();
     }

@@ -54,4 +54,17 @@ templates['menuItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
     + "</p>\n  <footer>\n    <a href=\"#\" class=\"add_cart\">Add to cart</a>\n  </footer>\n</article>\n";
 },"useData":true});
+templates['menuItemDetail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "\n<div>\n  <div class=\"nav prev\">\n    <img src=\"/images/nav-prev.png\" alt=\"prev\">\n  </div>\n  <figure>\n    <img src=\"../images/"
+    + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
+    + "\" alt=\"selected-item\">\n  </figure>\n  <article>\n    <a class=\"close\" href=\"/\">+</a>\n    <h1>"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</h1>\n    <p>"
+    + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
+    + "</p>\n    <footer>\n      <h2>"
+    + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
+    + "</h2>\n      <a class=\"add_cart\" href=\"#\">Add to cart</a>\n    </footer>\n  </article>\n  <aside>\n    <h3>Nutritional Information</h3>\n    <table>\n      <tbody>\n        <tr>\n          <td>Protein</td>\n          <td>2.9156</td>\n        </tr>\n        <tr>\n          <td>Fat (total)</td>\n          <td>2.4396</td>\n        </tr>\n        <tr>\n          <td>Carbohydrate</td>\n          <td>3.8071</td>\n        </tr>\n        <tr>\n          <td>Energy (kj)</td>\n          <td>17.5775</td>\n        </tr>\n        <tr>\n          <td>Energy (kcal)</td>\n          <td>4.2011</td>\n        </tr>\n        <tr>\n          <td>Sugar</td>\n          <td>0.3738</td>\n        </tr>\n      </tbody>\n    </table>\n  </aside>\n  <div class=\"nav next\">\n    <img src=\"../images/nav-next.png\" alt=\"next\">\n  </div>\n</div>\n";
+},"useData":true});
 })();

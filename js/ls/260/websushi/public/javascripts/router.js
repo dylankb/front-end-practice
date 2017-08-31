@@ -1,7 +1,9 @@
 var Router = Backbone.Router.extend({
+  /* eslint-disable quote-props */
   routes: {
     '': 'defaultRoute',
     'menu': 'renderIndexViews',
+    'menu/:id': 'showDetailView',
     'checkout': 'loadCheckoutPage',
   },
   defaultRoute: function() {
@@ -18,5 +20,11 @@ var Router = Backbone.Router.extend({
   renderIndexViews: function() {
     App.MenuView.render();
     if (App.CheckoutView) { App.CheckoutView.remove(); }
+  },
+  showDetailView: function(id) {
+    App.MenuView.$el.detach();
+
+    var item = App.SushiCollection.get(id);
+    App.MenuItemDetail = new MenuItemDetail({ model: item });
   },
 });
