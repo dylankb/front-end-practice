@@ -37,3 +37,7 @@ var App = {
     App.HeaderView = new HeaderView({ collection: App.Cart });
   },
 };
+
+Handlebars.registerHelper('fromKiloJoulesToKiloCals', function fromKiloJoulesToKiloCals(kiloJoules) {
+  return (Number(kiloJoules) / 4.184).toFixed(4);
+});
