@@ -6,7 +6,7 @@ var MenuItemDetail = Backbone.View.extend({
     id: 'item_details',
   },
   getNutritionData: function() {
-    var itemId = this.model.attributes.id
+    var itemId = this.model.attributes.id;
     var request = $.ajax({
       url: '/nutrition',
       data: 'id=' + itemId,
