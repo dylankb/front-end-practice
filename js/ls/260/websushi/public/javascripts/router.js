@@ -22,7 +22,7 @@ var Router = Backbone.Router.extend({
     if (App.CheckoutView) { App.CheckoutView.remove(); }
   },
   showDetailView: function(id) {
-    App.MenuView.$el.detach();
+    App.MenuView.$el.detach(); // Don't need this in MenuItemDetail re-renders, only initially
 
     var item = App.SushiCollection.get(id);
     App.MenuItemDetail = new MenuItemDetail({ model: item });
