@@ -22,7 +22,7 @@ html
     +javascript_include_tag("collections/sushi")
     +javascript_include_tag("collections/cart")
     +javascript_include_tag("templatesCompiled")
-    +javascript_include_tag("views/header", "views/cart", "views/cartItem", "views/cartItems", "views/menu", "views/menuItem", "views/cartSummary", "views/checkout", "views/checkoutItem", "views/checkoutItems", "views/menuItemDetail")
+    +javascript_include_tag("views/header", "views/cart", "views/cartItem", "views/cartItems", "views/menu", "views/menuItem", "views/cartSummary", "views/checkout", "views/checkoutItem", "views/checkoutItems", "views/checkoutTotal", "views/menuItemDetail")
     script(type="text/javascript").
       App.SushiCollection = new SushiCollection(!{ JSON.stringify(sushiCollection) })
       App.init()

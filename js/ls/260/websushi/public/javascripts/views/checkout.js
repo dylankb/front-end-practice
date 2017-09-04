@@ -9,6 +9,7 @@ var CheckoutView = Backbone.View.extend({
     'click .destroy-order': 'destroyOrder',
   },
   initialize: function() {
+    this.Total = new CheckoutTotal({ collection: this.collection });
     this.ItemsList = new CheckoutItems({ collection: this.collection });
     this.render();
   },
@@ -16,6 +17,7 @@ var CheckoutView = Backbone.View.extend({
     this.$el.html(this.template({ total: this.collection.total }));
     $('.content').html(this.$el);
     this.$el.find('table').append(this.ItemsList.el);
+    this.Total.setElement(this.$('.checkout-total')).render();
   },
   template: Handlebars.templates.checkout,
 });

@@ -20,6 +20,8 @@ var Router = Backbone.Router.extend({
   renderIndexViews: function() {
     App.MenuView.render();
     if (App.CheckoutView) { App.CheckoutView.remove(); }
+    if (!App.Cart.isEmpty()) { App.Cart.View.render(); }
+    // Why doesn't App.trigger('DISPLAY_CART'); work?
   },
   showDetailView: function(id) {
     App.MenuView.$el.detach(); // Don't need this in MenuItemDetail re-renders, only initially

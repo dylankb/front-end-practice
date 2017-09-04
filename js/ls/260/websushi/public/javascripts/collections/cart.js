@@ -27,6 +27,16 @@ var CartCollection = Backbone.Collection.extend({
       this.setupSavedCart();
     }
   },
+  removeItem: function(item) {
+    var quantity = item.get('quantity');
+
+    if (quantity === 1) {
+      this.remove(item);
+    } else {
+      item.set('quantity', quantity - 1);
+    }
+    this.update();
+  },
   setCartTotal: function() {
     this.total = this.models.reduce(function sumCartTotal(acc, item) {
       return acc + (item.get('price') * item.get('quantity'));
@@ -37,7 +47,6 @@ var CartCollection = Backbone.Collection.extend({
   },
   setupSavedCart: function() {
     this.setCartTotal();
-    this.trigger('DISPLAY_CART');
     this.trigger('DISPLAY_CART_ITEMS');
     this.trigger('DISPLAY_CART_SUMMARY');
   },
