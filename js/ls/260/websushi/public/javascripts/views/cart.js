@@ -8,9 +8,17 @@ var CartView = Backbone.View.extend({
   render: function() {
     this.$el.append(this.ItemsList.el);
     this.$el.append(this.SummarySection.el);
-    App.$cart.html(this.$el);
+    this.showCart();
   },
   removeCart: function() {
-    this.$el.detach();
+    this.$el.hide('fast');
+    // this.ItemsList.$el.empty(); // Otherwise, adding before refresh includes deleted
+  },
+  showCart: function() {
+    if (this.$el.is(':visible')) {
+      this.$el.animate({ height: '120px' });
+    } else {
+      this.$el.show('fast');
+    }
   },
 });
