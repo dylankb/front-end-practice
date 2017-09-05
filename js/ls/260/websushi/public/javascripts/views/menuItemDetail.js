@@ -3,12 +3,17 @@ var MenuItemDetail = Backbone.View.extend({
     this.renderNutritionalData(this.model.attributes.id);
     this.lastItemId = App.SushiCollection.findLastId();
   },
+  addToCart: function(e) {
+    e.preventDefault();
+    App.trigger('ADD_TO_CART', this.model);
+  },
   attributes: {
     id: 'item_details',
   },
   events: {
     'click .next': 'loadNextItem',
     'click .prev': 'loadPreviousItem',
+    'click .add_cart': 'addToCart',
   },
   lastItemId: null,
   loadNextItem: function() {
@@ -26,7 +31,7 @@ var MenuItemDetail = Backbone.View.extend({
   renderNutritionalData: function(itemId) {
     var request = $.ajax({
       url: '/nutrition',
-      data: 'id=' + itemId,
+      data: { id: itemId },
     });
 
     request.done(function successCallback(data) {

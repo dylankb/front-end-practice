@@ -3,7 +3,7 @@
 templates['cartItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<figure>\n  <img src=\"images/"
+  return "<figure>\n  <img src=\"/images/"
     + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
     + "\" alt=\"cart-item\">\n</figure>\n<p>"
     + alias4(((helper = (helper = helpers.quantity || (depth0 != null ? depth0.quantity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"quantity","hash":{},"data":data}) : helper)))
@@ -44,7 +44,7 @@ templates['checkoutTotal'] = template({"compiler":[7,">= 4.0.0"],"main":function
 templates['header'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "<a class=\"logo\" href=\"/\"><img src=\"images/logo.png\" alt=\"logo\"></a>\n<div class=\"cart\">\n  <a href=\"/\">\n    <span class=\"left\">Shopping Cart</span><span class=\"right\"><!--\n    --><span class=\"count\">"
+  return "<a class=\"logo\" href=\"/\"><img src=\"/images/logo.png\" alt=\"logo\"></a>\n<div class=\"cart\">\n  <a href=\"/\">\n    <span class=\"left\">Shopping Cart</span><span class=\"right\"><!--\n    --><span class=\"count\">"
     + container.escapeExpression(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"count","hash":{},"data":data}) : helper)))
     + "</span>\n      item\n    </span>\n  </a>\n</div>\n";
 },"useData":true});
@@ -62,7 +62,7 @@ templates['menuItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
 templates['menuItemDetail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
 
-  return "\n<div>\n  <div class=\"nav prev\">\n    <img src=\"/images/nav-prev.png\" alt=\"prev\">\n  </div>\n  <figure>\n    <img src=\"../images/"
+  return "\n<div>\n  <div class=\"nav prev\">\n    <img src=\"/images/nav-prev.png\" alt=\"prev\">\n  </div>\n  <figure>\n    <img src=\"/images/"
     + alias4(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"image","hash":{},"data":data}) : helper)))
     + "\" alt=\"selected-item\">\n  </figure>\n  <article>\n    <a class=\"close\" href=\"/\">+</a>\n    <h1>"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -82,6 +82,6 @@ templates['menuItemDetail'] = template({"compiler":[7,">= 4.0.0"],"main":functio
     + alias4((helpers.fromKiloJoulesToKiloCals || (depth0 && depth0.fromKiloJoulesToKiloCals) || alias2).call(alias1,((stack1 = (depth0 != null ? depth0.stats : depth0)) != null ? stack1.energy : stack1),{"name":"fromKiloJoulesToKiloCals","hash":{},"data":data}))
     + "</td>\n        </tr>\n        <tr>\n          <td>Sugar</td>\n          <td>"
     + alias4(alias5(((stack1 = (depth0 != null ? depth0.stats : depth0)) != null ? stack1.sugar : stack1), depth0))
-    + "</td>\n        </tr>\n      </tbody>\n    </table>\n  </aside>\n  <div class=\"nav next\">\n    <img src=\"../images/nav-next.png\" alt=\"next\">\n  </div>\n</div>\n";
+    + "</td>\n        </tr>\n      </tbody>\n    </table>\n  </aside>\n  <div class=\"nav next\">\n    <img src=\"/images/nav-next.png\" alt=\"next\">\n  </div>\n</div>\n";
 },"useData":true});
 })();

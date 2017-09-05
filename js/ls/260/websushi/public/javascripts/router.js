@@ -15,19 +15,26 @@ var Router = Backbone.Router.extend({
   },
   loadCheckoutPage: function() {
     this.removeIndexViews();
+    this.renderCheckoutView();
+  },
+  renderCheckoutView: function() {
     if (!App.CheckoutView) {
       App.CheckoutView = new CheckoutView({ collection: App.Cart });
     } else {
       App.CheckoutView.render();
     }
   },
+  renderCart: function() {
+    if (!App.Cart.isEmpty()) { App.Cart.View.render(); }
+  },
   renderIndexViews: function() {
     App.MenuView.render();
     if (App.CheckoutView) { App.CheckoutView.remove(); }
-    if (!App.Cart.isEmpty()) { App.Cart.View.render(); }
     // Why doesn't App.trigger('DISPLAY_CART'); work?
+    this.renderCart();
   },
   showDetailView: function(id) {
+    this.renderCart();
     App.MenuView.$el.detach(); // Don't need this in MenuItemDetail re-renders, only initially
 
     var item = App.SushiCollection.get(id);

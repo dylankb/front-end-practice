@@ -12,11 +12,12 @@ var Nutrition = require(path.resolve(path.dirname(__dirname), 'modules/nutrition
 /* GET home page. */
 router.get('/', index.route);
 
-/* GET home page. */
+/* GET checkout page. */
 router.get('/checkout', checkout.route);
 
 /* GET home page via menu. */
 router.get('/menu', menu.route);
+router.get('/menu/:id', menu.route);
 
 /* GET nutritional data endpoint. */
 router.get('/nutrition', nutrition.route);
