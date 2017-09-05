@@ -3083,6 +3083,7 @@ $('window').on('popstate', function(e) {
 
   if (location.hash) { switchPage(location.hash) }
 )};
+```
 
 ### Tricks
 

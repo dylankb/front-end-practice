@@ -7,7 +7,8 @@ var App = {
     this.on('EMPTY_CART', this.Cart.emptyCart.bind(this.Cart));
 
     this.$content = $('#content');
-    this.setupIndexViews();
+    this.$cart = $('#cart');
+    this.setupInitialViews();
     this.setupRouter();
   },
   setupRouter: function setupRouter() {
@@ -33,7 +34,7 @@ var App = {
       }
     });
   },
-  setupIndexViews: function() {
+  setupInitialViews: function() {
     App.MenuView = new MenuView({ collection: App.SushiCollection });
     App.HeaderView = new HeaderView({ collection: App.Cart });
   },

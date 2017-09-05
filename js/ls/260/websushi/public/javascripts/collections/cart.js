@@ -1,6 +1,6 @@
 var CartCollection = Backbone.Collection.extend({
   initialize: function() {
-    this.View = new CartView({ collection: this });
+    this.View = new CartView({ collection: this, el: '#cart' });
     this.readStorage();
   },
   addItem: function(item) {
