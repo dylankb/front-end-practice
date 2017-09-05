@@ -13,6 +13,9 @@ var CheckoutView = Backbone.View.extend({
     this.ItemsList = new CheckoutItems({ collection: this.collection });
     this.render();
   },
+  /*
+    setElement pattern - http://ianstormtaylor.com/rendering-views-in-backbonejs-isnt-always-simple/
+  */
   render: function() {
     this.$el.html(this.template);
     this.ItemsList.setElement(this.$('.checkout-items-list')).render();

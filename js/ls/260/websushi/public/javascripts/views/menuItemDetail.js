@@ -40,7 +40,7 @@ var MenuItemDetail = Backbone.View.extend({
   render: function(data) {
     var itemClone = this.model.clone();
     this.$el.html(this.template(itemClone.set(data).toJSON()));
-    $('.content').html(this.$el);
+    App.$content.html(this.$el);
   },
   template: Handlebars.templates.menuItemDetail,
 });
