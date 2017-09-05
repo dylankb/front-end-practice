@@ -15,7 +15,11 @@ var Router = Backbone.Router.extend({
   },
   loadCheckoutPage: function() {
     this.removeIndexViews();
-    App.CheckoutView = new CheckoutView({ collection: App.Cart });
+    if (!App.CheckoutView) {
+      App.CheckoutView = new CheckoutView({ collection: App.Cart });
+    } else {
+      App.CheckoutView.render();
+    }
   },
   renderIndexViews: function() {
     App.MenuView.render();

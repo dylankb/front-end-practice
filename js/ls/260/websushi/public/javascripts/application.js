@@ -6,6 +6,7 @@ var App = {
     this.on('ADD_TO_CART', this.Cart.addItem.bind(this.Cart));
     this.on('EMPTY_CART', this.Cart.emptyCart.bind(this.Cart));
 
+    this.$content = $('#content');
     this.setupIndexViews();
     this.setupRouter();
   },

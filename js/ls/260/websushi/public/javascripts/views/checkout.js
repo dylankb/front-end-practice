@@ -14,10 +14,10 @@ var CheckoutView = Backbone.View.extend({
     this.render();
   },
   render: function() {
-    this.$el.html(this.template({ total: this.collection.total }));
-    $('.content').html(this.$el);
-    this.$el.find('table').append(this.ItemsList.el);
+    this.$el.html(this.template);
+    this.ItemsList.setElement(this.$('.checkout-items-list')).render();
     this.Total.setElement(this.$('.checkout-total')).render();
+    App.$content.html(this.el);
   },
   template: Handlebars.templates.checkout,
 });
