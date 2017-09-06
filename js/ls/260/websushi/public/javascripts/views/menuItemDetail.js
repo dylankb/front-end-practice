@@ -38,9 +38,9 @@ var MenuItemDetail = Backbone.View.extend({
       this.render(data);
     }.bind(this));
 
-    request.fail(function failureCallback(jqXHR, textStatus) {
-      console.log('Text status', textStatus);
-    });
+    // request.fail(function failureCallback(jqXHR, textStatus) {
+    //   console.log('Text status', textStatus);
+    // });
   },
   render: function(data) {
     var itemClone = this.model.clone();
