@@ -25,12 +25,11 @@ var Router = Backbone.Router.extend({
     }
   },
   renderCart: function() {
-    if (!App.Cart.isEmpty()) { App.Cart.View.render(); }
+    if (!App.Cart.isEmpty()) { App.Cart.trigger('DISPLAY_CART'); }
   },
   renderIndexViews: function() {
     App.MenuView.render();
     if (App.CheckoutView) { App.CheckoutView.remove(); }
-    // Why doesn't App.trigger('DISPLAY_CART'); work?
     this.renderCart();
   },
   showDetailView: function(id) {
