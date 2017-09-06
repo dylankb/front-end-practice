@@ -18,7 +18,7 @@ var CartCollection = Backbone.Collection.extend({
   emptyCart: function() {
     this.reset();
     this.setStorage();
-    this.trigger('REMOVE_CART');
+    App.trigger('REMOVE_CART');
   },
   readStorage: function() {
     var existingCart = JSON.parse(window.localStorage.getItem('cart'));

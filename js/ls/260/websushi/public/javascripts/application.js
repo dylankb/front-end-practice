@@ -5,6 +5,8 @@ var App = {
 
     this.on('ADD_TO_CART', this.Cart.addItem.bind(this.Cart));
     this.on('EMPTY_CART', this.Cart.emptyCart.bind(this.Cart));
+    this.on('REMOVE_CART', this.Cart.View.removeCart.bind(this.Cart.View));
+    this.on('REMOVE_CART', this.Cart.View.ItemsList.removeItems.bind(this.Cart.View.ItemsList));
 
     this.$content = $('#content');
     this.$cart = $('#cart');
