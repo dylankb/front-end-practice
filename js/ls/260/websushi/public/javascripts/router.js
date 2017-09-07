@@ -28,8 +28,8 @@ var Router = Backbone.Router.extend({
     if (!App.Cart.isEmpty()) { App.Cart.trigger('DISPLAY_CART'); }
   },
   renderIndexViews: function() {
+    if (App.CheckoutView) { App.CheckoutView.$el.detach(); }
     App.MenuView.render();
-    if (App.CheckoutView) { App.CheckoutView.remove(); }
     this.renderCart();
   },
   showDetailView: function(id) {
