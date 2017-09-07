@@ -6,7 +6,7 @@ var MenuItemView = Backbone.View.extend({
   },
   addToCart: function(e) {
     e.preventDefault();
-    App.trigger('ADD_TO_CART', this.model);
+    App.Cart.trigger('ADD_ITEM', this.model);
   },
   events: {
     'click .add_cart': 'addToCart',

@@ -5,8 +5,7 @@ var CartItemsView = Backbone.View.extend({
   initialize: function() {
     this.render();
     this.listenTo(this.collection, 'add', this.renderNewCartItem);
-    this.listenTo(this.collection, 'DISPLAY_CART_ITEMS', this.render);
-    this.listenTo(this.collection, 'REMOVE_CART', this.removeItems);
+    this.listenTo(this.collection, 'reset', this.removeItems);
   },
   render: function() {
     this.collection.each(this.renderNewCartItem, this);

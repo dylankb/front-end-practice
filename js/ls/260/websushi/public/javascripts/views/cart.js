@@ -3,8 +3,8 @@ var CartView = Backbone.View.extend({
     id: 'cart',
   },
   initialize: function() {
-    this.listenTo(this.collection, 'DISPLAY_CART', this.render);
-    this.listenTo(this.collection, 'REMOVE_CART', this.removeCart);
+    this.listenTo(this.collection, 'add DISPLAY_CART', this.render);
+    this.listenTo(this.collection, 'reset', this.removeCart);
     this.SummarySection = new CartSummaryView({ collection: this.collection });
     this.ItemsList = new CartItemsView({ collection: this.collection });
   },
@@ -15,7 +15,9 @@ var CartView = Backbone.View.extend({
     this.showCart();
   },
   removeCart: function() {
-    this.$el.hide('fast');
+    if (this.collection.isEmpty()) {
+      this.$el.hide('fast');
+    }
   },
   showCart: function() {
     if (this.$el.is(':visible')) {

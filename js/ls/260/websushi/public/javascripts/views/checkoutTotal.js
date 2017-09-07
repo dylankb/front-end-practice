@@ -1,6 +1,6 @@
 var CheckoutTotal = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(this.collection, 'UPDATE_CHECKOUT_TOTAL', this.render);
+    this.listenTo(this.collection, 'change remove', this.render);
   },
   render: function() {
     this.$el.html(this.template({ total: this.collection.total }));

@@ -5,9 +5,7 @@ var CheckoutItemView = Backbone.View.extend({
     };
   },
   decrementQuantity: function() {
-    var collection = this.model.collection;
-    collection.removeItem(this.model);
-    collection.trigger('UPDATE_CHECKOUT_TOTAL');
+    this.model.collection.trigger('REMOVE_ITEM', this.model);
   },
   events: {
     'click .fa-plus': 'incrementQuantity',
@@ -15,7 +13,6 @@ var CheckoutItemView = Backbone.View.extend({
   },
   incrementQuantity: function() {
     this.model.collection.addItem(this.model);
-    this.model.collection.trigger('UPDATE_CHECKOUT_TOTAL');
   },
   initialize: function() {
     this.render();
