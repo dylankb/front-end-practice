@@ -41,6 +41,10 @@ var App = {
   },
 };
 
+Handlebars.registerHelper('formatPrice', function formatPrice(number) {
+  return Number(number).toFixed(2);
+});
+
 Handlebars.registerHelper('fromKiloJoulesToKiloCals', function fromKiloJoulesToKiloCals(kiloJoules) {
   return (Number(kiloJoules) / 4.184).toFixed(4);
 });

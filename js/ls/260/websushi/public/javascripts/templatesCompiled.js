@@ -56,7 +56,7 @@ templates['menuItem'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + "\" alt=\"menu-item\">\n    </figure>\n    <h2 class=\"name\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</h2>\n  </header>\n  <p class=\"price\">$"
-    + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
+    + alias4((helpers.formatPrice || (depth0 && depth0.formatPrice) || alias2).call(alias1,(depth0 != null ? depth0.price : depth0),{"name":"formatPrice","hash":{},"data":data}))
     + "</p>\n  <footer>\n    <a href=\"#\" class=\"add_cart\">Add to cart</a>\n  </footer>\n</article>\n";
 },"useData":true});
 templates['menuItemDetail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
