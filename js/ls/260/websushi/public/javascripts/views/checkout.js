@@ -7,7 +7,7 @@ var CheckoutView = Backbone.View.extend({
   },
   events: {
     'click .destroy-order': 'destroyOrder',
-    'submit .order-form': 'order',
+    'submit .place-order': 'order',
   },
   initialize: function() {
     this.Total = new CheckoutTotal({ collection: this.collection });

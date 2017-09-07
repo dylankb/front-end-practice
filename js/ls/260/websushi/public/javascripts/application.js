@@ -18,18 +18,20 @@ var App = {
       pushState: true,
     });
 
-    $(document).on('click', "a[href^='/']", function findSiteLinkUrl(e) {
-      e.preventDefault();
+    document.addEventListener('click', function findSiteLinkPath(e) {
       var siteLink = e.target.getAttribute('href');
 
-      App.Router.navigate(siteLink, { trigger: true });
+      if (siteLink && siteLink.match(/^\//)) {
+        e.preventDefault();
+        App.Router.navigate(siteLink, { trigger: true });
+      }
     });
 
     document.addEventListener('submit', function findSiteLinkPath(e) {
       var sitePath = e.target.getAttribute('action');
-      e.preventDefault();
 
       if (sitePath && sitePath.match(/^\//)) {
+        e.preventDefault();
         App.Router.navigate(sitePath, { trigger: true });
       }
     });
