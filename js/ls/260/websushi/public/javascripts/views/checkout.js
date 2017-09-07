@@ -21,7 +21,7 @@ var CheckoutView = Backbone.View.extend({
     this.$el.html(this.template);
     this.ItemsList.setElement(this.$('.checkout-items-list')).render();
     this.Total.setElement(this.$('.checkout-total')).render();
-    App.$content.html(this.el);
+    App.$content.html(this.$el); // must be $el or loses events
   },
   template: Handlebars.templates.checkout,
 });
