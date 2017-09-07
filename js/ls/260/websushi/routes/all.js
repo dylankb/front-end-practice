@@ -20,6 +20,6 @@ router.get('/menu', menu.route);
 router.get('/menu/:id', menu.route);
 
 /* GET nutritional data endpoint. */
-router.get('/nutrition', nutrition.route);
+router.get('/nutrition/:id', nutrition.route);
 
 module.exports = router;

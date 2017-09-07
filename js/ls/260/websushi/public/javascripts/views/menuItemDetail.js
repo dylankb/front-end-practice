@@ -29,11 +29,6 @@ var MenuItemDetail = Backbone.View.extend({
     App.Router.navigate('menu/' + nextItemId, { trigger: true });
   },
   renderNutritionalData: function(itemId) {
-    // var request = $.ajax({
-    //   url: '/nutrition',
-    //   data: { id: itemId },
-    // });
-
     var request = $.ajax({
       url: '/nutrition/' + itemId,
     });
