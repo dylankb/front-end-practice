@@ -11,7 +11,7 @@ var CartView = Backbone.View.extend({
   render: function() {
     this.$el.append(this.ItemsList.el);
     this.$el.append(this.SummarySection.el);
-    App.$content.prepend(this.$el);
+    App.$main.prepend(this.$el);
     this.showCart();
   },
   removeCart: function() {
