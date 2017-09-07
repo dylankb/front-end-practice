@@ -18,22 +18,23 @@ var App = {
       pushState: true,
     });
 
-    document.addEventListener('click', function findSiteLinkUrl(e) {
+    $(document).on('click', "a[href^='/']", function findSiteLinkUrl(e) {
+      e.preventDefault();
       var siteLink = e.target.getAttribute('href');
 
-      if (siteLink && siteLink.match(/^\//)) {
-        App.Router.navigate(siteLink, { trigger: true });
-      }
+      App.Router.navigate(siteLink, { trigger: true });
     });
 
     document.addEventListener('submit', function findSiteLinkPath(e) {
-      var siteLink = e.target.getAttribute('action');
+      var sitePath = e.target.getAttribute('action');
+      e.preventDefault();
 
-      if (siteLink && siteLink.match(/^\//)) {
-        App.Router.navigate(siteLink, { trigger: true });
+      if (sitePath && sitePath.match(/^\//)) {
+        App.Router.navigate(sitePath, { trigger: true });
       }
     });
   },
+
   setupInitialViews: function() {
     App.MenuView = new MenuView({ collection: App.SushiCollection });
     App.HeaderView = new HeaderView({ collection: App.Cart });

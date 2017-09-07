@@ -7,11 +7,15 @@ var CheckoutView = Backbone.View.extend({
   },
   events: {
     'click .destroy-order': 'destroyOrder',
+    'submit .order-form': 'order',
   },
   initialize: function() {
     this.Total = new CheckoutTotal({ collection: this.collection });
     this.ItemsList = new CheckoutItems({ collection: this.collection });
     this.render();
+  },
+  order: function() {
+    App.trigger('EMPTY_CART');
   },
   render: function() {
     this.$el.html(this.template);
