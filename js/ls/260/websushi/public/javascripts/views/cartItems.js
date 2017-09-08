@@ -8,8 +8,7 @@ var CartItemsView = Backbone.View.extend({
     this.listenTo(this.collection, 'reset', this.removeItems);
   },
   render: function() {
-    this.collection.each(this.renderNewCartItem, this);
-    // Specifying this changes execution context from model to CartItemsView
+    this.$el.html(this.template({ items: this.collection.toJSON() }));
   },
   removeItems: function() {
     this.$el.empty();
@@ -19,4 +18,5 @@ var CartItemsView = Backbone.View.extend({
     this.$el.append(cartItem.el);
   },
   tagName: 'ul',
+  template: Handlebars.templates.cartItems,
 });
