@@ -18,20 +18,17 @@ var CartCollection = Backbone.Collection.extend({
     }
   },
   emptyCart: function() {
-    // debugger;
     this.reset();
     this.setStorage();
   },
   readStorage: function() {
     var existingCart = JSON.parse(window.localStorage.getItem('cart'));
     if (!_.isEmpty(existingCart)) {
-      // debugger;
       this.reset(existingCart);
       this.setupSavedCart();
     }
   },
   removeItem: function(item) {
-    debugger;
     var quantity = item.get('quantity');
 
     if (quantity === 1) {
