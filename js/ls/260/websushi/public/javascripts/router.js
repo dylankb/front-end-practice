@@ -25,7 +25,7 @@ var Router = Backbone.Router.extend({
     }
   },
   renderCart: function() {
-    if (!App.Cart.isEmpty()) { App.Cart.trigger('DISPLAY_CART'); }
+    if (!App.Cart.isEmpty()) { App.trigger('DISPLAY_CART'); }
   },
   renderIndexViews: function() {
     if (App.CheckoutView) { App.CheckoutView.$el.detach(); }
@@ -34,7 +34,7 @@ var Router = Backbone.Router.extend({
   },
   showDetailView: function(id) {
     this.renderCart();
-    App.MenuView.$el.detach(); // Don't need this in MenuItemDetail re-renders, only initially
+    App.MenuView.$el.detach(); // Don't need this in inter MenuItemDetail renders, only initially
 
     var item = App.SushiCollection.get(id);
     App.MenuItemDetail = new MenuItemDetail({ model: item });

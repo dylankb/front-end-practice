@@ -3,6 +3,8 @@ var App = {
     _.extend(this, Backbone.Events);
     this.Cart = new CartCollection();
 
+    this.on('DISPLAY_CART', this.Cart.View.render.bind(this.Cart.View));
+
     this.$main = $('main');
     this.$content = $('#content');
     this.setupInitialViews();
