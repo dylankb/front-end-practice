@@ -3,12 +3,13 @@ var CartItemsView = Backbone.View.extend({
     class: 'cart-items',
   },
   initialize: function() {
-    this.render();
+    this.buildCartItems();
     this.listenTo(this.collection, 'add', this.renderNewCartItem);
     this.listenTo(this.collection, 'reset', this.removeItems);
   },
-  render: function() {
-    this.$el.html(this.template({ items: this.collection.toJSON() }));
+  buildCartItems: function() {
+    this.collection.each(this.renderNewCartItem, this);
+    // Specifying this changes execution context from model to CartItemsView
   },
   removeItems: function() {
     this.$el.empty();
@@ -18,5 +19,5 @@ var CartItemsView = Backbone.View.extend({
     this.$el.append(cartItem.el);
   },
   tagName: 'ul',
-  template: Handlebars.templates.cartItems,
+  template: Handlebars.templates.cartItem,
 });
