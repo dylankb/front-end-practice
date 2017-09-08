@@ -17,9 +17,9 @@ var App = {
 
     document.addEventListener('click', function findSiteLinkPath(e) {
       var siteLink = e.target.getAttribute('href');
+      e.preventDefault();
 
       if (siteLink && siteLink.match(/^\//)) {
-        e.preventDefault();
         App.Router.navigate(siteLink, { trigger: true });
       }
     });
