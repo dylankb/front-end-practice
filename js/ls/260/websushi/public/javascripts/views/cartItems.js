@@ -11,6 +11,9 @@ var CartItemsView = Backbone.View.extend({
     this.collection.each(this.renderNewCartItem, this);
     // Specifying this changes execution context from model to CartItemsView
   },
+  render: function() {
+    return this.$el;
+  },
   removeItems: function() {
     this.$el.empty();
   },
