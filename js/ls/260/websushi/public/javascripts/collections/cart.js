@@ -2,7 +2,7 @@ var CartCollection = Backbone.Collection.extend({
   initialize: function() {
     this.readStorage();
     this.View = new CartView({ collection: this });
-    this.on('remove change reset', this.update);
+    this.on('remove change:quantity reset', this.update);
     this.on('ADD_ITEM', this.addItem);
     this.on('REMOVE_ITEM', this.removeItem);
     this.on('EMPTY_CART', this.emptyCart);
