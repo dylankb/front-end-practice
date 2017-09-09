@@ -5,14 +5,14 @@ var CheckoutItemView = Backbone.View.extend({
     };
   },
   decrementQuantity: function() {
-    this.model.collection.trigger('REMOVE_ITEM', this.model);
+    App.Cart.trigger('REMOVE_ITEM', this.model);
   },
   events: {
     'click .fa-plus': 'incrementQuantity',
     'click .fa-minus': 'decrementQuantity',
   },
   incrementQuantity: function() {
-    this.model.collection.addItem(this.model);
+    App.Cart.trigger('ADD_ITEM', this.model);
   },
   initialize: function() {
     this.render();
