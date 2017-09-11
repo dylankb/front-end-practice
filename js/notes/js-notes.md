@@ -307,6 +307,8 @@ console.log(b);     // logs 1
 
 Variables don't hold values; they hold references to those values. _A Function can't change the value of a variable that is passed to it as an argument._
 
+An object can have its internal values changed within a function without having the reference change. Read more below.
+
 **Objects**
 
 Objects are mutable. Arrays are objects

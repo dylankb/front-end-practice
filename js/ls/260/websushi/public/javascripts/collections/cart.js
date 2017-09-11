@@ -2,7 +2,6 @@ var CartCollection = Backbone.Collection.extend({
   initialize: function() {
     this.readStorage();
     this.View = new CartView({ collection: this });
-    this.on('remove change reset', this.update);
     this.on('ADD_ITEM', this.addItem);
     this.on('REMOVE_ITEM', this.removeItem);
     this.on('EMPTY_CART', this.emptyCart);
@@ -16,22 +15,21 @@ var CartCollection = Backbone.Collection.extend({
       this.add(item);
       item.set('quantity', 1);
     }
+    this.update();
   },
   emptyCart: function() {
-    // debugger;
     this.reset();
     this.setStorage();
+    this.update();
   },
   readStorage: function() {
     var existingCart = JSON.parse(window.localStorage.getItem('cart'));
     if (!_.isEmpty(existingCart)) {
-      // debugger;
       this.reset(existingCart);
       this.setupSavedCart();
     }
   },
   removeItem: function(item) {
-    debugger;
     var quantity = item.get('quantity');
 
     if (quantity === 1) {
@@ -39,6 +37,7 @@ var CartCollection = Backbone.Collection.extend({
     } else {
       item.set('quantity', quantity - 1);
     }
+    this.update();
   },
   setCartTotal: function() {
     this.total = this.models.reduce(function sumCartTotal(acc, item) {
