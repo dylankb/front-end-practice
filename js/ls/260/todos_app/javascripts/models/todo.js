@@ -1,20 +1,26 @@
 var Todo = Backbone.Model.extend({
   initialize: function(data) {
-    this.title = data.title;
-    this.day = data.day;
-    this.month = data.month;
-    this.year = data.year;
-    this.dueDate = data.dueDate;
-    this.description = data.description;
-    this.completed = data.completed || false;
+    // this.title = data.title;
+    // this.day = data.day;
+    // this.month = data.month;
+    // this.year = data.year;
+    // this.dueDate = data.dueDate;
+    // this.description = data.description;
+    this.set('completed', data.completed || false);
   },
-  addToList: function() {
-    Todos.list[this.id] = this;
-  },
+  // addToList: function() {
+  //   Todos.list[this.id] = this;
+  // },
   categorizeByMonth: function() {
-    var month = TodoMonths.list[this.getDateKey()];
+    var month = App.TodoMonths.get(this.getDateKey());
 
-    month ? month.ids.push(this.id) : TodoMonths.createObject(this).addToList();
+    if (month) {
+      month.ids.push(this.id)
+    } else {
+      var month = new TodoMonth(this)
+      // TodoMonths.createObject(this).addToList();
+      App.TodoMonths.add(month);
+    }
   },
   deleteTodo: function() {
     this.removeFromMonth();
