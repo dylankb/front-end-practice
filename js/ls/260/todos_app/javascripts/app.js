@@ -130,13 +130,13 @@ $(function() {
       }, []);
     },
     completed: function() {
-      return this.ids.reduce(function(acc, id) {
+      return this.ids.reduce(function findCompleted(acc, id) {
         if (Todos.list[id].completed) { acc.push(Todos.list[id]); }
         return acc;
       }, []);
     },
     notCompleted: function() {
-      return this.ids.reduce(function(acc, id) {
+      return this.ids.reduce(function findNotCompleted(acc, id) {
         if (!Todos.list[id].completed) { acc.push(Todos.list[id]); }
         return acc;
       }, []);
@@ -155,7 +155,7 @@ $(function() {
       if (monthObjects) { this.loadMonthsFromObjects(monthObjects); }
     },
     loadMonthsFromObjects: function(monthObjects) {
-      monthObjects.forEach(function(monthInfo) {
+      monthObjects.forEach(function createAndAddMonth(monthInfo) {
         var month = this.createObject(monthInfo);
         month.addToList();
       }.bind(this));
@@ -164,7 +164,7 @@ $(function() {
       window.localStorage.setItem('monthsList', JSON.stringify(TodoMonths.list));
     },
     withCompletedTodos: function() {
-      return Object.values(this.list).filter(function(month) {
+      return Object.values(this.list).filter(function countCompletedInMonth(month) {
         return month.completed().length;
       });
     }
@@ -396,7 +396,6 @@ $(function() {
     },
     renderMainCompletedTodos: function(todosGroup) {
       var completedTodos = todosGroup ? todosGroup.completed() : [];
-
       $('.completed-todos-main').html(templates.todoItems({ todoItems: completedTodos }));
     },
     renderMainIncompleteTodos: function(todosGroup) {
