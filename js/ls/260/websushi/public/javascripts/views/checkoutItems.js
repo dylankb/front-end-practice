@@ -7,7 +7,9 @@ var CheckoutItems = Backbone.View.extend({
     this.collection.each(this.renderCheckoutItem, this);
   },
   render: function() {
-    return this.$el.html(this.$tempEl.children()); // or use this.$tempEl
+    var $tempElContents = this.$tempEl.children();
+    var $tempElContentsClone = $tempElContents.clone();
+    return this.$el.html($tempElContentsClone);
   },
   renderCheckoutItem: function(item) {
     var checkoutItem = new CheckoutItemView({ model: item });
