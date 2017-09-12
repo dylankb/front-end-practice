@@ -1,5 +1,4 @@
-var Todos = Backbone.Collection.extend({
-  // list: {},
+var TodosCollection = Backbone.Collection.extend({
   count: function() {
     return Object.values(this.list).length;
   },
@@ -12,11 +11,6 @@ var Todos = Backbone.Collection.extend({
   createObject: function(todoInfo) {
     return new Todo(todoInfo);
   },
-  createNewTodo: function(todoInfo) {
-    var todo = this.createObject(todoInfo);
-    todo.addToList();
-    todo.categorizeByMonth();
-  },
   getTodos: function() {
     return Object.values(this.list);
   },
@@ -27,17 +21,17 @@ var Todos = Backbone.Collection.extend({
   },
   loadTodosFromObjects: function(todoObjects) {
     todoObjects.forEach(function(todoInfo) {
-      var todo = this.createObject(todoInfo);
-      todo.addToList();
+      this.add(todoInfo);
     }.bind(this));
   },
   notCompleted: function() {
-    return Object.values(this.list).reduce(function(acc, todo) {
+    return this.toJSON().reduce(function(acc, todo) {
       if (!todo.completed) { acc.push(todo); }
       return acc;
     }, []);
   },
+  model: Todo,
   saveToLocalStore: function() {
-    window.localStorage.setItem('todosList', JSON.stringify(Todos.list));
+    window.localStorage.setItem('todosList', JSON.stringify(this.toJSON()));
   },
 });
