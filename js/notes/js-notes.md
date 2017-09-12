@@ -307,6 +307,8 @@ console.log(b);     // logs 1
 
 Variables don't hold values; they hold references to those values. _A Function can't change the value of a variable that is passed to it as an argument._
 
+An object can have its internal values changed within a function without having the reference change. Read more below.
+
 **Objects**
 
 Objects are mutable. Arrays are objects
@@ -2935,6 +2937,10 @@ Following this pattern, we would remove the event listener set above like this:
 **DOMContentLoaded**
 
 Code that needs access to the DOM should be invoked after the `DOMContentLoaded` event is fired on document. For example, adding an event listener to one or more page elements.
+
+_Like DOMContentLoaded, but not_
+
+Another, non event-driven way to execute JS after the `DOMContentLoaded` loaded event fires would be to include it in a script tag just before the closing `</body>` tag.
 
 `load` event - fires after all assets are loaded
 
