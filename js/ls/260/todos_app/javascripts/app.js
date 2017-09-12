@@ -8,8 +8,6 @@ function idCounter() {
 
 todoCounter = idCounter();
 
-var templates = {};
-
 var App = {
   init: function() {
     this.Todos = new TodosCollection();
@@ -41,7 +39,7 @@ var App = {
   cacheTemplates: function() {
     $("script[type='text/x-handlebars']").each(function() {
       var $template = $(this);
-      templates[$template.attr('id')] = Handlebars.compile($template.html());
+      App.templates[$template.attr('id')] = Handlebars.compile($template.html());
     });
 
     $("script[data-type='partial']").each(function() {
@@ -97,9 +95,9 @@ var App = {
     $modalContent.removeClass('hide');
 
     if (id) {
-      $modalContent.html(templates.todoForm(Todos.list[id]));
+      $modalContent.html(App.templates.todoForm(Todos.list[id]));
     } else {
-      $modalContent.html(templates.todoForm());
+      $modalContent.html(App.templates.todoForm());
     }
 
   },
@@ -156,7 +154,8 @@ var App = {
     var id = this.getTodoId(e, 'tr');
     var filterMonth = window.localStorage.getItem('filterMonth');
 
-    Todos.list[id].deleteTodo();
+    debugger;
+    this.Todos.get(id).remove();
     $(e.currentTarget).closest('tr').remove();
 
     var todosGroup = filterMonth ? TodoMonths.list[filterMonth] : Todos;
@@ -228,12 +227,12 @@ var App = {
   },
   renderMainCompletedTodos: function(todosGroup) {
     var completedTodos = todosGroup ? todosGroup.completed() : [];
-    $('.completed-todos-main').html(templates.todoItems({ todoItems: completedTodos }));
+    $('.completed-todos-main').html(App.templates.todoItems({ todoItems: completedTodos }));
   },
   renderMainIncompleteTodos: function(todosGroup) {
     var incompleteTodos = todosGroup ? todosGroup.notCompleted() : [];
-
-    $('.incomplete-todos-main').html(templates.todoItems({ todoItems: incompleteTodos }));
+    debugger;
+    $('.incomplete-todos-main').html(App.templates.todoItems({ todoItems: incompleteTodos }));
   },
   renderAllCompletedTodos: function(e) {
     e.preventDefault();
@@ -250,12 +249,12 @@ var App = {
     if (e) { e.preventDefault(); }
 
     $('.completed-todos-list').html(
-      templates.navCompletedTodoMonths({ months: this.TodoMonths.withCompletedTodos() })
+      App.templates.navCompletedTodoMonths({ months: this.TodoMonths.withCompletedTodos() })
     );
   },
   renderNavTodos: function() {
     $('.all-todos-list').html
-      (templates.navTodoMonths({ months: Object.values(this.TodoMonths.list) })
+      (App.templates.navTodoMonths({ months: Object.values(this.TodoMonths.list) })
     );
 
     this.renderNavCompletedTodos();
@@ -288,6 +287,7 @@ var App = {
     this.Todos.saveToLocalStore();
     this.TodoMonths.saveToLocalStore();
   },
+  templates: {},
   processTodoGroupClick: function(e) {
     e.preventDefault();
     this.styleActiveGroup(e.currentTarget);
@@ -315,5 +315,5 @@ var App = {
 };
 
 $(function() {
-  App.init();
+  App.init(); // Could also include this in a script tag at the bottom of the body element
 });
