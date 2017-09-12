@@ -9,6 +9,7 @@ var MenuView = Backbone.View.extend({
     this.collection.each(this.renderMenuItem, this);
   },
   render: function() {
+    // Not truly idempotent, as rerenders cause MenuItems to lose events;
     App.$content.html(this.$el);
   },
   renderMenuItem: function(sushi) {
