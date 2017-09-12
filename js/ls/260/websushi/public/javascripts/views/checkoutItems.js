@@ -1,7 +1,7 @@
 var CheckoutItems = Backbone.View.extend({
   initialize: function() {
     this.buildCheckoutItems();
-    this.listenTo(this.collection, 'update', this.buildCheckoutItems);
+    this.listenTo(this.collection, 'update change', this.buildCheckoutItems);
   },
   buildCheckoutItems: function() {
     this.collection.each(this.renderCheckoutItem, this);
