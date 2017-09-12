@@ -3,6 +3,7 @@ var Todo = Backbone.Model.extend({
     this.categorizeByMonth();
     this.set('completed', data.completed || false);
     this.set('id', data.id || todoCounter());
+    this.on('remove', this.removeFromMonth);
   },
   categorizeByMonth: function() {
     var month = App.TodoMonths.get(this.getDateKey());

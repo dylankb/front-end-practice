@@ -154,8 +154,7 @@ var App = {
     var id = this.getTodoId(e, 'tr');
     var filterMonth = window.localStorage.getItem('filterMonth');
 
-    debugger;
-    this.Todos.get(id).remove();
+    this.Todos.remove(id);
     $(e.currentTarget).closest('tr').remove();
 
     var todosGroup = filterMonth ? TodoMonths.list[filterMonth] : Todos;
