@@ -7,9 +7,11 @@ var CheckoutItems = Backbone.View.extend({
     this.collection.each(this.renderCheckoutItem, this);
   },
   render: function() {
-    var $tempElContents = this.$tempEl.children();
-    var $tempElContentsClone = $tempElContents.clone();
-    return this.$el.html($tempElContentsClone);
+    return this.$el.html(this.$tempEl.children()); // $tempEl[0].children;
+
+    // var $tempElContents = this.$tempEl.contents();
+    // var $tempElContentsClone = $tempElContents.clone(true, true);
+    // return this.$el.html($tempElContentsClone);
   },
   renderCheckoutItem: function(item) {
     var checkoutItem = new CheckoutItemView({ model: item });
