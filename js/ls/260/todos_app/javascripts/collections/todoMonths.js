@@ -1,14 +1,7 @@
 var TodoMonthsCollection = Backbone.Collection.extend({
   loadList: function() {
-    this.list = JSON.parse(localStorage.getItem('monthsList')) || {};
-
-    var monthObjects = Object.values(this.list);
-    if (monthObjects) { this.loadMonthsFromObjects(monthObjects); }
-  },
-  loadMonthsFromObjects: function(monthObjects) {
-    monthObjects.forEach(function createAndAddMonth(monthInfo) {
-      this.add(monthInfo)
-    }.bind(this));
+    var months = JSON.parse(localStorage.getItem('monthsList')) || {};
+    if (months.length) { this.reset(months); }
   },
   model: TodoMonth,
   saveToLocalStore: function() {

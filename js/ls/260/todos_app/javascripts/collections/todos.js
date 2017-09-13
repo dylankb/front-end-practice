@@ -12,14 +12,11 @@ var TodosCollection = Backbone.Collection.extend({
     return new Todo(todoInfo);
   },
   loadList: function() {
-    this.list = JSON.parse(localStorage.getItem('todosList')) || {};
-    var todoObjects = Object.values(this.list);
-    if (todoObjects) { this.loadTodosFromObjects(todoObjects); }
-  },
-  loadTodosFromObjects: function(todoObjects) {
-    todoObjects.forEach(function(todoInfo) {
-      this.add(todoInfo);
-    }.bind(this));
+    var todos = JSON.parse(localStorage.getItem('todosList')) || {};
+    if (todos.length) { this.reset(todos) };
+    this.models.forEach(function(todo) {
+      todo.categorizeByMonth();
+    });
   },
   notCompleted: function() {
     return this.toJSON().reduce(function(acc, todo) {

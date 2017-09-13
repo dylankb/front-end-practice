@@ -152,7 +152,6 @@ var App = {
 
     this.Todos.remove(id);
     $(e.currentTarget).closest('tr').remove();
-    debugger;
 
     var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
     var headingText = todosGroup ? todosGroup.models.length : '0';
@@ -165,8 +164,8 @@ var App = {
     this.updateNavCompletedTodosCount(this.Todos.completed().length);
   },
   processLocalStorage: function() {
-    this.Todos.loadList();
     this.TodoMonths.loadList();
+    this.Todos.loadList();
   },
   processTodoInfo: function(id, todoInfo, markComplete) {
     id ? this.Todos.get(id).set(todoInfo) : this.Todos.add(todoInfo);
@@ -290,7 +289,6 @@ var App = {
     $('.tasks h1').text(headingText);
   },
   updateMainTodosCount: function(todosCount) {
-    debugger;
     $('.tasks .todos-count').text(todosCount);
   },
   updateNavAllTodosCount: function(todosCount) {
