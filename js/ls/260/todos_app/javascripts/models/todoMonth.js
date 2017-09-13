@@ -14,22 +14,16 @@ var TodoMonth = Backbone.Model.extend({
 
     return month + '/' + year;
   },
-  getTodos: function(months) {
-    return this.ids.reduce(function(acc, id) {
-      acc.push(Todos.list[id]);
-      return acc;
-    }, []);
-  },
   completed: function() {
-    return this.ids.reduce(function findCompleted(acc, id) {
-      if (Todos.list[id].completed) { acc.push(Todos.list[id]); }
+    return this.Todos.reduce(function findCompleted(acc, todo) {
+      if (todo.get('completed')) { acc.push(todo); }
       return acc;
     }, []);
   },
   notCompleted: function() {
-    return this.ids.reduce(function findNotCompleted(acc, id) {
-      if (!Todos.list[id].completed) { acc.push(Todos.list[id]); }
+    return this.Todos.reduce(function findCompleted(acc, todo) {
+      if (!todo.get('completed')) { acc.push(todo); }
       return acc;
     }, []);
-  }
+  },
 });

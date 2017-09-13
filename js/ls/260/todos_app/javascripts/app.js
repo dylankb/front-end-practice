@@ -152,6 +152,7 @@ var App = {
 
     this.Todos.remove(id);
     $(e.currentTarget).closest('tr').remove();
+    debugger;
 
     var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
     var headingText = todosGroup ? todosGroup.getTodos().length : '0';
@@ -291,6 +292,7 @@ var App = {
     $('.tasks h1').text(headingText);
   },
   updateMainTodosCount: function(todosCount) {
+    debugger;
     $('.tasks .todos-count').text(todosCount);
   },
   updateNavAllTodosCount: function(todosCount) {
@@ -303,8 +305,8 @@ var App = {
     this.renderMainTodos(todosGroup);
     this.renderNavTodos();
 
-    this.updateMainTodosCount(todosGroup.getTodos().length);
-    this.updateNavAllTodosCount(this.Todos.getTodos().length);
+    this.updateMainTodosCount(todosGroup.models.length);
+    this.updateNavAllTodosCount(this.Todos.models.length);
     this.updateNavCompletedTodosCount(this.Todos.completed().length);
   }
 };
