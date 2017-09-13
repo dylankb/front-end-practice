@@ -1,41 +1,34 @@
 var Todo = Backbone.Model.extend({
   initialize: function(data) {
+    if (!this.get('dueDate')) { this.set('dueDate', data.dueDate)}
+
     this.categorizeByMonth();
     this.set('completed', data.completed || false);
     this.set('id', data.id || todoCounter());
+
     this.on('remove', this.removeFromMonth);
   },
   categorizeByMonth: function() {
     var month = App.TodoMonths.get(this.getDateKey());
-
-    if (month) {
-      month.ids.push(this.id)
-    } else {
-      var month = new TodoMonth(this)
-      App.TodoMonths.add(month);
-    }
-  },
-  deleteTodo: function() {
-    this.removeFromMonth();
-    delete Todos.list[this.id];
+    if (!month) { month = new TodoMonth(this.getDateKey()); }
+    App.TodoMonths.add(month);
+    month.Todos.add(this);
   },
   getDateKey: function() {
-    if (!this.dueDate) {
+    if (!this.get('dueDate')) {  // When would there not be a dueDate? It's set in gatherForm inputs and initialize
       return "No Due Date";
     } else {
-      return this.dueDate.replace(/(\d{4})-(\d{2})-(\d{2})/, '$1-$2-01');
+      return this.get('dueDate').replace(/(\d{4})-(\d{2})-(\d{2})/, '$1-$2-01'); // Hard coded '01' - should we just ignore day?
     }
   },
   removeFromMonth: function() {
-    var month = TodoMonths.list[this.getDateKey()];
+    var month = App.TodoMonths.get(this.getDateKey());
 
-    if (month.ids.length === 1) {
-      delete TodoMonths.list[this.getDateKey()];
-      return;
+    if (month.Todos.models.length === 1) {
+      App.TodoMonths.remove(month);
+    } else {
+      month.Todos.remove(this);
     }
-
-    var idIndex = month.ids.indexOf(this.id);
-    TodoMonths.list[this.getDateKey()].ids.splice(idIndex, 1);
   },
   toggleState: function() {
     this.completed = !this.completed;

@@ -1,15 +1,7 @@
 var TodoMonth = Backbone.Model.extend({
-  initialize: function(data) {
-    if (data instanceof Todo) {
-      this.ids = [data.id];
-      this.dateKey = data.getDateKey();
-    } else {
-      this.ids = data.ids;
-      this.dateKey = data.dateKey;
-    }
-  },
-  addToList: function() {
-    TodoMonths.list[this.dateKey] = this;
+  initialize: function(dateKey) {
+    this.set('dateKey', dateKey);
+    this.Todos = new TodosCollection();
   },
   idAttribute: 'dateKey',
   getDateKey: function() {

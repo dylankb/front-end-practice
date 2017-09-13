@@ -59,10 +59,6 @@ var App = {
       return month + '/' + year;
     });
 
-    Handlebars.registerHelper('todosCountByMonth', function(ids) {
-      return ids.length;
-    });
-
     Handlebars.registerHelper('todosCompletedByMonth', function(dateKey) {
       return TodoMonths.list[dateKey].completed().length;
     });
@@ -157,7 +153,7 @@ var App = {
     this.Todos.remove(id);
     $(e.currentTarget).closest('tr').remove();
 
-    var todosGroup = filterMonth ? TodoMonths.list[filterMonth] : Todos;
+    var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
     var headingText = todosGroup ? todosGroup.getTodos().length : '0';
 
     this.saveToLocalStore();
@@ -253,7 +249,7 @@ var App = {
   },
   renderNavTodos: function() {
     $('.all-todos-list').html
-      (App.templates.navTodoMonths({ months: Object.values(this.TodoMonths.list) })
+      (App.templates.navTodoMonths({ months: this.TodoMonths.toJSON() })
     );
 
     this.renderNavCompletedTodos();

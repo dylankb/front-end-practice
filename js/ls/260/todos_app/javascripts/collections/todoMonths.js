@@ -15,7 +15,7 @@ var TodoMonthsCollection = Backbone.Collection.extend({
     window.localStorage.setItem('monthsList', JSON.stringify(this.toJSON()));
   },
   withCompletedTodos: function() {
-    return Object.values(this.list).filter(function countCompletedInMonth(month) {
+    return this.toJSON().filter(function countCompletedInMonth(month) {
       return month.completed().length;
     });
   }
