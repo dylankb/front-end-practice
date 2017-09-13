@@ -224,9 +224,9 @@
     <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">
       <dl class="todo-month-container {{#if (selectedGroupCompleted this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
         <dt class="todo-month">
-          <a href="#">{{formatDateMonthYear dateKey}}</a>
+          <a href="#">{{formatDateMonthYear attributes.dateKey}}</a>
         </dt><!--
-        --><dd class="todo-month-count">{{todosCompletedByMonth dateKey}}</dd>
+        --><dd class="todo-month-count">{{todosCompletedByMonth attributes.dateKey}}</dd>
       </dl>
     </script>
 

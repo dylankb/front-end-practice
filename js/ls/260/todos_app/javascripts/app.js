@@ -60,7 +60,7 @@ var App = {
     });
 
     Handlebars.registerHelper('todosCompletedByMonth', function(dateKey) {
-      return TodoMonths.list[dateKey].completed().length;
+      return App.TodoMonths.get(dateKey).completed().length;
     });
 
     Handlebars.registerHelper('selectedGroupAll', function(todoGroup) {
@@ -155,13 +155,13 @@ var App = {
     debugger;
 
     var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
-    var headingText = todosGroup ? todosGroup.getTodos().length : '0';
+    var headingText = todosGroup ? todosGroup.models.length : '0';
 
     this.saveToLocalStore();
     this.renderNavTodos();
 
     this.updateMainTodosCount(headingText);
-    this.updateNavAllTodosCount(this.Todos.getTodos().length);
+    this.updateNavAllTodosCount(this.Todos.models.length);
     this.updateNavCompletedTodosCount(this.Todos.completed().length);
   },
   processLocalStorage: function() {
@@ -186,11 +186,10 @@ var App = {
     var id = this.getTodoId(e, 'tr');
     var filterMonth = window.localStorage.getItem('filterMonth');
     var filterMonthType = window.localStorage.getItem('filterMonthType');
-
-    Todos.list[id].toggleState();
+    this.Todos.get(id).toggleState();
     this.saveToLocalStore();
 
-    var todosGroup = filterMonth ? this.TodoMonths.list[filterMonth] : Todos;
+    var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
 
     if (filterMonthType !== 'completed') {
       this.updatePageContents(todosGroup);
@@ -227,7 +226,6 @@ var App = {
   },
   renderMainIncompleteTodos: function(todosGroup) {
     var incompleteTodos = todosGroup ? todosGroup.notCompleted() : [];
-    debugger;
     $('.incomplete-todos-main').html(App.templates.todoItems({ todoItems: incompleteTodos }));
   },
   renderAllCompletedTodos: function(e) {

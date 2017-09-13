@@ -3,16 +3,13 @@ var TodosCollection = Backbone.Collection.extend({
     return Object.values(this.list).length;
   },
   completed: function() {
-    return Object.values(this.list).reduce(function(acc, todo) {
+    return this.toJSON().reduce(function(acc, todo) {
       if (todo.completed) { acc.push(todo); }
       return acc;
     }, []);
   },
   createObject: function(todoInfo) {
     return new Todo(todoInfo);
-  },
-  getTodos: function() {
-    return Object.values(this.list);
   },
   loadList: function() {
     this.list = JSON.parse(localStorage.getItem('todosList')) || {};
