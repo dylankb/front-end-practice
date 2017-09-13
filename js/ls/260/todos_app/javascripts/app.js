@@ -91,7 +91,7 @@ var App = {
     $modalContent.removeClass('hide');
 
     if (id) {
-      $modalContent.html(App.templates.todoForm(Todos.list[id]));
+      $modalContent.html(App.templates.todoForm(this.Todos.get(id).toJSON()));
     } else {
       $modalContent.html(App.templates.todoForm());
     }
