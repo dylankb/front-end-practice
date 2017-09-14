@@ -10,12 +10,14 @@ todoCounter = idCounter();
 
 var App = {
   init: function() {
+    this.cacheTemplates();
+
     this.Todos = new TodosCollection();
     this.TodoMonths = new TodoMonthsCollection();
+    this.Navigation = new NavigationView();
 
     this.createHelpers();
     this.processLocalStorage();
-    this.cacheTemplates();
     this.bindEvents();
     this.initialRender();
   },

@@ -16,6 +16,7 @@
     <script src="javascripts/models/todo.js"></script>
     <script src="javascripts/collections/todos.js"></script>
     <script src="javascripts/collections/todoMonths.js"></script>
+    <script src="javascripts/views/navigation.js"></script>
   </head>
   <body>
     <main>
@@ -24,32 +25,7 @@
       </label>
       <input type="checkbox" id="menu-toggle"/>
       <div class="navigation">
-        <section class="all">
-          <header>
-            <dl class="all-todos active-todo-group">
-              <dt class="heading all-todos-heading">
-                <h2 class="image-list">All Todos</h2>
-              </dt><!--
-              --><dd class="todos-count"></dd>
-            </dl>
-          </header>
-          <article class="all-todos-list">
 
-          </article>
-        </section>
-        <section class="completed">
-          <header>
-            <dl class="completed-todos">
-              <dt class="heading completed-todos-heading">
-                <h2 class="image-checkbox">Completed</h2>
-              </dt><!--
-              --><dd class="completed-todos-count"></dd>
-            </dl>
-          </header>
-          <article class="completed-todos-list">
-
-          </article>
-        </section>
       </div>
       <div class="content">
         <ul class="tasks">
@@ -79,6 +55,34 @@
       </div>
 
     </main>
+
+    <script id="navigation" type="text/x-handlebars">
+      <section class="all">
+        <header>
+          <dl class="all-todos active-todo-group">
+            <dt class="heading all-todos-heading">
+              <h2 class="image-list">All Todos</h2>
+            </dt><!--
+            --><dd class="todos-count"></dd>
+          </dl>
+        </header>
+        <article class="all-todos-list">
+
+        </article>
+      </section>
+      <section class="completed">
+      <header>
+        <dl class="completed-todos">
+          <dt class="heading completed-todos-heading">
+            <h2 class="image-checkbox">Completed</h2>
+          </dt><!--
+          --><dd class="completed-todos-count"></dd>
+        </dl>
+      </header>
+      <article class="completed-todos-list">
+
+      </article>
+    </script>
 
     <script id="todoItems" type="text/x-handlebars">
       {{#each todoItems}}
