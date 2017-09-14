@@ -11,13 +11,13 @@ todoCounter = idCounter();
 var App = {
   init: function() {
     this.cacheTemplates();
-
-    this.Todos = new TodosCollection();
-    this.TodoMonths = new TodoMonthsCollection();
-    this.processLocalStorage();
-    this.Navigation = new NavigationView();
-
     this.createHelpers();
+
+    this.TodoMonths = new TodoMonthsCollection();
+    this.Navigation = new NavigationView();
+    this.Todos = new TodosCollection();
+    this.processLocalStorage();
+
     this.bindEvents();
     this.initialRender();
   },
@@ -33,7 +33,6 @@ var App = {
     $('.content').on('click', '.todo-item-container', this.processToggleState.bind(this));
     $('.content').on('click', '.modal', this.hideModal);
     $('.all-todos-list').on('click', '.todo-month-container', this.renderTodosByMonth.bind(this));
-    $('.completed-todos-list').on('click', '.todo-month-container', this.renderCompletedTodosByMonth.bind(this));
     $('.all-todos-heading').on('click', this.renderAllTodos.bind(this));
     $('.completed-todos-heading').on('click', this.renderAllCompletedTodos.bind(this));
     $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.processTodoGroupClick.bind(this));
@@ -115,7 +114,7 @@ var App = {
   },
   getSelectedMonth: function(e) {
     var dateKey = $(e.currentTarget).data('date-key');
-    return TodoMonths.list[dateKey];
+    return this.TodoMonths.get(dateKey);
   },
   getTodoId: function(e, selector) {
     return $(e.currentTarget).closest(selector).data('todo-id');
@@ -151,8 +150,8 @@ var App = {
     e.preventDefault();
     var id = this.getTodoId(e, 'tr');
     var filterMonth = window.localStorage.getItem('filterMonth');
-
     this.Todos.remove(id);
+    // this.Todos.get(id).TodoMonth.Todos.remove(id);
     $(e.currentTarget).closest('tr').remove();
 
     var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
@@ -166,7 +165,6 @@ var App = {
     this.updateNavCompletedTodosCount(this.Todos.completed().length);
   },
   processLocalStorage: function() {
-    this.TodoMonths.loadList();
     this.Todos.loadList();
   },
   processTodoInfo: function(id, todoInfo, markComplete) {
@@ -248,9 +246,9 @@ var App = {
     );
   },
   renderNavTodos: function() {
-    $('.all-todos-list').html
-      (App.templates.navTodoMonths({ months: this.TodoMonths.toJSON() })
-    );
+    // $('.all-todos-list').html
+    //   (App.templates.navTodoMonths({ months: this.TodoMonths.toJSON() })
+    // );
 
     this.renderNavCompletedTodos();
   },

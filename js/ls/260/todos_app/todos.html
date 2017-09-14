@@ -8,7 +8,7 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script> <!-- Can remove this later? -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <script src="http://underscorejs.org/underscore.js"></script>
     <script src="http://backbonejs.org/backbone.js"></script>
     <script src="javascripts/app.js"></script>
@@ -17,6 +17,8 @@
     <script src="javascripts/collections/todos.js"></script>
     <script src="javascripts/collections/todoMonths.js"></script>
     <script src="javascripts/views/navigation.js"></script>
+    <script src="javascripts/views/todoMonth.js"></script>
+    <script src="javascripts/views/todoMonthsAll.js"></script>
   </head>
   <body>
     <main>
@@ -211,11 +213,12 @@
     </script>
 
     <script id="monthTodos" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
+      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
         <dt class="todo-month">
-          <a href="#">{{formatDateMonthYear dateKey}}</a>
+          {{log .}}
+          <a href="#">{{formatDateMonthYear month.dateKey}}</a>
         </dt><!--
-        --><dd class="todo-month-count">?</dd>
+        --><dd class="todo-month-count"></dd>
       </dl>
     </script>
 

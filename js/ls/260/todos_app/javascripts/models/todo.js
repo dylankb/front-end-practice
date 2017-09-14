@@ -1,6 +1,6 @@
 var Todo = Backbone.Model.extend({
   initialize: function(data) {
-    if (!this.get('dueDate')) { this.set('dueDate', data.dueDate)}
+    if (!this.get('dueDate')) { this.set('dueDate', data.dueDate); }
 
     this.categorizeByMonth();
     this.set('completed', data.completed || false);
@@ -10,8 +10,11 @@ var Todo = Backbone.Model.extend({
   },
   categorizeByMonth: function() {
     var month = App.TodoMonths.get(this.getDateKey());
-    if (!month) { month = new TodoMonth(this.getDateKey()); }
-    App.TodoMonths.add(month);
+    if (!month) {
+      month = new TodoMonth(this.getDateKey());
+      App.TodoMonths.add(month);
+    }
+    this.TodoMonth = month;
     month.Todos.add(this);
   },
   getDateKey: function() {
