@@ -14,10 +14,10 @@ var App = {
 
     this.Todos = new TodosCollection();
     this.TodoMonths = new TodoMonthsCollection();
+    this.processLocalStorage();
     this.Navigation = new NavigationView();
 
     this.createHelpers();
-    this.processLocalStorage();
     this.bindEvents();
     this.initialRender();
   },
