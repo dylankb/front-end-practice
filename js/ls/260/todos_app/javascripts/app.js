@@ -145,8 +145,6 @@ var App = {
     this.saveToLocalStore();
 
     this.updateMainTodosCount(headingText);
-    this.updateNavAllTodosCount(this.Todos.models.length);
-    this.updateNavCompletedTodosCount(this.Todos.completed().length);
   },
   processLocalStorage: function() {
     this.Todos.loadList();
@@ -218,20 +216,9 @@ var App = {
   updateMainTodosCount: function(todosCount) {
     $('.tasks .todos-count').text(todosCount);
   },
-  updateNavAllTodosCount: function(todosCount) {
-    $('.all-todos .todos-count').text(todosCount);
-  },
-  updateNavCompletedTodosCount: function(todosCount) {
-    $('.completed-todos .completed-todos-count').text(todosCount);
-  },
   updatePageContents: function(todosGroup) {
-    this.renderMainTodos(todosGroup);
-    this.renderNavTodos();
-
     this.updateMainTodosCount(todosGroup.models.length);
-    this.updateNavAllTodosCount(this.Todos.models.length);
-    this.updateNavCompletedTodosCount(this.Todos.completed().length);
-  }
+  },
 };
 
 $(function() {
