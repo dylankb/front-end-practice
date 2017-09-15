@@ -18,8 +18,6 @@ var MainTodosView = Backbone.View.extend({
     var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
 
     App.updateMainTodosCount(todosGroup.completed().length);
-    App.updateNavAllTodosCount(App.Todos.models.length);
-    App.updateNavCompletedTodosCount(App.Todos.completed().length);
   },
   sortCompleted: function() {
     // Error: missing comparator - unable to run this.collection.sort as

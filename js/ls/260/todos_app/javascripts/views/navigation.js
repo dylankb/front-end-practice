@@ -12,12 +12,22 @@ var NavigationView = Backbone.View.extend({
       collection: App.TodoMonths,
     });
 
+    this.listenTo(App.Todos, 'change:completed', this.updateNavCompletedTodosCount);
+    this.listenTo(App.Todos, 'update', this.updateNavCompletedTodosCount);
     this.render();
   },
   render: function() {
     this.$el.html(App.templates.navigation);
     this.TodoMonthsAllView.setElement(this.$('.all-todos-list')).render();
     this.TodoMonthsCompletedView.setElement(this.$('.completed-todos-list')).render();
+    this.updateNavCompletedTodosCount();
+    this.updateNavAllTodosCount();
+  },
+  updateNavCompletedTodosCount: function() {
+    this.$('.completed-todos-count').text(App.Todos.completed().length);
+  },
+  updateNavAllTodosCount: function() {
+    this.$('.todos-count').text(App.Todos.models.length);
   },
   template: App.templates.navigation,
 });
