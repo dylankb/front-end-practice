@@ -19,6 +19,8 @@
     <script src="javascripts/views/navigation.js"></script>
     <script src="javascripts/views/todoMonth.js"></script>
     <script src="javascripts/views/todoMonthsAll.js"></script>
+    <script src="javascripts/views/todoMonthCompleted.js"></script>
+    <script src="javascripts/views/todoMonthsCompleted.js"></script>
   </head>
   <body>
     <main>
@@ -231,9 +233,9 @@
     <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">
       <dl class="todo-month-container {{#if (selectedGroupCompleted this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
         <dt class="todo-month">
-          <a href="#">{{formatDateMonthYear attributes.dateKey}}</a>
+          <a href="#">{{formatDateMonthYear dateKey}}</a>
         </dt><!--
-        --><dd class="todo-month-count">{{todosCompletedByMonth attributes.dateKey}}</dd>
+        --><dd class="todo-month-count">{{todosCompletedByMonth dateKey}}</dd>
       </dl>
     </script>
 

@@ -14,9 +14,9 @@ var App = {
     this.createHelpers();
 
     this.TodoMonths = new TodoMonthsCollection();
-    this.Navigation = new NavigationView();
     this.Todos = new TodosCollection();
     this.processLocalStorage();
+    this.Navigation = new NavigationView();
 
     this.bindEvents();
     this.initialRender();
@@ -158,7 +158,7 @@ var App = {
     var headingText = todosGroup ? todosGroup.models.length : '0';
 
     this.saveToLocalStore();
-    this.renderNavTodos();
+    // this.renderNavTodos();
 
     this.updateMainTodosCount(headingText);
     this.updateNavAllTodosCount(this.Todos.models.length);
@@ -196,7 +196,6 @@ var App = {
     }
 
     this.renderMainCompletedTodos(todosGroup);
-    this.renderNavTodos();
 
     this.updateMainTodosCount(todosGroup.completed().length);
     this.updateNavAllTodosCount(this.Todos.getTodos().length);
@@ -237,20 +236,6 @@ var App = {
 
     this.updateMainTodosHeading('Completed');
     this.updateMainTodosCount(this.Todos.completed().length);
-  },
-  renderNavCompletedTodos: function(e) {
-    if (e) { e.preventDefault(); }
-
-    $('.completed-todos-list').html(
-      App.templates.navCompletedTodoMonths({ months: this.TodoMonths.withCompletedTodos() })
-    );
-  },
-  renderNavTodos: function() {
-    // $('.all-todos-list').html
-    //   (App.templates.navTodoMonths({ months: this.TodoMonths.toJSON() })
-    // );
-
-    this.renderNavCompletedTodos();
   },
   renderCompletedTodosByMonth: function(e) {
     e.preventDefault();
