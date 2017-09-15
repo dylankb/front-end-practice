@@ -29,7 +29,6 @@ var App = {
   bindEvents: function() {
     $('.content').on('click', '.trash-icon', this.processDeleteTodo.bind(this));
     $('.content').on('click', '.buttons input', this.processFormSubmissions.bind(this));
-    // $('.content').on('click', '.todo-item-container', this.processToggleState.bind(this));
     $('.content').on('click', '.modal', this.hideModal);
     $('.all-todos-list').on('click', '.todo-month-container', this.renderTodosByMonth.bind(this));
     $('.all-todos-heading').on('click', this.renderAllTodos.bind(this));
