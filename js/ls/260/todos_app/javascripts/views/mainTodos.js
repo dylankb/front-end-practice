@@ -12,7 +12,7 @@ var MainTodosView = Backbone.View.extend({
     var id = App.getTodoId(e, 'tr');
     var filterMonth = window.localStorage.getItem('filterMonth');
     var filterMonthType = window.localStorage.getItem('filterMonthType');
-    App.Todos.get(id).toggleState();
+    App.Todos.trigger('TOGGLE_TODO_STATE', id);
     App.saveToLocalStore();
 
     var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;

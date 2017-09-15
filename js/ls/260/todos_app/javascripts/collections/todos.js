@@ -1,6 +1,6 @@
 var TodosCollection = Backbone.Collection.extend({
-  count: function() {
-    return Object.values(this.list).length;
+  initialize: function() {
+    this.on('TOGGLE_TODO_STATE', this.toggleTodoState);
   },
   comparator: 'completed',
   completed: function() {
@@ -26,6 +26,9 @@ var TodosCollection = Backbone.Collection.extend({
     }, []);
   },
   model: Todo,
+  toggleTodoState: function(id) {
+    App.Todos.get(id).toggleState();
+  },
   saveToLocalStore: function() {
     window.localStorage.setItem('todosList', JSON.stringify(this.toJSON()));
   },

@@ -14,5 +14,5 @@ var TodoMonthsCollection = Backbone.Collection.extend({
     return this.models.filter(function countCompletedInMonth(month) {
       return month.completed().length;
     });
-  }
+  },
 });
