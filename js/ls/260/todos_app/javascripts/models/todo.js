@@ -2,11 +2,19 @@ var Todo = Backbone.Model.extend({
   initialize: function(data) {
     if (!this.get('dueDate')) { this.set('dueDate', data.dueDate); }
 
-    this.categorizeByMonth();
     this.set('completed', data.completed || false);
-    this.set('id', data.id || todoCounter());
+    this.categorizeByMonth();
+    this.setId(data);
 
     this.on('remove', this.removeFromMonth);
+  },
+  setId: function(data) {
+    if (data.id) {
+      this.set('id', data.id);
+      todoCounter(data.id);
+    } else {
+      this.set('id', todoCounter());
+    }
   },
   categorizeByMonth: function() {
     var month = App.TodoMonths.get(this.getDateKey());

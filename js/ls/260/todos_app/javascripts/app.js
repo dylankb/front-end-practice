@@ -1,4 +1,4 @@
-var idCounter = function() {
+var counterCreator = function() {
   var id = 0;
 
   return function determineId(lastId) {
@@ -6,7 +6,8 @@ var idCounter = function() {
     return id;
   };
 };
-var todoCounter = idCounter();
+
+var todoCounter = counterCreator();
 
 var App = {
   init: function() {
