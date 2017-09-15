@@ -2,6 +2,7 @@ var TodosCollection = Backbone.Collection.extend({
   count: function() {
     return Object.values(this.list).length;
   },
+  comparator: 'completed',
   completed: function() {
     return this.toJSON().reduce(function(acc, todo) {
       if (todo.completed) { acc.push(todo); }

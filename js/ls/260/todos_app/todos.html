@@ -21,6 +21,8 @@
     <script src="javascripts/views/todoMonthsAll.js"></script>
     <script src="javascripts/views/todoMonthCompleted.js"></script>
     <script src="javascripts/views/todoMonthsCompleted.js"></script>
+    <script src="javascripts/views/content.js"></script>
+    <script src="javascripts/views/mainTodos.js"></script>
   </head>
   <body>
     <main>
@@ -32,33 +34,35 @@
 
       </div>
       <div class="content">
-        <ul class="tasks">
-          <li><h1>All todos</h1></li>
-          <li class="todos-count">0</li>
-        </ul>
-        <table class="todo-items-list">
-          <thead>
-            <tr>
-              <th scope="col">
-                <ul class="add">
-                  <li><a class="new-todo" href="#">Add new to do</a></li>
-                </ul>
-              </th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="incomplete-todos-main">
-          </tbody>
-          <tfoot class="completed-todos-main">
-          </tfoot>
-        </table>
-        <div class="modal hide">
-        </div>
-        <div class="modal-content hide">
-        </div>
+
       </div>
 
     </main>
+
+    <script id="content" type="text/x-handlebars">
+      <ul class="tasks">
+        <li><h1>All todos</h1></li>
+        <li class="todos-count">0</li>
+      </ul>
+      <table class="todo-items-list">
+        <thead>
+          <tr>
+            <th scope="col">
+              <ul class="add">
+                <li><a class="new-todo" href="#">Add new to do</a></li>
+              </ul>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="todos-main">
+        </tbody>
+      </table>
+      <div class="modal hide">
+      </div>
+      <div class="modal-content hide">
+      </div>
+    </script>
 
     <script id="navigation" type="text/x-handlebars">
       <section class="all">
