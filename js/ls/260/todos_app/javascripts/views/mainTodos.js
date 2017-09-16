@@ -6,6 +6,19 @@ var MainTodosView = Backbone.View.extend({
   },
   events: {
     'click .todo-item-container': 'processToggleState',
+    'click .trash-icon': 'processDeleteTodo',
+  },
+  processDeleteTodo: function(e) {
+    e.preventDefault();
+    var id = App.getTodoId(e, 'tr');
+    var filterMonth = window.localStorage.getItem('filterMonth');
+    App.Todos.trigger('REMOVE_TODO', id);
+    var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
+    var headingText = todosGroup ? todosGroup.models.length : '0';
+
+    App.saveToLocalStore();
+
+    App.updateMainTodosCount(headingText);
   },
   processToggleState: function(e) {
     e.preventDefault();

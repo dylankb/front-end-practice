@@ -1,6 +1,7 @@
 var TodosCollection = Backbone.Collection.extend({
   initialize: function() {
     this.on('TOGGLE_TODO_STATE', this.toggleTodoState);
+    this.on('REMOVE_TODO', this.removeTodo);
   },
   comparator: 'completed',
   completed: function() {
@@ -26,6 +27,9 @@ var TodosCollection = Backbone.Collection.extend({
     }, []);
   },
   model: Todo,
+  removeTodo: function(id) {
+    App.Todos.remove(id);
+  },
   toggleTodoState: function(id) {
     App.Todos.get(id).toggleState();
   },
