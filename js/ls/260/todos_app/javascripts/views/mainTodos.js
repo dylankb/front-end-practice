@@ -1,12 +1,20 @@
 var MainTodosView = Backbone.View.extend({
   initialize: function() {
     this.render();
-    this.listenTo(this.collection, 'update sort', this.render);
+    this.listenTo(this.collection, 'update sort change:title change:dueDate', this.render);
     this.listenTo(this.collection, 'change:completed', this.sortCompleted);
   },
   events: {
+    'click .todo-title': 'displayEditTodoModal',
     'click .todo-item-container': 'processToggleState',
     'click .trash-icon': 'processDeleteTodo',
+  },
+  displayEditTodoModal: function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var id = App.getTodoId(e, 'tr');
+    this.TodoModalView = new TodoModalView({ model: App.Todos.get(id) });
+    this.$el.append(this.TodoModalView.el);
   },
   processDeleteTodo: function(e) {
     e.preventDefault();
@@ -33,8 +41,6 @@ var MainTodosView = Backbone.View.extend({
     App.updateMainTodosCount(todosGroup.completed().length);
   },
   sortCompleted: function() {
-    // Error: missing comparator - unable to run this.collection.sort as
-    // callback with collection as context instead of view (should work)
     this.collection.sort();
   },
   render: function() {

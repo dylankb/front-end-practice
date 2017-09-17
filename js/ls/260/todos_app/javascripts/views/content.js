@@ -1,26 +1,19 @@
 var ContentView = Backbone.View.extend({
   el: '.content',
   events: {
-    'click .new-todo': 'displayModal',
+    'click .new-todo': 'displayTodoModal',
+    'click .todo-title': 'displayEditTodoModal',
   },
   initialize: function() {
     this.render();
     this.MainTodosView = new MainTodosView({ collection: App.Todos, el: '.todos-main' });
   },
-  displayModal: function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    var $modalContent = this.$('.modal-content');
+  displayTodoModal: function(e) {
     var id = App.getTodoId(e, 'tr');
+    e.preventDefault();
 
-    this.$('.modal').removeClass('hide');
-    $modalContent.removeClass('hide');
-
-    if (id) {
-      $modalContent.html(App.templates.todoForm(App.Todos.get(id).toJSON()));
-    } else {
-      $modalContent.html(App.templates.todoForm());
-    }
+    this.TodoModalView = new TodoModalView();
+    this.$el.append(this.TodoModalView.el);
   },
   render: function() {
     this.$el.html(App.templates.content);
