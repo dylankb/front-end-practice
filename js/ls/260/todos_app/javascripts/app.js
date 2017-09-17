@@ -27,9 +27,6 @@ var App = {
     window.localStorage.setItem('filterMonth', '');
   },
   bindEvents: function() {
-    $('.content').on('click', '.trash-icon', this.processDeleteTodo.bind(this));
-    $('.content').on('click', '.buttons input', this.processFormSubmissions.bind(this));
-    $('.content').on('click', '.modal', this.hideModal);
     $('.all-todos-list').on('click', '.todo-month-container', this.renderTodosByMonth.bind(this));
     $('.all-todos-heading').on('click', this.renderAllTodos.bind(this));
     $('.completed-todos-heading').on('click', this.renderAllCompletedTodos.bind(this));
@@ -101,64 +98,8 @@ var App = {
   getTodoId: function(e, selector) {
     return $(e.currentTarget).closest(selector).data('todo-id');
   },
-  hideModal: function(e) {
-    if (e) { e.preventDefault(); }
-
-    $('.modal').addClass('hide');
-    $('.modal-content').addClass('hide');
-  },
-  processFormSubmissions: function(e) {
-    e.preventDefault();
-    var $form = $(e.currentTarget).closest('form');
-    var id = $form.data('todo-id');
-    var buttonType = $(e.currentTarget).attr('class');
-
-    if (buttonType === 'mark-complete' && !id) {
-      alert("Create a todo before marking complete");
-      return;
-    }
-
-    var todoInfo = this.formatInputs(($form).serializeArray());
-
-    if (buttonType === 'create-todo') {
-      this.processTodoInfo(id, todoInfo, false);
-    }
-    else if (buttonType === 'mark-complete') {
-      todoInfo.completed = true;
-      this.processTodoInfo(id, todoInfo, true);
-    }
-  },
-  processDeleteTodo: function(e) {
-    e.preventDefault();
-    var id = this.getTodoId(e, 'tr');
-    var filterMonth = window.localStorage.getItem('filterMonth');
-    this.Todos.remove(id);
-    // this.Todos.get(id).TodoMonth.Todos.remove(id);
-    // If we need to trigger the TodoMonth.Todos collection action
-    // when the todo item is removed
-    $(e.currentTarget).closest('tr').remove();
-
-    var todosGroup = filterMonth ? this.TodoMonths.get(filterMonth) : this.Todos;
-    var headingText = todosGroup ? todosGroup.models.length : '0';
-
-    this.saveToLocalStore();
-
-    this.updateMainTodosCount(headingText);
-  },
   processLocalStorage: function() {
     this.Todos.loadList();
-  },
-  processTodoInfo: function(id, todoInfo, markComplete) {
-    id ? this.Todos.get(id).set(todoInfo) : this.Todos.add(todoInfo);
-
-    var filterMonth = window.localStorage.getItem('filterMonth');
-
-    this.saveToLocalStore();
-    this.hideModal();
-
-    this.updateMainTodosHeading('All todos');
-
-    if (!markComplete) { this.styleActiveGroup('.all-todos'); }
   },
   styleActiveGroup: function(element) {
     $('.todo-month-container, .all-todos, .completed-todos').removeClass('active-todo-group');

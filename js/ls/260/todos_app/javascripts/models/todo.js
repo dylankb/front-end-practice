@@ -6,7 +6,6 @@ var Todo = Backbone.Model.extend({
     this.categorizeByMonth();
     this.setId(data);
 
-    this.on('remove', this.removeFromMonth);
   },
   setId: function(data) {
     if (data.id) {
