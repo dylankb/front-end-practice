@@ -1,6 +1,6 @@
 var TodoMonthsAllView = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(this.collection, 'add', this.renderNewTodoMonth);
+    // this.listenTo(this.collection, 'add', this.renderNewTodoMonth);
   },
   render: function() {
     this.collection.each(this.renderNewTodoMonth, this);

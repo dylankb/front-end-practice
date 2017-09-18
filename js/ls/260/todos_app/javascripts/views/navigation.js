@@ -7,9 +7,27 @@ var NavigationView = Backbone.View.extend({
     'click .completed-todos-list .todo-month-container': 'renderCompletedTodosByMonth',
   },
   initialize: function() {
+    var incompleteTodoMonths = App.Todos
+      .chain()
+      .filter(function(model) {
+        return model.get('completed') === false;
+      })
+      .invoke('toJSON')
+      .groupBy('dueDate')
+      .value();
+
+
     this.TodoMonthsAllView = new TodoMonthsAllView({
-      collection: App.TodoMonths,
+      collection: App.Todos.groupBy('dueDate'),
     });
+
+
+
+    debugger;
+      // .where({ completed: false })
+
+    // var incompleteTodos = App.Todos.where({ completed: false });
+    // var incompletedByMonth = _(incompleteTodos).map();
 
     this.TodoMonthsCompletedView = new TodoMonthsCompletedView({
       collection: App.TodoMonths,
@@ -19,8 +37,6 @@ var NavigationView = Backbone.View.extend({
 
     this.listenTo(App.Todos, 'change:completed', this.updateNavCompletedTodosCount);
     this.listenTo(App.Todos, 'update', this.updateNavCompletedTodosCount);
-    // Better to make a new component so it can listen to its collection?
-    // Would need to listen to update (difficult to do efficiently) if todos weren't already loaded
     this.render();
   },
   renderAllTodos: function(e) {

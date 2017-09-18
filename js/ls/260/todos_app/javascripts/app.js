@@ -14,7 +14,7 @@ var App = {
     this.cacheTemplates();
     this.createHelpers();
 
-    this.TodoMonths = new TodoMonthsCollection();
+    // this.TodoMonths = new TodoMonthsCollection();
     this.Todos = new TodosCollection();
     this.processLocalStorage();
     this.timeFilter = '';

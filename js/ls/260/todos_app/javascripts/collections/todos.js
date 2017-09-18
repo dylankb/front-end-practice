@@ -17,9 +17,9 @@ var TodosCollection = Backbone.Collection.extend({
   loadList: function() {
     var todos = JSON.parse(localStorage.getItem('todosList')) || {};
     if (todos.length) { this.reset(todos); }
-    this.models.forEach(function(todo) {
-      todo.categorizeByMonth();
-    });
+    // this.models.forEach(function(todo) {
+    //   todo.categorizeByMonth();
+    // });
   },
   notCompleted: function() {
     return this.toJSON().reduce(function(acc, todo) {

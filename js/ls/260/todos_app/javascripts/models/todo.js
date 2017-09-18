@@ -3,7 +3,7 @@ var Todo = Backbone.Model.extend({
     if (!this.get('dueDate')) { this.set('dueDate', data.dueDate); }
 
     this.set('completed', data.completed || false);
-    this.categorizeByMonth();
+    // this.categorizeByMonth();
     this.setId(data);
 
     this.listenToOnce(this, 'remove', this.removeFromMonth);
@@ -16,15 +16,15 @@ var Todo = Backbone.Model.extend({
       this.set('id', todoCounter());
     }
   },
-  categorizeByMonth: function() {
-    var month = App.TodoMonths.get(this.getDateKey());
-    if (!month) {
-      month = new TodoMonth(this.getDateKey());
-      App.TodoMonths.add(month);
-    }
-    // this.TodoMonth = month;
-    month.Todos.add(this);
-  },
+  // categorizeByMonth: function() {
+  //   var month = App.TodoMonths.get(this.getDateKey());
+  //   if (!month) {
+  //     month = new TodoMonth(this.getDateKey());
+  //     App.TodoMonths.add(month);
+  //   }
+  //   // this.TodoMonth = month;
+  //   month.Todos.add(this);
+  // },
   getDateKey: function() {
     if (!this.get('dueDate')) {  // When would there not be a dueDate? It's set in gatherForm inputs and initialize
       return "No Due Date";
