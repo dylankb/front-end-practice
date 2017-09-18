@@ -49,7 +49,6 @@ var NavigationView = Backbone.View.extend({
     App.EventBus.trigger('UPDATED_FILTER');
   },
   renderCompletedTodosByMonth: function(e) {
-    debugger;
     var selectedMonth = App.getSelectedMonth(e);
     e.preventDefault();
 
