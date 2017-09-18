@@ -22,14 +22,18 @@ var ContentView = Backbone.View.extend({
     this.updateMainHeader(todos);
     this.renderMainTodos(todos);
   },
-  updateMainHeader: function(todos) {
-    var currentSelection = App.completedFilter ? 'Completed' : 'All Todos';
-    if (App.timeFilter) { currentSelection = App.timeFilter; }
+  updateMainHeader: function() {
+    // var currentSelection = App.completedFilter ? 'Completed' : 'All Todos';
+    // if (App.timeFilter) { currentSelection = App.timeFilter; }
 
-    var todosData = App.completedFilter ? todos.completed() : todos.toJSON();
+    this.todosHeader = new TodosHeaderView({
+      collection: this.selectedTodos,
+    });
 
-    App.updateMainTodosCount(todosData.length);
-    App.updateMainTodosHeading(currentSelection);
+    // var todosData = App.completedFilter ? todos.completed() : todos.toJSON();
+    //
+    // App.updateMainTodosCount(todosData.length);
+    // App.updateMainTodosHeading(currentSelection);
   },
   renderMainTodos: function(todos) {
     this.MainTodosView = new MainTodosView({ collection: todos });

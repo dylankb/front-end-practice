@@ -183,6 +183,7 @@ h2 {
   cursor: pointer;
 }
 
+/* Can this be deleted? */
 .navigation .tasks::after {
   display: block;
   content: "";
@@ -199,15 +200,15 @@ h2 {
   background-color: rgba(255, 0, 0, 0.4);
 }
 
-.tasks {
+.todos-header {
   overflow: auto;
 }
 
-.tasks > li {
+.todos-header > li {
   float: left;
 }
 
-.tasks li:nth-of-type(odd) {
+.todos-header li:nth-of-type(odd) {
   padding-right: 30px;
 }
 

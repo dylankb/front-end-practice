@@ -24,6 +24,7 @@
     <script src="javascripts/views/content.js"></script>
     <script src="javascripts/views/mainTodos.js"></script>
     <script src="javascripts/views/todoModal.js"></script>
+    <script src="javascripts/views/todosHeader.js"></script>
   </head>
   <body>
     <main>
@@ -41,9 +42,8 @@
     </main>
 
     <script id="content" type="text/x-handlebars">
-      <ul class="tasks">
-        <li><h1>All todos</h1></li>
-        <li class="todos-count">0</li>
+      <ul class="todos-header">
+
       </ul>
       <table class="todo-items-list">
         <thead>
@@ -57,9 +57,15 @@
           </tr>
         </thead>
         <tbody class="todos-main">
+
         </tbody>
       </table>
 
+    </script>
+
+    <script id="todosHeader" type="text/x-handlebars">
+      <li><h1>{{currentSelection}}</h1></li>
+      <li class="todos-count">{{todosCount}}</li>
     </script>
 
     <script id="todoModal" type="text/x-handlebars">
