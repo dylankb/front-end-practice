@@ -22,7 +22,7 @@ var Todo = Backbone.Model.extend({
       month = new TodoMonth(this.getDateKey());
       App.TodoMonths.add(month);
     }
-    this.TodoMonth = month;
+    // this.TodoMonth = month;
     month.Todos.add(this);
   },
   getDateKey: function() {
@@ -51,5 +51,5 @@ var Todo = Backbone.Model.extend({
   },
   updateTodoInfo: function(todoInfo) {
     return Object.assign(this, todoInfo);
-  }
+  },
 });

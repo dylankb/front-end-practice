@@ -1,9 +1,8 @@
 var TodoMonth = Backbone.Model.extend({
   initialize: function(dateKey) {
-
     if (!this.get('dateKey')) {
       this.set('dateKey', dateKey);
-    };
+    }
 
     this.Todos = new TodosCollection();
   },
