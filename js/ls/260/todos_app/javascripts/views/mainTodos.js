@@ -14,16 +14,17 @@ var MainTodosView = Backbone.View.extend({
     e.preventDefault();
     e.stopPropagation();
     var id = App.getTodoId(e, 'tr');
-    this.TodoModalView = new TodoModalView({ model: App.Todos.get(id) });
+    this.TodoModalView = new TodoModalView({ model: this.collection.get(id) });
     this.$el.append(this.TodoModalView.el);
+    debugger;
   },
   processDeleteTodo: function(e) {
     e.preventDefault();
     var id = App.getTodoId(e, 'tr');
     App.Todos.trigger('REMOVE_TODO', id);
 
-    var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
-    var headingText = todosGroup ? todosGroup.models.length : '0';
+    // var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
+    // var headingText = todosGroup ? todosGroup.models.length : '0';
 
     App.saveToLocalStore();
 
@@ -35,12 +36,13 @@ var MainTodosView = Backbone.View.extend({
     App.Todos.trigger('TOGGLE_TODO_STATE', id);
 
     App.saveToLocalStore();
-    App.updateMainTodosCount(headingText);
+    // App.updateMainTodosCount(headingText);
   },
   sortCompleted: function() {
     this.collection.sort();
   },
   render: function() {
+    debugger;
     var todosJSON = App.completedFilter ? this.collection.completed() : this.collection.toJSON();
     this.$el.html(App.templates.todoItems({ todoItems: todosJSON }));
   },
