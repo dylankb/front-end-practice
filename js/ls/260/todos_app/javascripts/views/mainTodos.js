@@ -4,6 +4,7 @@ var MainTodosView = Backbone.View.extend({
     this.listenTo(this.collection, 'update sort change:title change:dueDate', this.render);
     this.listenTo(this.collection, 'change:completed', this.sortCompleted);
   },
+  el: '.todos-main',
   events: {
     'click .todo-title': 'displayEditTodoModal',
     'click .todo-item-container': 'processToggleState',
@@ -19,8 +20,8 @@ var MainTodosView = Backbone.View.extend({
   processDeleteTodo: function(e) {
     e.preventDefault();
     var id = App.getTodoId(e, 'tr');
-    var filterMonth = window.localStorage.getItem('filterMonth');
     App.Todos.trigger('REMOVE_TODO', id);
+
     var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
     var headingText = todosGroup ? todosGroup.models.length : '0';
 
@@ -31,19 +32,16 @@ var MainTodosView = Backbone.View.extend({
   processToggleState: function(e) {
     e.preventDefault();
     var id = App.getTodoId(e, 'tr');
-    var filterMonth = window.localStorage.getItem('filterMonth');
-    var filterMonthType = window.localStorage.getItem('filterMonthType');
     App.Todos.trigger('TOGGLE_TODO_STATE', id);
+
     App.saveToLocalStore();
-
-    var todosGroup = filterMonth ? App.TodoMonths.get(filterMonth) : App.Todos;
-
-    App.updateMainTodosCount(todosGroup.completed().length);
+    App.updateMainTodosCount(headingText);
   },
   sortCompleted: function() {
     this.collection.sort();
   },
   render: function() {
-    this.$el.html(App.templates.todoItems({ todoItems: this.collection.toJSON() }));
+    var todosJSON = App.completedFilter ? this.collection.completed() : this.collection.toJSON();
+    this.$el.html(App.templates.todoItems({ todoItems: todosJSON }));
   },
 });

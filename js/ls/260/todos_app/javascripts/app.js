@@ -17,6 +17,10 @@ var App = {
     this.TodoMonths = new TodoMonthsCollection();
     this.Todos = new TodosCollection();
     this.processLocalStorage();
+    this.timeFilter = '';
+    this.completedFilter = '';
+
+    this.EventBus = _.extend({}, Backbone.Events);
     this.Navigation = new NavigationView();
     this.Content = new ContentView();
 
@@ -27,9 +31,6 @@ var App = {
     window.localStorage.setItem('filterMonth', '');
   },
   bindEvents: function() {
-    $('.all-todos-list').on('click', '.todo-month-container', this.renderTodosByMonth.bind(this));
-    $('.all-todos-heading').on('click', this.renderAllTodos.bind(this));
-    $('.completed-todos-heading').on('click', this.renderAllCompletedTodos.bind(this));
     $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.processTodoGroupClick.bind(this));
   },
   cacheTemplates: function() {
@@ -104,42 +105,6 @@ var App = {
   styleActiveGroup: function(element) {
     $('.todo-month-container, .all-todos, .completed-todos').removeClass('active-todo-group');
     $(element).addClass('active-todo-group');
-  },
-  renderAllTodos: function(e) {
-    e.preventDefault();
-    window.localStorage.setItem('filterMonth', '');
-
-    this.updateMainTodosHeading('All todos');
-    this.updateMainTodosCount(Todos.getTodos().length)
-  },
-  renderAllCompletedTodos: function(e) {
-    e.preventDefault();
-    window.localStorage.setItem('filterMonth', '');
-    window.localStorage.setItem('filterMonthType', 'completed');
-
-    this.updateMainTodosHeading('Completed');
-    this.updateMainTodosCount(this.Todos.completed().length);
-  },
-  renderCompletedTodosByMonth: function(e) {
-    e.preventDefault();
-
-    var selectedMonth = this.getSelectedMonth(e);
-    window.localStorage.setItem('filterMonthType', 'completed');
-    window.localStorage.setItem('filterMonth', selectedMonth.dateKey);
-
-    this.updateMainTodosHeading(selectedMonth.getDateKey());
-    this.updateMainTodosCount(selectedMonth.completed().length);
-  },
-  renderTodosByMonth: function(e) {
-    e.preventDefault();
-
-    var selectedMonth = this.getSelectedMonth(e);
-    window.localStorage.setItem('filterMonthType', 'all');
-    window.localStorage.setItem('filterMonth', selectedMonth.dateKey);
-
-    this.renderMainTodos(selectedMonth);
-    this.updateMainTodosHeading(selectedMonth.getDateKey());
-    this.updateMainTodosCount(selectedMonth.getTodos().length);
   },
   saveToLocalStore: function() {
     this.Todos.saveToLocalStore();
