@@ -2,6 +2,13 @@ var TodoMonthsCollection = Backbone.Collection.extend({
   initialize: function() {
     this.loadList();
   },
+  allTodos: function() {
+    var allTodos = this.models.map(function getTodos(month) {
+      return month.Todos.toJSON();
+    });
+
+    return _.flatten(allTodos);
+  },
   loadList: function() {
     var months = JSON.parse(localStorage.getItem('monthsList')) || {};
     if (months.length) { this.reset(months); }
