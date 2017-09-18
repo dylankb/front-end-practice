@@ -12,6 +12,8 @@ var NavigationView = Backbone.View.extend({
       collection: App.TodoMonths,
     });
 
+    this.listenTo(App.Todos, 'update', this.updateNavAllTodosCount);
+
     this.listenTo(App.Todos, 'change:completed', this.updateNavCompletedTodosCount);
     this.listenTo(App.Todos, 'update', this.updateNavCompletedTodosCount);
     this.render();
