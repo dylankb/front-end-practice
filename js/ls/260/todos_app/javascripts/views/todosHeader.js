@@ -1,7 +1,5 @@
 var TodosHeaderView = Backbone.View.extend({
-  el: '.todos-header',
   initialize: function() {
-    this.render();
     this.listenTo(this.collection, 'update change:completed', this.render);
   },
   render: function() {

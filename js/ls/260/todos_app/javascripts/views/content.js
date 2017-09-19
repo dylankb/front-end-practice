@@ -5,8 +5,15 @@ var ContentView = Backbone.View.extend({
     'click .todo-title': 'displayEditTodoModal',
   },
   initialize: function() {
+    this.renderContentTemplate();
+
+    var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
+    this.TodosHeader = new TodosHeaderView({ collection: todos });
+    this.MainTodos = new MainTodosView({ collection: todos });
+
     this.render();
-    this.listenTo(App.EventBus, 'UPDATED_FILTER', this.updateMainContent);
+
+    this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
   },
   displayTodoModal: function(e) {
     var id = App.getTodoId(e, 'tr');
@@ -15,14 +22,23 @@ var ContentView = Backbone.View.extend({
     this.TodoModalView = new TodoModalView();
     this.$el.append(this.TodoModalView.el);
   },
-  updateMainContent: function() {
+  renderTodosHeader: function() {
     var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
 
-    this.TodosHeader = new TodosHeaderView({ collection: todos });
-    this.MainTodosView = new MainTodosView({ collection: todos });
+    this.TodosHeader.collection = todos;
+    this.TodosHeader.setElement(this.$('.todos-header')).render();
+  },
+  renderTodosContent: function() {
+    var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
+
+    this.MainTodos.collection = todos;
+    this.MainTodos.setElement(this.$('.todos-main')).render();
+  },
+  renderContentTemplate: function() {
+    this.$el.html(App.templates.content);
   },
   render: function() {
-    this.$el.html(App.templates.content);
-    this.updateMainContent();
+    this.renderTodosHeader();
+    this.renderTodosContent();
   },
 });
