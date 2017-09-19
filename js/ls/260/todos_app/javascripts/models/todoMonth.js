@@ -23,10 +23,4 @@ var TodoMonth = Backbone.Model.extend({
       return acc;
     }, []);
   },
-  notCompleted: function() {
-    return this.Todos.reduce(function findCompleted(acc, todo) {
-      if (!todo.get('completed')) { acc.push(todo); }
-      return acc;
-    }, []);
-  },
 });

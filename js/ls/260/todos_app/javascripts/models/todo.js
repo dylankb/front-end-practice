@@ -44,12 +44,4 @@ var Todo = Backbone.Model.extend({
   toggleState: function() {
     this.set('completed', !this.get('completed'));
   },
-  updateTodo: function(todoInfo) {
-    this.removeFromMonth();
-    this.updateTodoInfo(todoInfo);
-    this.categorizeByMonth();
-  },
-  updateTodoInfo: function(todoInfo) {
-    return Object.assign(this, todoInfo);
-  },
 });

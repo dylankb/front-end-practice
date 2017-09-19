@@ -11,9 +11,6 @@ var TodosCollection = Backbone.Collection.extend({
       return acc;
     }, []);
   },
-  createObject: function(todoInfo) {
-    return new Todo(todoInfo);
-  },
   loadList: function() {
     var todos = JSON.parse(localStorage.getItem('todosList')) || {};
     if (todos.length) { this.reset(todos); }
@@ -21,14 +18,7 @@ var TodosCollection = Backbone.Collection.extend({
       todo.categorizeByMonth();
     });
   },
-  notCompleted: function() {
-    return this.toJSON().reduce(function(acc, todo) {
-      if (!todo.completed) { acc.push(todo); }
-      return acc;
-    }, []);
-  },
   model: Todo,
-    var filterMonth = window.localStorage.getItem('filterMonth');
   processTodoInfo: function(options) {
     var id = options.todoId;
     var todoInfo = options.data;
