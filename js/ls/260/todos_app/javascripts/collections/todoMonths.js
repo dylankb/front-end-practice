@@ -15,4 +15,5 @@ var TodoMonthsCollection = Backbone.Collection.extend({
       return month.completed().length;
     });
   },
+  comparator: 'dateKey',
 });
