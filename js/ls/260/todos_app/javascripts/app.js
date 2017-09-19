@@ -16,9 +16,8 @@ var App = {
 
     this.TodoMonths = new TodoMonthsCollection();
     this.Todos = new TodosCollection();
-    this.processLocalStorage();
-    this.timeFilter = '';
-    this.completedFilter = '';
+
+    this.loadSavedAppData();
 
     this.EventBus = _.extend({}, Backbone.Events);
     this.Navigation = new NavigationView();
@@ -31,7 +30,7 @@ var App = {
     window.localStorage.setItem('filterMonth', '');
   },
   bindEvents: function() {
-    $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.processTodoGroupClick.bind(this));
+    $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.styleCurrentSelection.bind(this));
   },
   cacheTemplates: function() {
     $("script[type='text/x-handlebars']").each(function() {
@@ -61,9 +60,9 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedGroupAll', function(todoGroup) {
-      var filterMonth = window.localStorage.getItem('filterMonth');
-      var filterMonthType = window.localStorage.getItem('filterMonthType');
-      if (todoGroup.dateKey === filterMonth && filterMonthType === 'all') {
+      var filterMonth = window.localStorage.getItem('timeFilter');
+      var completedFilter = window.localStorage.getItem('completedFilter');
+      if (todoGroup.dateKey === filterMonth && !completedFilter) {
         return true;
       }
       return false;
@@ -72,7 +71,7 @@ var App = {
     Handlebars.registerHelper('selectedGroupCompleted', function(todoGroup) {
       var filterMonth = window.localStorage.getItem('filterMonth');
       var filterMonthType = window.localStorage.getItem('filterMonthType');
-      if (todoGroup.dateKey === filterMonth && filterMonthType === 'completed') {
+      if (todoGroup.dateKey === filterMonth && filterMonthType) {
         return true;
       }
       return false;
@@ -99,8 +98,19 @@ var App = {
   getTodoId: function(e, selector) {
     return $(e.currentTarget).closest(selector).data('todo-id');
   },
-  processLocalStorage: function() {
-    this.Todos.loadList();
+  styleHeaderFilters: function() {
+    if (!App.timeFilter && !App.completedFilter) {
+      this.styleActiveGroup($('.all-todos'));
+    } else if (!App.timeFilter && App.completedFilter) {
+      this.styleActiveGroup($('.completed-todos'));
+    }
+  },
+  loadFilters: function() {
+    var timeFilter = localStorage.getItem('timeFilter');
+    this.timeFilter = timeFilter || '';
+
+    var completedFilter = localStorage.getItem('completedFilter');
+    this.completedFilter = completedFilter || '';
   },
   styleActiveGroup: function(element) {
     $('.todo-month-container, .all-todos, .completed-todos').removeClass('active-todo-group');
@@ -110,8 +120,16 @@ var App = {
     this.Todos.saveToLocalStore();
     this.TodoMonths.saveToLocalStore();
   },
+  saveFilterSettings: function() {
+    localStorage.setItem('completedFilter', this.completedFilter);
+    localStorage.setItem('timeFilter', this.timeFilter);
+  },
+  loadSavedAppData: function() {
+    this.Todos.loadList();
+    this.loadFilters();
+  },
   templates: {},
-  processTodoGroupClick: function(e) {
+  styleCurrentSelection: function(e) {
     e.preventDefault();
     this.styleActiveGroup(e.currentTarget);
   },
@@ -120,9 +138,6 @@ var App = {
   },
   updateMainTodosCount: function(todosCount) {
     $('.tasks .todos-count').text(todosCount);
-  },
-  updatePageContents: function(todosGroup) {
-    this.updateMainTodosCount(todosGroup.models.length);
   },
 };
 

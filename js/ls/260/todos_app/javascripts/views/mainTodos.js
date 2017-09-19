@@ -2,7 +2,7 @@ var MainTodosView = Backbone.View.extend({
   initialize: function() {
     this.render();
     this.listenTo(this.collection, 'update sort change:title change:dueDate', this.render);
-    this.listenTo(this.collection, 'change:completed', this.sortCompleted);
+    this.listenTo(this.collection, 'change:completed', this.sortByCompleted);
   },
   el: '.todos-main',
   events: {
@@ -11,9 +11,10 @@ var MainTodosView = Backbone.View.extend({
     'click .trash-icon': 'processDeleteTodo',
   },
   displayEditTodoModal: function(e) {
+    var id = App.getTodoId(e, 'tr');
     e.preventDefault();
     e.stopPropagation();
-    var id = App.getTodoId(e, 'tr');
+
     this.TodoModalView = new TodoModalView({ model: this.collection.get(id) });
     this.$el.append(this.TodoModalView.el);
   },
@@ -32,7 +33,7 @@ var MainTodosView = Backbone.View.extend({
     App.Todos.trigger('TOGGLE_TODO_STATE', id);
     App.saveToLocalStore();
   },
-  sortCompleted: function() {
+  sortByCompleted: function() {
     this.collection.sort();
   },
   render: function() {

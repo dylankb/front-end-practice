@@ -13,7 +13,7 @@ var TodoModalView = Backbone.View.extend({
     var buttonType = $(e.currentTarget).attr('class');
 
     if (buttonType === 'mark-complete' && !id) {
-      alert("Create a todo before marking complete");
+      alert('Create a todo before marking complete');
       return;
     }
 
@@ -26,6 +26,7 @@ var TodoModalView = Backbone.View.extend({
       App.Todos.trigger('PROCESS_TODO_INFO', id, todoInfo, true);
     }
 
+    App.saveToLocalStore();
     this.remove();
   },
   render: function() {

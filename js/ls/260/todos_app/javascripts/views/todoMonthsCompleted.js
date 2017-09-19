@@ -1,6 +1,6 @@
 var TodoMonthsCompletedView = Backbone.View.extend({
   initialize: function() {
-    this.listenTo(App.Todos, 'change:completed', this.render);
+    this.listenTo(App.Todos, 'change:completed update', this.render);
   },
   render: function() {
     this.$el.empty();

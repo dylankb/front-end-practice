@@ -222,26 +222,13 @@
       </tr>
     </script>
 
-    <script id="navTodoMonths" type="text/x-handlebars">
-      {{#each months}}
-        {{> monthTodos}}
-      {{/each}}
-    </script>
-
     <script id="monthTodos" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
+      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
         <dt class="todo-month">
-          {{log .}}
-          <a href="#">{{formatDateMonthYear month.dateKey}}</a>
+          <a href="#">{{formatDateMonthYear dateKey}}</a>
         </dt><!--
         --><dd class="todo-month-count"></dd>
       </dl>
-    </script>
-
-    <script id="navCompletedTodoMonths" type="text/x-handlebars">
-      {{#each months}}
-        {{> monthTodosCompleted}}
-      {{/each}}
     </script>
 
     <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">

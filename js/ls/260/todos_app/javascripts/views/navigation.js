@@ -19,17 +19,15 @@ var NavigationView = Backbone.View.extend({
 
     this.listenTo(App.Todos, 'change:completed', this.updateNavCompletedTodosCount);
     this.listenTo(App.Todos, 'update', this.updateNavCompletedTodosCount);
-    // Better to make a new component so it can listen to its collection?
-    // Would need to listen to update (difficult to do efficiently) if todos weren't already loaded
+
     this.render();
   },
   renderAllTodos: function(e) {
     e.preventDefault();
+
     App.timeFilter = '';
     App.completedFilter = '';
-
-    App.updateMainTodosHeading('All todos');
-    App.updateMainTodosCount(App.Todos.models.length);
+    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },
@@ -37,6 +35,7 @@ var NavigationView = Backbone.View.extend({
     e.preventDefault();
     App.completedFilter = 'true';
     App.timeFilter = '';
+    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },
@@ -46,6 +45,8 @@ var NavigationView = Backbone.View.extend({
 
     App.completedFilter = '';
     App.timeFilter = selectedMonth.attributes.dateKey;
+    App.saveFilterSettings();
+
     App.EventBus.trigger('UPDATED_FILTER');
   },
   renderCompletedTodosByMonth: function(e) {
@@ -54,6 +55,7 @@ var NavigationView = Backbone.View.extend({
 
     App.completedFilter = 'true';
     App.timeFilter = selectedMonth.attributes.dateKey;
+    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },
