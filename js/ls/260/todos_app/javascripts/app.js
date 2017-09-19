@@ -80,8 +80,9 @@ var App = {
       return acc;
     }, {});
 
-    if ((data.year && data.month && data.day)) {
-      data.dueDate = data.year + '-' + data.month + '-' + data.day;
+    if ((data.year && data.month)) {
+      data.dueDate = data.year + '-' + data.month;
+      if (data.day) { data.dueDate += '-' + data.day; }
     } else {
       data.dueDate = 'No Due Date';
     }
