@@ -24,10 +24,7 @@ var App = {
     this.Content = new ContentView();
 
     this.bindEvents();
-    this.initialRender();
-  },
-  initialRender: function() {
-    window.localStorage.setItem('filterMonth', '');
+    this.styleHeaderFilters();
   },
   bindEvents: function() {
     $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.styleCurrentSelection.bind(this));
@@ -60,8 +57,8 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedGroupAll', function(todoGroup) {
-      var filterMonth = window.localStorage.getItem('timeFilter');
-      var completedFilter = window.localStorage.getItem('completedFilter');
+      var filterMonth = App.timeFilter;
+      var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && !completedFilter) {
         return true;
       }
@@ -69,9 +66,9 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedGroupCompleted', function(todoGroup) {
-      var filterMonth = window.localStorage.getItem('filterMonth');
-      var filterMonthType = window.localStorage.getItem('filterMonthType');
-      if (todoGroup.dateKey === filterMonth && filterMonthType) {
+      var filterMonth = App.timeFilter;
+      var completedFilter = App.completedFilter;
+      if (todoGroup.dateKey === filterMonth && completedFilter) {
         return true;
       }
       return false;
