@@ -22,14 +22,14 @@ var Todo = Backbone.Model.extend({
       month = new TodoMonth(this.getDateKey());
       App.TodoMonths.add(month);
     }
-    // this.TodoMonth = month;
     month.Todos.add(this);
   },
   getDateKey: function() {
-    if (!this.get('dueDate')) {  // When would there not be a dueDate? It's set in gatherForm inputs and initialize
-      return "No Due Date";
+    if (this.get('dueDate') === 'No Due Date') {
+      return 'No Due Date';
     } else {
-      return this.get('dueDate').replace(/(\d{4})-(\d{2})-(\d{2})/, '$1-$2-01'); // Hard coded '01' - should we just ignore day?
+      // Example transformation: 2017-07-16 -> 2017-07
+      return this.get('dueDate').replace(/(\d{4})-(\d{2})-(\d{2})/, '$1-$2');
     }
   },
   removeFromMonth: function() {
