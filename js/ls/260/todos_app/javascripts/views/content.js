@@ -1,4 +1,4 @@
-var ContentView = Backbone.View.extend({
+var ContentView = BaseView.extend({
   el: '.content',
   events: {
     'click .new-todo': 'displayTodoModal',
@@ -6,11 +6,6 @@ var ContentView = Backbone.View.extend({
   },
   initialize: function() {
     this.renderContentTemplate();
-
-    var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
-    this.TodosHeader = new TodosHeaderView({ collection: todos });
-    this.MainTodos = new MainTodosView({ collection: todos });
-
     this.render();
 
     this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
@@ -23,22 +18,32 @@ var ContentView = Backbone.View.extend({
     this.$el.append(this.TodoModalView.el);
   },
   renderTodosHeader: function() {
-    var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
+    if (!this.TodosHeader) {
+      this.TodosHeader = new TodosHeaderView({ collection: this.selectedTodos });
+    } else {
+      this.TodosHeader.collection = this.selectedTodos;
+    }
 
-    this.TodosHeader.collection = todos;
-    this.TodosHeader.setElement(this.$('.todos-header')).render();
+    this.assign(this.TodosHeader, '.todos-header');
   },
   renderTodosContent: function() {
-    var todos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
+    if (!this.MainTodos) {
+      this.MainTodos = new MainTodosView({ collection: this.selectedTodos });
+    } else {
+      this.MainTodos.collection = this.selectedTodos;
+    }
 
-    this.MainTodos.collection = todos;
-    this.MainTodos.setElement(this.$('.todos-main')).render();
+    this.assign(this.MainTodos, '.todos-main');
   },
   renderContentTemplate: function() {
     this.$el.html(App.templates.content);
   },
   render: function() {
+    this.setSelectedTodos();
     this.renderTodosHeader();
     this.renderTodosContent();
+  },
+  setSelectedTodos: function() {
+    this.selectedTodos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
   },
 });

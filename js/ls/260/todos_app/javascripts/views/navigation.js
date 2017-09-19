@@ -1,4 +1,4 @@
-var NavigationView = Backbone.View.extend({
+var NavigationView = BaseView.extend({
   el: '.navigation',
   events: {
     'click .all-todos-heading': 'renderAllTodos',
@@ -61,8 +61,10 @@ var NavigationView = Backbone.View.extend({
   },
   render: function() {
     this.$el.html(App.templates.navigation);
-    this.TodoMonthsAllView.setElement(this.$('.all-todos-list')).render();
-    this.TodoMonthsCompletedView.setElement(this.$('.completed-todos-list')).render();
+
+    this.assign(this.TodoMonthsAllView, '.all-todos-list');
+    this.assign(this.TodoMonthsCompletedView, '.completed-todos-list');
+
     this.updateNavCompletedTodosCount();
     this.updateNavAllTodosCount();
   },
