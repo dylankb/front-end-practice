@@ -20,10 +20,10 @@ var TodoModalView = Backbone.View.extend({
     var todoInfo = App.formatInputs(($form).serializeArray());
 
     if (buttonType === 'create-todo') {
-      App.Todos.trigger('PROCESS_TODO_INFO', id, todoInfo, false);
+      App.Todos.trigger('PROCESS_TODO_INFO', { todoId: id, data: todoInfo, markComplete: false });
     } else if (buttonType === 'mark-complete') {
       todoInfo.completed = true;
-      App.Todos.trigger('PROCESS_TODO_INFO', id, todoInfo, true);
+      App.Todos.trigger('PROCESS_TODO_INFO', { todoId: id, data: todoInfo, markComplete: true });
     }
 
     App.saveToLocalStore();

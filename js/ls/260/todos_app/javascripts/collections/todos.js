@@ -28,8 +28,12 @@ var TodosCollection = Backbone.Collection.extend({
     }, []);
   },
   model: Todo,
-  processTodoInfo: function(id, todoInfo, markComplete) {
     var filterMonth = window.localStorage.getItem('filterMonth');
+  processTodoInfo: function(options) {
+    var id = options.todoId;
+    var todoInfo = options.data;
+    var markComplete = options.markComplete;
+
     id ? this.get(id).set(todoInfo) : this.add(todoInfo);
 
     App.saveToLocalStore();
