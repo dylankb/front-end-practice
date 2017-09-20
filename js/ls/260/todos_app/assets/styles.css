@@ -45,8 +45,8 @@ h2 {
   clear: both;
 }
 
-.all-todos-heading,
-.completed-todos-heading {
+.all-todos .heading,
+.completed-todos .heading {
   width: 175px;
 }
 

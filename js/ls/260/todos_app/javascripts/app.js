@@ -22,12 +22,6 @@ var App = {
     this.EventBus = _.extend({}, Backbone.Events);
     this.Navigation = new NavigationView();
     this.Content = new ContentView();
-
-    this.bindEvents();
-    this.styleHeaderFilters();
-  },
-  bindEvents: function() {
-    $('.navigation').on('click', '.all-todos, .completed-todos, .todo-month-container', this.styleCurrentSelection.bind(this));
   },
   cacheTemplates: function() {
     $("script[type='text/x-handlebars']").each(function() {
@@ -56,7 +50,7 @@ var App = {
       return App.TodoMonths.get(dateKey).completed().length;
     });
 
-    Handlebars.registerHelper('selectedGroupAll', function(todoGroup) {
+    Handlebars.registerHelper('selectedMonth', function(todoGroup) {
       var filterMonth = App.timeFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && !completedFilter) {
@@ -65,11 +59,24 @@ var App = {
       return false;
     });
 
-    Handlebars.registerHelper('selectedGroupCompleted', function(todoGroup) {
+    Handlebars.registerHelper('selectedMonthCompleted', function(todoGroup) {
       var filterMonth = App.timeFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && completedFilter) {
         return true;
+      }
+      return false;
+    });
+
+    Handlebars.registerHelper('selectedSection', function(sectionType) {
+      var filterMonth = App.timeFilter;
+      var completedFilter = App.completedFilter;
+      if (!filterMonth) {
+        if (!completedFilter && (sectionType === 'All Todos')) {
+          return true;
+        } else if (completedFilter && (sectionType === 'Completed')) {
+          return true;
+        }
       }
       return false;
     });
@@ -96,23 +103,12 @@ var App = {
   getTodoId: function(e, selector) {
     return $(e.currentTarget).closest(selector).data('todo-id');
   },
-  styleHeaderFilters: function() {
-    if (!App.timeFilter && !App.completedFilter) {
-      this.styleActiveGroup($('.all-todos'));
-    } else if (!App.timeFilter && App.completedFilter) {
-      this.styleActiveGroup($('.completed-todos'));
-    }
-  },
   loadFilters: function() {
     var timeFilter = localStorage.getItem('timeFilter');
     this.timeFilter = timeFilter || '';
 
     var completedFilter = localStorage.getItem('completedFilter');
     this.completedFilter = completedFilter || '';
-  },
-  styleActiveGroup: function(element) {
-    $('.todo-month-container, .all-todos, .completed-todos').removeClass('active-todo-group');
-    $(element).addClass('active-todo-group');
   },
   saveToLocalStore: function() {
     this.Todos.saveToLocalStore();
@@ -127,15 +123,6 @@ var App = {
     this.loadFilters();
   },
   templates: {},
-  styleCurrentSelection: function(e) {
-    e.preventDefault();
-    this.styleActiveGroup(e.currentTarget);
-  },
-  updateMainTodosHeading: function(headingText) {
-    $('.tasks h1').text(headingText);
-  },
-  updateMainTodosCount: function(todosCount) {
-    $('.tasks .todos-count').text(todosCount);
   },
 };
 

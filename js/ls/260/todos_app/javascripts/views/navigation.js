@@ -1,8 +1,8 @@
 var NavigationView = BaseView.extend({
   el: '.navigation',
   events: {
-    'click .all-todos-heading': 'renderAllTodos',
-    'click .completed-todos-heading': 'renderAllCompletedTodos',
+    'click .all-todos .heading': 'renderAllTodos',
+    'click .completed-todos .heading': 'renderAllCompletedTodos',
     'click .all-todos-list .todo-month-container': 'renderTodosByMonth',
     'click .completed-todos-list .todo-month-container': 'renderCompletedTodosByMonth',
   },
@@ -15,10 +15,8 @@ var NavigationView = BaseView.extend({
       collection: App.TodoMonths,
     });
 
-    this.listenTo(App.Todos, 'update', this.updateNavAllTodosCount);
-
-    this.listenTo(App.Todos, 'change:completed', this.updateNavCompletedTodosCount);
-    this.listenTo(App.Todos, 'update', this.updateNavCompletedTodosCount);
+    this.listenTo(App.Todos, 'update', this.renderAllSectionHeader);
+    this.listenTo(App.Todos, 'update change:completed', this.renderCompletedSectionHeader);
 
     this.render();
   },
@@ -30,6 +28,7 @@ var NavigationView = BaseView.extend({
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
+    this.render();
   },
   renderAllCompletedTodos: function(e) {
     e.preventDefault();
@@ -38,6 +37,7 @@ var NavigationView = BaseView.extend({
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
+    this.render();
   },
   renderTodosByMonth: function(e) {
     var selectedMonth = App.getSelectedMonth(e);
@@ -48,6 +48,7 @@ var NavigationView = BaseView.extend({
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
+    this.render();
   },
   renderCompletedTodosByMonth: function(e) {
     var selectedMonth = App.getSelectedMonth(e);
@@ -58,6 +59,11 @@ var NavigationView = BaseView.extend({
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
+    this.render();
+  },
+  renderSectionHeaders: function() {
+    this.renderCompletedSectionHeader();
+    this.renderAllSectionHeader();
   },
   render: function() {
     this.$el.html(App.templates.navigation);
@@ -65,14 +71,23 @@ var NavigationView = BaseView.extend({
     this.assign(this.TodoMonthsAllView, '.all-todos-list');
     this.assign(this.TodoMonthsCompletedView, '.completed-todos-list');
 
-    this.updateNavCompletedTodosCount();
-    this.updateNavAllTodosCount();
+    this.renderSectionHeaders();
   },
-  updateNavCompletedTodosCount: function() {
-    this.$('.completed-todos-count').text(App.Todos.completed().length);
+  renderCompletedSectionHeader: function() {
+    this.SectionHeaderCompletedView = new SectionHeaderView({
+      sectionType: 'Completed',
+      todosCount: App.Todos.completed().length,
+      el: '.completed header',
+      sectionClass: 'completed-todos',
+    });
   },
-  updateNavAllTodosCount: function() {
-    this.$('.todos-count').text(App.Todos.models.length);
+  renderAllSectionHeader: function() {
+    this.SectionHeaderAllView = new SectionHeaderView({
+      sectionType: 'All Todos',
+      todosCount: App.Todos.models.length,
+      el: '.all header',
+      sectionClass: 'all-todos',
+    });
   },
   template: App.templates.navigation,
 });

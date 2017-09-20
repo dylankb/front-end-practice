@@ -18,6 +18,7 @@
     <script src="javascripts/collections/todoMonths.js"></script>
     <script src="javascripts/views/baseView.js"></script>
     <script src="javascripts/views/navigation.js"></script>
+    <script src="javascripts/views/sectionHeader.js"></script>
     <script src="javascripts/views/todoMonth.js"></script>
     <script src="javascripts/views/todoMonthsAll.js"></script>
     <script src="javascripts/views/todoMonthCompleted.js"></script>
@@ -177,15 +178,19 @@
       </div>
     </script>
 
+    <script id="sectionHeader" type="text/x-handlebars">
+      <dl class="{{sectionClass}} {{#if (selectedSection sectionType)}}active-todo-group{{/if}}">
+        <dt class="heading">
+          <h2 class="image-list">{{sectionType}}</h2>
+        </dt><!--
+        --><dd class="todos-count">{{todosCount}}</dd>
+      </dl>
+    </script>
+
     <script id="navigation" type="text/x-handlebars">
       <section class="all">
         <header>
-          <dl class="all-todos">
-            <dt class="heading all-todos-heading">
-              <h2 class="image-list">All Todos</h2>
-            </dt><!--
-            --><dd class="todos-count"></dd>
-          </dl>
+
         </header>
         <article class="all-todos-list">
 
@@ -193,12 +198,7 @@
       </section>
       <section class="completed">
       <header>
-        <dl class="completed-todos">
-          <dt class="heading completed-todos-heading">
-            <h2 class="image-checkbox">Completed</h2>
-          </dt><!--
-          --><dd class="completed-todos-count"></dd>
-        </dl>
+
       </header>
       <article class="completed-todos-list">
 
@@ -224,7 +224,7 @@
     </script>
 
     <script id="monthTodos" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedGroupAll this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
+      <dl class="todo-month-container {{#if (selectedMonth this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
         <dt class="todo-month">
           <a href="#">{{formatDateMonthYear dateKey}}</a>
         </dt><!--
@@ -233,7 +233,7 @@
     </script>
 
     <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedGroupCompleted this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
+      <dl class="todo-month-container {{#if (selectedMonthCompleted this)}}active-todo-group{{/if}}" data-date-key="{{dateKey}}">
         <dt class="todo-month">
           <a href="#">{{formatDateMonthYear dateKey}}</a>
         </dt><!--
