@@ -18,6 +18,8 @@ var NavigationView = BaseView.extend({
     this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
 
     this.render();
+
+    this.template = App.templates.navigation;
   },
   renderAllTodos: function(e) {
     e.preventDefault();
@@ -35,7 +37,8 @@ var NavigationView = BaseView.extend({
     App.EventBus.trigger('UPDATED_FILTER');
   },
   render: function() {
-    this.$el.html(App.templates.navigation);
+    // this.$el.html(App.templates.navigation);
+    this.$el.html(this.template);
 
     this.assign(this.TodoMonthsAllView, '.all-todos-list');
     this.assign(this.TodoMonthsCompletedView, '.completed-todos-list');

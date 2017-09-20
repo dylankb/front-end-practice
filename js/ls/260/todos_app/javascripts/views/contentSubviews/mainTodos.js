@@ -1,7 +1,8 @@
 var MainTodosView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, 'update sort change:title change:dueDate', this.render);
-    this.listenTo(this.collection, 'change:completed', this.sortByCompleted);
+    // this.listenTo(this.collection, 'change:completed', this.sortByCompleted);
+    this.listenTo(this.collection, 'change:completed', this.collection.sort);
   },
   events: {
     'click .todo-title': 'displayEditModal',
