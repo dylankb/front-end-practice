@@ -10,7 +10,6 @@ var ContentView = BaseView.extend({
     this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
   },
   displayModal: function(e) {
-    var id = App.getTodoId(e, 'tr');
     e.preventDefault();
 
     this.ModalView = new ModalView();

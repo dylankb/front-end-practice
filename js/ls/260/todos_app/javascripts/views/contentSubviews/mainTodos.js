@@ -9,25 +9,26 @@ var MainTodosView = Backbone.View.extend({
     'click .trash-icon': 'processDeleteTodo',
   },
   displayEditModal: function(e) {
-    var id = App.getTodoId(e, 'tr');
+    var id = App.getTodoId(e);
     e.preventDefault();
     e.stopPropagation();
 
     this.ModalView = new ModalView({ model: this.collection.get(id) });
     this.$el.append(this.ModalView.el);
   },
+  getTodoId: function(e) {
+    return $(e.currentTarget).closest('tr').data('todo-id');
+  },
   processDeleteTodo: function(e) {
-    var id = App.getTodoId(e, 'tr');
     e.preventDefault();
 
-    App.Todos.trigger('REMOVE_TODO', id);
+    App.Todos.trigger('REMOVE_TODO', App.getTodoId(e));
     App.saveToLocalStore();
   },
   processToggleState: function(e) {
-    var id = App.getTodoId(e, 'tr');
     e.preventDefault();
 
-    App.Todos.trigger('TOGGLE_TODO_STATE', id);
+    App.Todos.trigger('TOGGLE_TODO_STATE', App.getTodoId(e));
     App.saveToLocalStore();
   },
   sortByCompleted: function() {

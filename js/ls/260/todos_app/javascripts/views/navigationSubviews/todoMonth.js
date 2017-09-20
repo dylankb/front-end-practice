@@ -13,11 +13,10 @@ var TodoMonthView = Backbone.View.extend({
     }));
   },
   renderTodosByMonth: function(e) {
-    var selectedMonth = App.getSelectedMonth(e);
     e.preventDefault();
 
     App.completedFilter = '';
-    App.timeFilter = selectedMonth.attributes.dateKey;
+    App.timeFilter = App.getSelectedMonth(e);
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');

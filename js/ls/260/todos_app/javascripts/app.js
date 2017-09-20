@@ -97,11 +97,7 @@ var App = {
     return data;
   },
   getSelectedMonth: function(e) {
-    var dateKey = $(e.currentTarget).data('date-key');
-    return this.TodoMonths.get(dateKey);
-  },
-  getTodoId: function(e, selector) {
-    return $(e.currentTarget).closest(selector).data('todo-id');
+    return $(e.currentTarget).data('date-key');
   },
   loadFilters: function() {
     var timeFilter = localStorage.getItem('timeFilter');
