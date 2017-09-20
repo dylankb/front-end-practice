@@ -16,7 +16,7 @@ var TodoMonthView = Backbone.View.extend({
     e.preventDefault();
 
     App.completedFilter = '';
-    App.timeFilter = App.getSelectedMonth(e);
+    App.monthFilter = App.getSelectedMonth(e);
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');

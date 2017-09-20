@@ -22,7 +22,7 @@ var NavigationView = BaseView.extend({
   renderAllTodos: function(e) {
     e.preventDefault();
 
-    App.timeFilter = '';
+    App.monthFilter = '';
     App.completedFilter = '';
     App.saveFilterSettings();
 
@@ -31,7 +31,7 @@ var NavigationView = BaseView.extend({
   renderAllCompletedTodos: function(e) {
     e.preventDefault();
     App.completedFilter = 'true';
-    App.timeFilter = '';
+    App.monthFilter = '';
     App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');

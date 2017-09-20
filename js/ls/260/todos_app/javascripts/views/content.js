@@ -42,6 +42,6 @@ var ContentView = BaseView.extend({
     this.renderTodos();
   },
   setSelectedTodos: function() {
-    this.selectedTodos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
+    this.selectedTodos = App.monthFilter ? App.TodoMonths.get(App.monthFilter).Todos : App.Todos;
   },
 });

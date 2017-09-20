@@ -13,7 +13,7 @@ var MainHeaderView = Backbone.View.extend({
       currentSelection = 'All Todos';
       todosModels = this.collection.toJSON();
     }
-    if (App.timeFilter) { currentSelection = App.timeFilter; }
+    if (App.monthFilter) { currentSelection = App.monthFilter; }
 
     this.$el.html(App.templates.todosHeader({
       currentSelection: currentSelection,

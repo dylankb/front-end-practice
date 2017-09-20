@@ -1,7 +1,7 @@
 var TodoMonthsCollection = Backbone.Collection.extend({
   initialize: function() {
     this.loadList();
-    this.on('remove', App.resetTimeFilter);
+    this.on('remove', App.resetmonthFilter);
   },
   loadList: function() {
     var months = JSON.parse(localStorage.getItem('monthsList')) || {};

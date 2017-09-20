@@ -51,7 +51,7 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedMonth', function(todoGroup) {
-      var filterMonth = App.timeFilter;
+      var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && !completedFilter) {
         return true;
@@ -60,7 +60,7 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedMonthCompleted', function(todoGroup) {
-      var filterMonth = App.timeFilter;
+      var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && completedFilter) {
         return true;
@@ -69,7 +69,7 @@ var App = {
     });
 
     Handlebars.registerHelper('selectedSection', function(sectionType) {
-      var filterMonth = App.timeFilter;
+      var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
       if (!filterMonth) {
         if (!completedFilter && (sectionType === 'All Todos')) {
@@ -100,8 +100,8 @@ var App = {
     return $(e.currentTarget).data('date-key');
   },
   loadFilters: function() {
-    var timeFilter = localStorage.getItem('timeFilter');
-    this.timeFilter = timeFilter || '';
+    var monthFilter = localStorage.getItem('monthFilter');
+    this.monthFilter = monthFilter || '';
 
     var completedFilter = localStorage.getItem('completedFilter');
     this.completedFilter = completedFilter || '';
@@ -112,7 +112,7 @@ var App = {
   },
   saveFilterSettings: function() {
     localStorage.setItem('completedFilter', this.completedFilter);
-    localStorage.setItem('timeFilter', this.timeFilter);
+    localStorage.setItem('monthFilter', this.monthFilter);
   },
   loadSavedAppData: function() {
     this.Todos.loadList();
@@ -120,7 +120,7 @@ var App = {
   },
   templates: {},
   resetFilters: function() {
-    App.timeFilter = '';
+    App.monthFilter = '';
     App.completedFilter = '';
     App.saveFilterSettings();
 
