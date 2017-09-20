@@ -4,17 +4,17 @@ var MainTodosView = Backbone.View.extend({
     this.listenTo(this.collection, 'change:completed', this.sortByCompleted);
   },
   events: {
-    'click .todo-title': 'displayEditTodoModal',
+    'click .todo-title': 'displayEditModal',
     'click .todo-item-container': 'processToggleState',
     'click .trash-icon': 'processDeleteTodo',
   },
-  displayEditTodoModal: function(e) {
+  displayEditModal: function(e) {
     var id = App.getTodoId(e, 'tr');
     e.preventDefault();
     e.stopPropagation();
 
-    this.TodoModalView = new TodoModalView({ model: this.collection.get(id) });
-    this.$el.append(this.TodoModalView.el);
+    this.ModalView = new ModalView({ model: this.collection.get(id) });
+    this.$el.append(this.ModalView.el);
   },
   processDeleteTodo: function(e) {
     var id = App.getTodoId(e, 'tr');

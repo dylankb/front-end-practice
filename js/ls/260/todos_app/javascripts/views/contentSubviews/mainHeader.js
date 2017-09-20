@@ -1,4 +1,4 @@
-var TodosHeaderView = Backbone.View.extend({
+var MainHeaderView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, 'update change:completed', this.render);
   },
