@@ -1,8 +1,7 @@
 var ContentView = BaseView.extend({
   el: '.content',
   events: {
-    'click .new-todo': 'displayTodoModal',
-    'click .todo-title': 'displayEditTodoModal',
+    'click .new-todo': 'displayModal',
   },
   initialize: function() {
     this.renderContentTemplate();
@@ -10,23 +9,23 @@ var ContentView = BaseView.extend({
 
     this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
   },
-  displayTodoModal: function(e) {
+  displayModal: function(e) {
     var id = App.getTodoId(e, 'tr');
     e.preventDefault();
 
-    this.TodoModalView = new TodoModalView();
-    this.$el.append(this.TodoModalView.el);
+    this.ModalView = new ModalView();
+    this.$el.append(this.ModalView.el);
   },
-  renderTodosHeader: function() {
-    if (!this.TodosHeader) {
-      this.TodosHeader = new TodosHeaderView({ collection: this.selectedTodos });
+  renderHeader: function() {
+    if (!this.MainHeader) {
+      this.MainHeader = new MainHeaderView({ collection: this.selectedTodos });
     } else {
-      this.TodosHeader.collection = this.selectedTodos;
+      this.MainHeader.collection = this.selectedTodos;
     }
 
-    this.assign(this.TodosHeader, '.todos-header');
+    this.assign(this.MainHeader, '.todos-header');
   },
-  renderTodosContent: function() {
+  renderTodos: function() {
     if (!this.MainTodos) {
       this.MainTodos = new MainTodosView({ collection: this.selectedTodos });
     } else {
@@ -40,8 +39,8 @@ var ContentView = BaseView.extend({
   },
   render: function() {
     this.setSelectedTodos();
-    this.renderTodosHeader();
-    this.renderTodosContent();
+    this.renderHeader();
+    this.renderTodos();
   },
   setSelectedTodos: function() {
     this.selectedTodos = App.timeFilter ? App.TodoMonths.get(App.timeFilter).Todos : App.Todos;
