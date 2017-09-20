@@ -7,8 +7,10 @@ var TodoMonthCompletedView = Backbone.View.extend({
     'click .todo-month-container': this.renderTodosByMonth,
   },
   render: function() {
-    this.$el.html(App.templates.monthTodosCompleted(this.model.toJSON()));
-    this.renderMonthTodosCount();
+    this.$el.html(App.templates.monthTodosCompleted({
+      month: this.model.toJSON(),
+      todosCount: this.model.completed().length,
+    }));
   },
   renderTodosByMonth: function() {
     this.trigger('DISPLAY_BY_MONTH', this.model.get('dateKey'));
