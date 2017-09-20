@@ -18,7 +18,6 @@ var TodoMonthCompletedView = Backbone.View.extend({
 
     App.completedFilter = 'true';
     App.monthFilter = selectedMonth;
-    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },

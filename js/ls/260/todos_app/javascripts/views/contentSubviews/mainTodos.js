@@ -9,7 +9,7 @@ var MainTodosView = Backbone.View.extend({
     'click .trash-icon': 'processDeleteTodo',
   },
   displayEditModal: function(e) {
-    var id = App.getTodoId(e);
+    var id = this.getTodoId(e);
     e.preventDefault();
     e.stopPropagation();
 
@@ -22,14 +22,12 @@ var MainTodosView = Backbone.View.extend({
   processDeleteTodo: function(e) {
     e.preventDefault();
 
-    App.Todos.trigger('REMOVE_TODO', App.getTodoId(e));
-    App.saveToLocalStore();
+    App.Todos.trigger('REMOVE_TODO', this.getTodoId(e));
   },
   processToggleState: function(e) {
     e.preventDefault();
 
-    App.Todos.trigger('TOGGLE_TODO_STATE', App.getTodoId(e));
-    App.saveToLocalStore();
+    App.Todos.trigger('TOGGLE_TODO_STATE', this.getTodoId(e));
   },
   sortByCompleted: function() {
     this.collection.sort();

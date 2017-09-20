@@ -25,7 +25,6 @@ var TodosCollection = Backbone.Collection.extend({
     var markComplete = options.markComplete;
 
     id ? this.get(id).set(todoInfo) : this.add(todoInfo);
-    App.saveToLocalStore();
 
     App.resetFilters();
   },

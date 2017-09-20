@@ -24,7 +24,6 @@ var NavigationView = BaseView.extend({
 
     App.monthFilter = '';
     App.completedFilter = '';
-    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },
@@ -32,7 +31,6 @@ var NavigationView = BaseView.extend({
     e.preventDefault();
     App.completedFilter = 'true';
     App.monthFilter = '';
-    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
   },

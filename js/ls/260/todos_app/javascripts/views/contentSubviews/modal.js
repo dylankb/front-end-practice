@@ -26,7 +26,6 @@ var ModalView = Backbone.View.extend({
       App.Todos.trigger('PROCESS_TODO_INFO', { todoId: id, data: todoInfo, markComplete: true });
     }
 
-    App.saveToLocalStore();
     this.remove();
   },
   render: function() {

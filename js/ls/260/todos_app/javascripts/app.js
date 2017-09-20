@@ -22,6 +22,8 @@ var App = {
     this.EventBus = _.extend({}, Backbone.Events);
     this.Navigation = new NavigationView();
     this.Content = new ContentView();
+
+    this.saveOnUnload();
   },
   cacheTemplates: function() {
     $("script[type='text/x-handlebars']").each(function() {
@@ -106,7 +108,7 @@ var App = {
     var completedFilter = localStorage.getItem('completedFilter');
     this.completedFilter = completedFilter || '';
   },
-  saveToLocalStore: function() {
+  saveData: function() {
     this.Todos.saveToLocalStore();
     this.TodoMonths.saveToLocalStore();
   },
@@ -122,9 +124,14 @@ var App = {
   resetFilters: function() {
     App.monthFilter = '';
     App.completedFilter = '';
-    App.saveFilterSettings();
 
     App.EventBus.trigger('UPDATED_FILTER');
+  },
+  saveOnUnload: function() {
+    window.addEventListener('unload', function saveApp(e) {
+      App.saveFilterSettings();
+      App.saveData();
+    });
   },
 };
 
