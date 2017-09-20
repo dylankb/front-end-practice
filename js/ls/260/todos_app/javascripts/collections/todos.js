@@ -25,11 +25,9 @@ var TodosCollection = Backbone.Collection.extend({
     var markComplete = options.markComplete;
 
     id ? this.get(id).set(todoInfo) : this.add(todoInfo);
-
     App.saveToLocalStore();
-    App.updateMainTodosHeading('All todos');
 
-    if (!markComplete) { App.styleActiveGroup('.all-todos'); }
+    App.resetFilters();
   },
   removeTodo: function(id) {
     App.Todos.remove(id);

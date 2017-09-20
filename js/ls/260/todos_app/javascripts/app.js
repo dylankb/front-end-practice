@@ -123,6 +123,12 @@ var App = {
     this.loadFilters();
   },
   templates: {},
+  resetFilters: function() {
+    App.timeFilter = '';
+    App.completedFilter = '';
+    App.saveFilterSettings();
+
+    App.EventBus.trigger('UPDATED_FILTER');
   },
 };
 
