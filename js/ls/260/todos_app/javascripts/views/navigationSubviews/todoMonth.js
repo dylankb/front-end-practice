@@ -9,7 +9,7 @@ var TodoMonthView = Backbone.View.extend({
   render: function() {
     this.$el.html(App.templates.monthTodos({
       month: this.model.toJSON(),
-      todosCount: this.model.completed().length,
+      todosCount: this.model.Todos.toJSON().length,
     }));
   },
   renderTodosByMonth: function(e) {
