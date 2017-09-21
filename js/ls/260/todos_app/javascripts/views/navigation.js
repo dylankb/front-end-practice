@@ -5,6 +5,8 @@ var NavigationView = BaseView.extend({
     'click .completed-todos .heading': 'renderAllCompletedTodos',
   },
   initialize: function() {
+    this.template = App.templates.navigation;
+
     this.TodoMonthsAllView = new TodoMonthsAllView({
       collection: App.TodoMonths,
     });
@@ -18,8 +20,6 @@ var NavigationView = BaseView.extend({
     this.listenTo(App.EventBus, 'UPDATED_FILTER', this.render);
 
     this.render();
-
-    this.template = App.templates.navigation;
   },
   renderAllTodos: function(e) {
     e.preventDefault();
@@ -62,5 +62,4 @@ var NavigationView = BaseView.extend({
       sectionClass: 'all-todos',
     });
   },
-  template: App.templates.navigation,
 });
