@@ -224,7 +224,7 @@
     </script>
 
     <script id="monthTodos" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedMonth month)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
+      <dl class="todo-month-container {{#if (isSelectedMonth month)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
         <dt class="todo-month">
           <a href="#">{{formatDateMonthYear month.dateKey}}</a>
         </dt><!--
@@ -233,7 +233,7 @@
     </script>
 
     <script id="monthTodosCompleted" type="text/x-handlebars" data-type="partial">
-      <dl class="todo-month-container {{#if (selectedMonthCompleted month)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
+      <dl class="todo-month-container {{#if (isSelectedMonthWithCompleted month)}}active-todo-group{{/if}}" data-date-key="{{month.dateKey}}">
         <dt class="todo-month">
           <a href="#">{{formatDateMonthYear month.dateKey}}</a>
         </dt><!--

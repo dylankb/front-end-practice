@@ -48,7 +48,7 @@ var App = {
       return month + '/' + year;
     });
 
-    Handlebars.registerHelper('selectedMonth', function(todoGroup) {
+    Handlebars.registerHelper('isSelectedMonth', function(todoGroup) {
       var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && !completedFilter) {
@@ -57,7 +57,7 @@ var App = {
       return false;
     });
 
-    Handlebars.registerHelper('selectedMonthCompleted', function(todoGroup) {
+    Handlebars.registerHelper('isSelectedMonthWithCompleted', function(todoGroup) {
       var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
       if (todoGroup.dateKey === filterMonth && completedFilter) {
@@ -94,7 +94,7 @@ var App = {
 
     return data;
   },
-  getSelectedMonth: function(e) {
+  getisSelectedMonth: function(e) {
     return $(e.currentTarget).data('date-key');
   },
   loadFilters: function() {
