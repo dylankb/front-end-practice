@@ -48,10 +48,6 @@ var App = {
       return month + '/' + year;
     });
 
-    Handlebars.registerHelper('todosCompletedByMonth', function(dateKey) {
-      return App.TodoMonths.get(dateKey).completed().length;
-    });
-
     Handlebars.registerHelper('selectedMonth', function(todoGroup) {
       var filterMonth = App.monthFilter;
       var completedFilter = App.completedFilter;
