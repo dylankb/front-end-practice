@@ -21,13 +21,11 @@ var MainTodosView = Backbone.View.extend({
   },
   processDeleteTodo: function(e) {
     e.preventDefault();
-
-    App.Todos.trigger('REMOVE_TODO', this.getTodoId(e));
+    App.Todos.get(this.getTodoId(e)).trigger('REMOVE_TODO');
   },
   processToggleState: function(e) {
     e.preventDefault();
-
-    App.Todos.trigger('TOGGLE_TODO_STATE', this.getTodoId(e));
+    App.Todos.get(this.getTodoId(e)).trigger('TOGGLE_TODO_STATE');
   },
   render: function() {
     var todos = App.completedFilter ? this.collection.completed() : this.collection.toJSON();

@@ -6,6 +6,8 @@ var Todo = Backbone.Model.extend({
     this.categorizeByMonth();
     this.setId(data);
 
+    this.on('REMOVE_TODO', this.remove);
+    this.on('TOGGLE_TODO_STATE', this.toggleState);
     // this.listenTo would fire action twice - once when removed from App.Todos
     // and once again when removed from App.TodoMonths[i].Todos
     this.listenToOnce(this, 'remove', this.removeFromMonth);

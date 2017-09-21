@@ -1,7 +1,5 @@
 var TodosCollection = Backbone.Collection.extend({
   initialize: function() {
-    this.on('TOGGLE_TODO_STATE', this.toggleTodoState);
-    this.on('REMOVE_TODO', this.removeTodo);
     this.on('PROCESS_TODO_INFO', this.processTodoInfo);
   },
   comparator: 'completed',
@@ -27,12 +25,6 @@ var TodosCollection = Backbone.Collection.extend({
     id ? this.get(id).set(todoInfo) : this.add(todoInfo);
 
     App.resetFilters();
-  },
-  removeTodo: function(id) {
-    App.Todos.remove(id);
-  },
-  toggleTodoState: function(id) {
-    App.Todos.get(id).toggleState();
   },
   saveToLocalStore: function() {
     window.localStorage.setItem('todosList', JSON.stringify(this.toJSON()));
