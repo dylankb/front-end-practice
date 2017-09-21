@@ -11,6 +11,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
     <script src="http://underscorejs.org/underscore.js"></script>
     <script src="http://backbonejs.org/backbone.js"></script>
+  </head>
+  <body>
+    <main>
+      <label class="menu-label" for="menu-toggle">
+        <span id="menu"></span>
+      </label>
+      <input type="checkbox" id="menu-toggle"/>
+      <div class="navigation">
+
+      </div>
+      <div class="content">
+
+      </div>
+
+    </main>
+
+    <!-- Application files -->
+
     <script src="javascripts/app.js"></script>
     <script src="javascripts/models/todoMonth.js"></script>
     <script src="javascripts/models/todo.js"></script>
@@ -27,21 +45,8 @@
     <script src="javascripts/views/contentSubviews/mainTodos.js"></script>
     <script src="javascripts/views/contentSubviews/modal.js"></script>
     <script src="javascripts/views/contentSubviews/mainHeader.js"></script>
-  </head>
-  <body>
-    <main>
-      <label class="menu-label" for="menu-toggle">
-        <span id="menu"></span>
-      </label>
-      <input type="checkbox" id="menu-toggle"/>
-      <div class="navigation">
 
-      </div>
-      <div class="content">
-
-      </div>
-
-    </main>
+    <!-- Templates -->
 
     <script id="content" type="text/x-handlebars">
       <ul class="todos-header">
