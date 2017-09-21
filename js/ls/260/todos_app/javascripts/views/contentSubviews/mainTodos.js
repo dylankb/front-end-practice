@@ -1,8 +1,7 @@
 var MainTodosView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, 'update sort change:title change:dueDate', this.render);
-    // this.listenTo(this.collection, 'change:completed', this.sortByCompleted);
-    this.listenTo(this.collection, 'change:completed', this.collection.sort);
+    this.listenTo(this.collection, 'change:completed', this.collection.sort.bind(this.collection));
   },
   events: {
     'click .todo-title': 'displayEditModal',
@@ -29,10 +28,6 @@ var MainTodosView = Backbone.View.extend({
     e.preventDefault();
 
     App.Todos.trigger('TOGGLE_TODO_STATE', this.getTodoId(e));
-  },
-  sortByCompleted: function() {
-    this.collection.sort();
-    this.render();
   },
   render: function() {
     var todos = App.completedFilter ? this.collection.completed() : this.collection.toJSON();
