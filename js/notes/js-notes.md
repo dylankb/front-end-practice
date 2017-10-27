@@ -425,6 +425,17 @@ say(b);   // undefined
 
 Without understanding this rule one would expect the code to have a `ReferrenceError` for a missing variable `a`.
 
+#### ES6 and variable scoping
+
+ES6 variables, are not hoisted and will therefore throw a reference error if accessed too early.
+
+```js
+console.log( a );	// undefined
+console.log( b );	// ReferenceError!
+
+var a;
+let b;
+```
 
 ### Functions
 
@@ -1603,6 +1614,10 @@ window.foo;           // 1
 window.bar;           // undefined
 ```
 
+#### ES6 Global
+
+`let` and `const` variables aren't accessible by writing `window.variable` name.
+
 #### Implicit function execution context
 
 ```js
@@ -1875,7 +1890,7 @@ Even though `foo` executes within the `obj` context, the call to `bar()` on line
 
 **Side note: Nested functions outside an object**
 
-Closure allow methods constructed with nested function to note experience this problem.
+Closure allow methods constructed with nested function to not experience this problem.
 
 ```js
 var obj = {
@@ -1953,6 +1968,67 @@ obj = {
 };
 
 obj.foo();
+```
+
+#### Similar problem: Outer Function Referenced By Object Method Lacks Context
+
+
+```js
+function logThis() {
+  console.log(this);
+}
+
+var myObject = {
+  objectMethod: logThis.bind(this),
+  test: 1,
+}
+
+myObject.objectMethod(); // Window
+```
+
+This is confusing, but I think the trick is to think about when `myObject.objectMethod()` runs, it's effectively just calling `logThis`. Just because `logThis` is called within an object does not mean it gains the context of that object. This is a source of a lot of context / `this` confusion in JS.
+
+One way to change context is to provide it. You can do this by 1) supplying a calling object directly or 2) explicitly provide it on execution
+
+```js
+var myObject = {
+  objectMethod: this.logThis,        // 1) Caller used
+  anotherMethod: logThis.call(this), // 2) Calling context provided
+}
+
+myObject.objectMethod(); // myObject
+```
+
+Another way to work around the problem is to use the context that's provided inside of function execution
+
+```js
+var myObject = {
+  objectMethod: function() {
+    console.log(this)
+  },
+}
+
+myObject.objectMethod(); // myObject
+```
+
+But can be bound to a new variable while executing a function expression.
+
+```js
+var myObject = {
+  objectMethod: function() {
+    var bar = logThis.bind(this);
+    bar()
+  },
+}
+
+myObject.objectMethod(); // myObject
+```
+
+Without an expression, binding does nothing.
+
+```js
+logThis.bind(this)
+logThis(); // Window
 ```
 
 #### Function as Argument Losing Surrounding Context
@@ -2401,7 +2477,7 @@ Function INNER has access to vars in function OUTER if function INNER is nested 
 
 #### Closures & arguments
 
-Closures functions can take arugments
+Closures functions can take arguments
 
 ```js
 function makeCounterLogger(start) {
@@ -2965,12 +3041,13 @@ clientY | The vertical position of the mouse when the event occured, relative to
 ##### Keyboard events
 
 Property | Description
-which | The ASCII key code, which is a Number that specifies the key that was pressed.
+---------|------------|
+which | The ASCII key code, which is a Number that specifies the key that was pressed.|
 key	| The String value of the pressed key. Not supported in Safari.
-shiftKey | Boolean value indicating if the shift key was pressed.
-altKey	| Boolean value indicating if the alt (or option) key was pressed.
-ctrlKey | Boolean value indicating if the control key was pressed.
-metaKey | Boolean value indicating if the meta (or command) key was pressed.
+shiftKey | Boolean value indicating if the shift key was pressed.|
+altKey	| Boolean value indicating if the alt (or option) key was pressed.|
+ctrlKey | Boolean value indicating if the control key was pressed.|
+metaKey | Boolean value indicating if the meta (or command) key was pressed.|
 
 `keypress` event doesn't fire when certain keys are pressed, such as Shift and the other modifier keys
 
@@ -3032,6 +3109,8 @@ Cons
 
 #### Event loop
 
+##### Event loop bug
+
 ```js
 function delayLog() {
     for (var i = 1; i <= 10; i += 1) {
@@ -3047,9 +3126,13 @@ JavaScript runtime has to finish executing one piece of code before it goes on t
 
 After the loop is finished and after the given time out the anonymous functions are executed one by one. However since every anonymous function refers to the variable `i` via closure, and the value of `i` is now `11`, 11 is logged ten times.
 
-There are two main ways to stop that from happening, one is to make a new scope so that a new variable is declared in each iteration.
+There are two main ways to stop that from happening: 
 
-```
+###### IIFE solution
+
+One is to make a new scope so that a new variable is declared in each iteration.
+
+```js
 for (var i = 1; i <= 10; i += 1) {
   (function(j) {
     setTimeout(function(){
@@ -3058,6 +3141,8 @@ for (var i = 1; i <= 10; i += 1) {
   })(i);
 }
 ```
+
+###### ES6 solution
 
 The other solution is based on the ES6 `let` keyword. If you use `let` instead of `var` in your `for `loop what effectively happens is that in every iteration the variable `i` is redefined for you.
 
@@ -3068,6 +3153,31 @@ for (let i = 1; i <= 10; i += 1) {
     }, 0);
 }
 ```
+
+### XML HTTP Requests
+
+Use the XMLHttpRequest object to send a HTTP request with JavaScript.
+
+```js
+var request = new XMLHttpRequest(); // Instantiate new XMLHttpRequest object
+request.open('GET', '/path');       // Set HTTP method and URL on request
+request.send();                     // Send request
+```
+
+Method	| Description
+-------|------------|
+`open(method, url)` |Open a connection to url using method.|
+`send(data)` | Send the request, optionally sending along data.|
+`setRequestHeader(header, value)`|Set HTTP header to value.|
+`abort()`|Cancel an active request.|
+`getResponseHeader(header)`|Return the response's value for header.|
+
+Property| Writable | Default Value |	Description |
+--------|----------|---------------|-------------|
+`timeout`| Yes | | Maximum time a request can take to complete (in milliseconds)|
+`readyState`	| No | |What state the request is in (see below)
+`responseText` | No |	`null` | Raw text of the response's body.
+`response` | No |	`null`	| Parsed content of response, not meaningful in all situations
 
 ## Window
 
@@ -4293,8 +4403,6 @@ console.log(render(data));
 
 #### Precompiled scripts
 
-<a name="handlebars-precompiled>Reference Link</a>
-
 Compilation is the most expensive part of Handlebars, so we can do it ahead of time. 
 
 - `npm install handlebars -g`
@@ -4619,6 +4727,8 @@ npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' 
 ```
 
 Bash script lifted from [this blog post](http://www.acuriousanimal.com/2016/08/14/configuring-atom-with-eslint.html).
+
+I feel like someone telling you to run a bash script they don't understand is like having a stranger give you their luggage - it makes security minded people nervous. Given that, if you don't want to run the command then npm installing `eslint`, `eslint-plugin-import`, and then `eslint-config-airbnb-base` should work.
 
 4. Install linter-eslint for Atom.
 
