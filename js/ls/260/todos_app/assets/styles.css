@@ -56,6 +56,10 @@ h2 {
   color: #acafbe;
 }
 
+.logo {
+  flex-shrink: 0;
+}
+
 .navigation dt,
 .navigation dd {
   display: inline-block;
