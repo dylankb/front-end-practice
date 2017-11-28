@@ -750,6 +750,45 @@ Code first looks for function declarations, and sets the function to the return 
 
 Function expressions are evaluated with the rest of the code.
 
+#### Iteration
+
+**Short ciruiting loops**
+
+It's possible to short circut iteration in a `for` loop
+
+```js
+function run() {
+  for(var i = 1; i < 4; i++) {
+    alert(i)
+    if (i === 2) {
+      return false;
+    }
+  }  
+}
+
+run()
+// 1
+// 2
+```
+
+The execution was short circuited before it could reach `3`.
+
+It's not possible in a vanilla JS `forEach` callback.
+
+```js
+[1,2,3].forEach(function(v) {
+	console.log(v);
+	if (v === 2) {
+    return false;
+  }
+});
+// 1
+// 2
+// 3
+```
+
+If it was, the code would never have reached `3`. The reason this is is because a new function is created. This isn't necessaryily the case though for JS library's like jQuery or lodash. Read more [here](https://webapplog.com/breaking-bad-loops-in-javascript-libraries/).
+
 #### IIFE
 
 Immediately invocated function expressions
@@ -1614,7 +1653,7 @@ window.foo;           // 1
 window.bar;           // undefined
 ```
 
-#### ES6 Global
+##### ES6 globals
 
 `let` and `const` variables aren't accessible by writing `window.variable` name.
 
@@ -1697,6 +1736,23 @@ var nums = [1,2,3,4,5,6,7,8,9];
 
 console.log(add.apply(this, nums));             // 45
 console.log(add.call(this, 1,2,3,4,5,6,7,8,9)); // 45
+```
+
+Here's a more realistic example with `Math.max`, which expects arguments of number like `Math.max(10,20)`
+
+```js
+var numbers = [1,2,3]
+Math.max(numbers) # NaN
+Math.max.apply(null, numbers)
+=> 3
+Math.max.apply(this, numbers)
+=> 3
+```
+
+ES6 version would simply be:
+
+```
+Math.max(...numbers)
 ```
 
 **`bind`**
@@ -3122,7 +3178,7 @@ function delayLog() {
 delayLog();
 ```
 
-JavaScript runtime has to finish executing one piece of code before it goes on to execute other code like the function you pass to `setTimeout`. A piece of code or a function that has to be executed asynchronously  is stacked up in something called the event loop. So the `for` loop has to finish before your anonymous function gets called even if the timeout is 0 seconds.
+JavaScript runtime has to finish executing one piece of code before it goes on to execute other code like the function you pass to `setTimeout`. A piece of code or a function that has to be executed asynchronously is stacked up in something called the event loop. So the `for` loop has to finish before your anonymous function gets called even if the timeout is 0 seconds.
 
 After the loop is finished and after the given time out the anonymous functions are executed one by one. However since every anonymous function refers to the variable `i` via closure, and the value of `i` is now `11`, 11 is logged ten times.
 
@@ -3144,7 +3200,7 @@ for (var i = 1; i <= 10; i += 1) {
 
 ###### ES6 solution
 
-The other solution is based on the ES6 `let` keyword. If you use `let` instead of `var` in your `for `loop what effectively happens is that in every iteration the variable `i` is redefined for you.
+The other solution is based on the ES6 `let` keyword. If you use `let` instead of `var` in your `for` loop, what effectively happens is that in every iteration the variable `i` is redefined for you.
 
 ```
 for (let i = 1; i <= 10; i += 1) {
@@ -4078,7 +4134,7 @@ If you wanted to prevent default and stop propogation, you could return false fr
 $('a').on('click', false)
 ```
 
-#### Specifying a default event with `on()`
+#### Specifying a default event on page load with `on()`
 
 This method executes a click event on page load.
 
@@ -4468,6 +4524,63 @@ $(window).on("unload", function() {
 
 ### ES6
 
+#### `let` and `const`
+
+##### `let`
+
+`let` instantiates block scoped variables
+
+```
+let a = 2;
+{
+  let a = 3;
+  console.log( a );	// 3
+}
+
+console.log( a );	// 2
+```
+
+Here's a slightly more common example
+
+```js
+let a = 2;
+
+if (true) {
+  let b = 5;
+  for (let i = a; i <= b; i++) {
+    console.log(i); // 2, 3, 4, ...
+  }
+  // console.log(i) // ReferenceError
+}
+// console.log(b) // ReferenceError
+```
+
+The `for` loop instantiating `i` with `let` reassigns on each iteration. `var` has no such restriction to block scoping. 
+
+```js
+let a = 2;
+
+if (true) {
+  var b = 5;
+  for (var i = a;i <= b; i++) {
+    console.log(i); // 2, 3, 4, ...
+  }
+  console.log(i, 'hey') // 2, 3, 4, 5, 6 'hey'
+}
+console.log(b) // 5
+window.i       // 6
+```
+
+###### `const`
+
+That variable reference cannot be reassigned, but object internals can be.
+
+```js 
+const a = [1,2,3]
+a.push(4) # [1,2,3,4]
+const a = 42 # ReferrenceError
+```
+
 #### Shorthand property declaration
 
 ```js
@@ -4484,19 +4597,22 @@ let objA = { a };
 
 #### Splat operator
 
-**Combining objects**
+#### Combining / Gathering
+
+##### Objects
 
 1) spread operator
 
 ```js
 // ES6
-let b = 5;
-let objB = { b };
+let objB = { b : 5 };
+let objA = { a: 1 };
 
 let c = { ...objA, ...objB }
+console.log(c) // { a: 1, b: 5 }
 ```
 
-The spread operator iterates over the properties in `objA` and assigns them to the new object
+The spread operator iterates over the properties in `objA` and `objB` and assigns them to the new object.
 
 2) `Object.assign()`
 
@@ -4504,6 +4620,23 @@ The spread operator iterates over the properties in `objA` and assigns them to t
 ...
 let c = Object.assign( {}, objA, objB);
 ```
+
+##### Values
+
+```js
+function foo(...args) {
+	console.log( args );
+}
+
+foo( 1, 2, 3, 4, 5);  // [1,2,3,4,5]
+```
+
+In ES5 `apply` 
+
+```
+foo.apply( null, [1,2,3] );
+```
+
 
 #### Destructuring
 
@@ -4619,94 +4752,6 @@ export const routeByWindowWidth = (props, nextProps, route, maxWidth) => {
 import { routeByWindowWidth } from './utils/routeByWindowWidth';
 ```
 
-### Other notes
-
-A callback function is a function which is executed at a particular time, such as after a particular event completes.
-
-```js
-$( "#target" ).click(function() {
-  alert( "Target clicked." );
-});
-```
-We are passing in a callback function which is executed when the target has been clicked.
-
-## TypeScript
-
-### Loops
-
-```
-for(var thing in things) {
-  console.log(thing);
-};
-```
-
-### Classes
-
-Format for declaring classes.
-
-```js
-class Thing {
-  propertyName: type = initialValue;
-}
-```
-
-Simple example
-
-```js
-class Greeter {
-  greeting: string;
-
-  constructor ( message: string) {
-    this.greeting = message;
-  }
-
-  greet() {
-    return "Hello, " + this.greeting;
-  }
-}
-```
-
-Simplified more, TS style
-
-```js
-class Greeter {
-  constructor (public message: string) {}
-  greet() {
-    return "Hello, " + this.message;
-  }
-}
-```
-
-Inheritance using the **super** method
-
-```js
-class WeekdayAtTheCoffeeShop {
-  constructor(pastries, coffee) {
-    pastries.setup();
-    coffee.brew();
-    register.setup();
-    clean();
-    unlockDoors();
-  }
-}
-
-class FridayAtTheCoffeeShop extends WeekdayAtTheCoffeeShop {
-  constructor(pastries, coffee) {
-    // still receiving pastries and coffee, but this time, we pass in donuts as the day's pastry!
-    this.donuts = pastries;
-    super(pastries, coffee);
-  }
-}
-```
-
-We have to the `super` keyword when we create a constructor in a child class
-
-### Build
-
-Concatenate three files into `build/js/app.js`
-
-`tsc --out build/js/app.js app/to-do-create-tasks.ts app/to-do-classes-interfaces.ts app/to-do-people.ts`
-
 ### Linting
 
 #### Airbnb rules (ES5)
@@ -4737,8 +4782,7 @@ Notes:
 Instead of using `airbnb-base/legacy` you might be able to use this package, but I haven't tried it:
 https://www.npmjs.com/package/eslint-config-airbnb-es5
 
+P.S
+
 Make sure your tests are specified in the env option:
 https://github.com/tlvince/eslint-plugin-jasmine/issues/56
-
-
-
