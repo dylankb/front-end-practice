@@ -1,0 +1,23 @@
+<body>
+  <script>
+    function pattern(n) {
+      var strings = [];
+      for(var i = 1; i <= n; i++) {
+        var string = "";
+        for(var j = 1; j <= n; j++) {
+          if (j <= i) {
+            string += String(j);
+          } else {
+            string += "*".repeat(String(j).length);
+          }
+        }
+        strings.push(string);
+      }
+      strings.forEach(function(str) {
+        console.log(str);
+      });
+    }
+
+    pattern(20);
+  </script>
+</body>

@@ -1,0 +1,312 @@
+@import url('whitespace-reset.css');
+
+body {
+  font: 14px Helvetica, Arial, sans-serif;
+  color: #787b80;
+}
+
+header {
+  background-color: #3d3d3d;
+  padding: 130px 0 50px 0;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  padding-bottom: 125px;
+  margin-bottom: 125px;
+  font-size: 68px;
+  font-weight: normal;
+  letter-spacing: 6px;
+  text-align: center;
+  background: url('images/logo.png') 50% 100% no-repeat; 
+}
+
+a:hover,
+.active {
+  color: #50c3af;
+}
+
+header a {
+  color: white;
+  pointer-events: none;
+}
+
+header a:hover {
+  color: white;
+}
+
+header ul {
+  text-align: center;
+  font-size: 20px;
+}
+
+header li {
+  display: inline-block;
+  padding: 0 25px;
+}
+
+main {
+  overflow: hidden;
+  max-width: 1000px;
+  padding-top: 80px;
+  margin: 0 auto;
+}
+
+.content {
+  float: left;
+  width: 65%;
+  color: #45494d;
+  padding-right: 11.5%;
+}
+
+.sidebar {
+  overflow: hidden;
+  background: #f6f7f8;
+  padding: 30px 0 50px 0;
+}
+
+.block {
+  padding: 0 20px 100px 30px;
+}
+
+.content article p a {
+  color: #50c3af;
+}
+
+.content h2 {
+  font-size: 36px;
+  padding-bottom: 30px;
+}
+
+.content p {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.content a {
+  color: #45494d;
+}
+
+.content p:first-of-type {
+  padding-bottom: 30px;
+}
+
+.content article {
+  padding-bottom: 80px;
+}
+
+.content .button {
+  display: inline-block;
+  border-radius: 15px;
+  text-align: center;
+  background: #50c3af;
+  padding: 5px 25px;
+  color: #fff;
+}
+
+.content .disabled {
+  background: #d2d5da;
+  margin-right: 30px;
+}
+
+.action {
+  padding-bottom: 60px;
+}
+
+.sidebar h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  padding-bottom: 25px;
+  color: #384048;
+}
+
+.block h3:nth-of-type(2) {
+  padding-top: 80px;
+}
+
+.block li {
+  list-style-image: url('images/bl_arrow.png');
+  margin-left: 20px;
+  padding-bottom: 10px;
+}
+
+.block p {
+  line-height: 24px;
+}
+
+.block a {
+  color: #787b80;
+}
+
+footer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0 55px 0;
+  border-top: 1px solid lightgray;
+}
+
+/*Post specific*/
+
+.comments h2 {
+  padding-bottom: 20px;
+}
+
+.comments article {
+  padding-bottom: 45px;
+}
+
+.comments img {
+  border-radius: 100%;
+}
+
+.comments p:first-of-type {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.action {
+  cursor: pointer;
+}
+
+.post {
+  display: none;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .post {
+  display: block;
+}
+
+.post label {
+  display: block;
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+input[type="text"] {
+  height: 40px;
+  width: 67%;
+  font: 18px Helvetica, Arial, sans-serif;
+  padding: 0 10px;
+}
+
+input[type="text"],
+textarea {
+  border-radius: 4px;
+  border: 1px solid #cecece;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 40px 0;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .content h2 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    overflow: visible;
+  }
+
+  .content {
+    float: none;
+    width: 90%;
+    margin: 0 auto;
+    padding-right: 0;
+  }
+  .block {
+    display: inline-block;
+    width: 48%;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    vertical-align: top;
+  }
+
+@media (max-width: 480px) {
+
+  header li {
+    width: 49%;
+    padding: 10px 0;
+  }
+
+  h1 {
+    margin-bottom: 40px;
+    background-size: 90%;
+  }
+
+  .content h2 {
+    font-size: 24px;
+  }
+
+  header {
+    padding-bottom: 0;
+  }
+
+  .block {
+    display: block;
+    margin: 0 20px 25px 20px;
+    background: #f6f7f8;
+    width: auto;
+  }
+
+  .sidebar {
+    background: #fff;
+    padding-bottom: 110px;
+    padding-top: 15px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding-bottom: 30px;
+  }
+
+  .action {
+    padding-bottom: 20px;
+  }
+
+  .content article {
+    padding-bottom: 60px;
+  }
+
+  .block li {
+    padding-bottom: 4px;
+  }
+
+  .block ul {
+    padding-bottom: 10px;
+  }
+/*480
+convert sidebar to it's own column
+smaller header
+stack nav links two by two*/
+
+}
+
+

@@ -1,0 +1,28 @@
+include /_mixins
+
+doctype html
+html
+  head
+    title= 'Sushi Restaurant Website'
+    
+    +stylesheet_link_tag('main')
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous")
+    +javascript_include_tag("vendor/all")
+    
+  body
+    header.page-header
+    main
+      #content
+      
+      block content
+
+    +javascript_include_tag("application")
+    +javascript_include_tag("router")
+    +javascript_include_tag("models/sushi")
+    +javascript_include_tag("collections/sushi")
+    +javascript_include_tag("collections/cart")
+    +javascript_include_tag("templatesCompiled")
+    +javascript_include_tag("views/header", "views/cart", "views/cartItem", "views/cartItems", "views/menu", "views/menuItem", "views/cartSummary", "views/checkout", "views/checkoutItem", "views/checkoutItems", "views/checkoutTotal", "views/menuItemDetail")
+    script(type="text/javascript").
+      App.SushiCollection = new SushiCollection(!{ JSON.stringify(sushiCollection) })
+      App.init()

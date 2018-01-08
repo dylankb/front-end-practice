@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tabbed Navigation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="navigation.js"></script>
+    <link rel="stylesheet" href="styles.css" media="screen">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="#" data-block="first">First</a>
+          </li>
+          <li>
+            <a href="#" data-block="second">Second</a>
+          </li>
+          <li>
+            <a href="#" data-block="third">Third</a>
+          </li>
+          <li>
+            <a href="#" data-block="fourth">Fourth</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article id="one" data-block="first">
+        Eeny, meeny, miny, moe.
+      </article>
+      <article data-block="second">
+        Catch a tiger by the toe
+      </article>
+      <article data-block="third">
+        If he hollers let him go
+      </article>
+      <article data-block="fourth">
+        Eeny, meeny, miny, moe.
+      </article>
+    </main>
+  </body>
+</html>

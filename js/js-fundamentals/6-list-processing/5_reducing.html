@@ -1,0 +1,30 @@
+<body>
+  <script type="text/javascript">
+    function myReduce(array, func, initialValue) {
+
+      if (!initialValue) {
+        value = array[0];
+      } else {
+        value = initialValue;
+      }
+
+      // array.forEach(function(element) {
+      //   value = func(value, element);
+      // });
+
+      for (var i = 0; i < array.length; i++) {
+        value = func(value, array[i]);
+      }
+
+      return value;
+    }
+
+    var smallest = function(result, value) {
+      return result <= value ? result : value;
+    };
+
+    console.log(myReduce([5, 12, 15, 2, 6], smallest, 1));  // 1
+
+
+  </script>
+</body>

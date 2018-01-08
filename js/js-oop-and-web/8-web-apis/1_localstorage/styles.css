@@ -1,0 +1,39 @@
+body {
+  font: 14px Helvetica, Arial;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main li {
+  list-style: none;
+}
+
+nav ul {
+  padding-left: 0;
+}
+
+nav li {
+  display: inline;
+  padding-right: 0 20px 0 0;
+}
+
+nav a {
+  padding: 8px 15px;
+  border-radius: 10px 10px 0 0;
+  background: lemonchiffon; /* Ideally you would apply this as a class */
+  box-shadow: -1px 0 3px rgba(0, 0, 0, .3);
+}
+
+nav a.active {
+  background: paleturquoise;
+  color: #b00b00;
+}
+
+section p + p { display: none; }

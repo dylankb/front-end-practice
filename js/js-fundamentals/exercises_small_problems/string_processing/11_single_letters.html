@@ -1,0 +1,17 @@
+<body>
+  <script>
+    function uniqueLetters(string) {
+      var uniques = [];
+
+      string.split('').filter(function(letter) {
+        if (uniques.indexOf(letter) === -1) {
+          uniques.push(letter);
+        }
+      });
+
+      return uniques.join('');
+    }
+
+    console.log(uniqueLetters('aaaabbbbcccddeeeeefghghghghghghghghg'));
+  </script>
+</body>

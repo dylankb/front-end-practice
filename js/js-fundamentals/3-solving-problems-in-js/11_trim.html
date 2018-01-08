@@ -1,0 +1,34 @@
+<body>
+  <script>
+    var range = [];
+    function findStart(string) {
+      var i = 0;
+      var current = string[i];
+      while (current === ' ') {
+        current = string[i];
+        i++;
+      }
+      return i-1;
+    }
+    function findEnd(string) {
+      var i = string.length-1;
+      var current = string[i];
+      while (current === ' ') {
+        current = string[i];
+        i--;
+      }
+      return i+1;
+    }
+    function trim(string) {
+      var result = "";
+      var end = findEnd(string);
+      var start = findStart(string);
+      for (var i = start; i <= end; i++) {
+        result += string[i];
+      }
+      return result;
+    }
+    var test = "   abc   "
+    console.log(trim(test));
+  </script>
+</body>

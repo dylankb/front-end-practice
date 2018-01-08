@@ -1,0 +1,117 @@
+@import url("whitespace-reset.css");
+
+body {
+  font: bold 18px Helvetica, Arial, sans-serif;
+  background: gold;
+}
+
+header, main {
+  width: 900px;
+}
+
+header {
+  background: dodgerblue;
+  margin: 0 auto;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 30px 0;
+}
+
+main {
+  margin: 30px auto 0 auto;
+  padding: 30px 0 45px 0;
+  background: lightgray;
+}
+
+h1, h2 { 
+  padding-left: 20px;
+  font-size: 30px; 
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 0 10px;
+}
+
+li {
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+figure {
+  background: white;
+  padding: 10px 0;
+}
+
+main::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+img {
+  display: block;
+  width: auto;
+  height: 140px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+figcaption, 
+p { 
+  padding-left: 20px;
+}
+
+figcaption {
+  text-align: left;
+}
+
+p {
+  font-weight: normal;
+}
+
+input[type="checkbox"]:checked + figure img {
+  height: 500px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -200px;
+  z-index: 2;
+}
+
+
+input[type="checkbox"]:checked + figure::before {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  content: "";
+}
+
+
+input[type="checkbox"]:checked + figure figcaption::before {
+  height: 150px;
+  background: white;
+  content: "";
+  display: block;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+
+
+

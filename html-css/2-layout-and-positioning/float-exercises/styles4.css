@@ -1,0 +1,23 @@
+body { background: #cccccc; }
+
+section {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+article {
+  float: right;
+  width: 65%;
+  background: lightyellow;
+}
+
+aside { 
+  overflow: hidden;
+  background: lightgreen;
+}
+
+/* div {
+/*  width: 200px; */
+/*  background: red; */
+} 

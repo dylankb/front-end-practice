@@ -1,0 +1,160 @@
+@import "whitespace-reset.css";
+body {
+  font: normal 16px "Lato" sans-serif;
+  color: #333;
+}
+h1 {
+  padding-bottom: 25px;
+  font-size: 2em;
+}
+form dt {
+  padding-bottom: 5px;
+}
+form dd {
+  padding-bottom: 20px;
+}
+form input[type="text"],
+form input[type="date"],
+form input[type="url"] {
+  width: 100%;
+  height: 30px;
+  padding: 5px 8px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+main,
+header {
+  width: 800px;
+  margin: 0 auto;
+  padding: 25px 40px;
+}
+main {
+  background: #fff;
+}
+.albums {
+  padding: 0 0 40px 0;
+  margin: 0 0 0 -20px;
+}
+.albums li {
+  display: inline-block;
+  width: 20%;
+  padding: 0 0 25px 20px;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.albums li img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.albums li h2,
+.albums li h3,
+.albums li p {
+  padding-bottom: 5px;
+}
+.albums li h2 {
+  font-size: 1.5em;
+}
+.albums li h3 {
+  font-size: 1.2em;
+}
+a.button,
+input[type='submit'] {
+  position: relative;
+  display: inline-block;
+  padding: 10px 25px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: #00a388;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  transition: box-shadow 200ms ease, top 200ms ease, left 200ms ease, color 200ms ease;
+  box-shadow: 2px 2px 0 2px #008a73;
+}
+a.button:hover,
+input[type='submit']:hover,
+a.button:focus,
+input[type='submit']:focus {
+  color: #ffff9d;
+}
+a.button:active,
+input[type='submit']:active {
+  left: 2px;
+  top: 2px;
+  box-shadow: 1px 1px 0 1px #008a73;
+}
+main {
+  clear: both;
+}
+.no-items {
+  float: right;
+}
+.cart {
+  float: right;
+  position: relative;
+  width: 50%;
+  padding-top: 15px;
+  text-align: right;
+}
+.cart label {
+  display: inline-block;
+  padding: 2px 3px;
+  cursor: pointer;
+}
+.cart input {
+  display: none;
+}
+.cart input:checked + #items {
+  display: block;
+}
+.cart #items {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 5px 10px;
+  z-index: 1;
+  background: #00a388;
+  color: #fff;
+}
+.cart #items li {
+  padding: 5px 0;
+  font-size: 12px;
+  text-align: 12px;
+}
+.cart #items small {
+  float: right;
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+.cart #items a {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  margin-right: 15px;
+  text-indent: 8685px;
+}
+.cart #items a:before,
+.cart #items a:after {
+  position: absolute;
+  content: "";
+  background: #b00b00;
+  width: 12px;
+  height: 2px;
+  top: 40%;
+}
+.cart #items a:before {
+  transform: rotate(45deg);
+}
+.cart #items a:after {
+  transform: rotate(-45deg);
+}
+.cart .total {
+  font-size: 16px;
+}

@@ -1,0 +1,37 @@
+<body>
+  <script>
+    // function sequence(count, start) {
+    //   var arr = [];
+    //   if (count === 1) {
+    //     return start
+    //   } else {
+    //     return arr.push(start + sequence(count-1, start));
+    //   }
+    //   // var sequence = [];
+    //   // for (var i=0; i < count; i++) {
+    //   //   sequence.push(start * i);
+    //   // }
+    //   //
+    //   // return sequence;
+    // }
+    function sequence(count, start) {
+      var arr = [];
+      debugger
+      if (count === 1) {
+        return start
+      } else {
+        console.log(count)
+        return arr.push(start + sequence(count-1, start));
+      }
+
+      return arr;
+    }
+
+    console.log(sequence(5, 1));
+
+    // console.log(sequence(5, 1));       // [1, 2, 3, 4, 5]
+    console.log(sequence(4, -7));      // [-7, -14, -21, -28]
+    console.log(sequence(3, 0));       // [0, 0, 0]
+    console.log(sequence(0, 1000000)); // []
+  </script>
+</body>

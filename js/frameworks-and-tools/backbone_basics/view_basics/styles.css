@@ -1,0 +1,30 @@
+form {
+  position: absolute;
+  border: 1px solid grey;
+  padding: 5px;
+  margin: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 220px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+dd,
+dt {
+  display: inline-block;
+}

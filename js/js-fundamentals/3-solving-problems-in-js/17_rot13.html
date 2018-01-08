@@ -1,0 +1,33 @@
+
+<body>
+  <script>
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+    function shiftChar(currentChar) {
+      currentCharLower = currentChar.toLowerCase();
+      if (currentCharLower.match(/[a-z]/)) {
+        var index = alphabet.indexOf(currentCharLower);
+        shiftedIndex = (index + 13) % 26;
+        shiftedChar = alphabet[shiftedIndex];
+        return currentChar.match(/[A-Z]/) ? shiftedChar.toUpperCase() : shiftedChar;
+      }
+      return null;
+    }
+
+    function shiftOrReturnChar(currentChar) {
+      var shiftedChar = shiftChar(currentChar);
+      return (shiftedChar || currentChar);
+    }
+
+    function rot13(string) {
+      var result = [];
+      for (var i = 0; i < string.length; i++) {
+        result.push(shiftOrReturnChar(string[i]));
+      }
+      return result.join("");
+    }
+
+    console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+    console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
+  </script>
+</body>

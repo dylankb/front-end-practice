@@ -1,0 +1,138 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Sashimi salad",
+      "price": 12,
+      "image": "sashimi-salad.jpg",
+      "category": "Cold starters",
+      "description": "Organic greens topped with fresh sashimi, wasabi soy vinaigrette."
+      }, {
+      "id": 2,
+      "name": "Chirashi sushi",
+      "price": 21,
+      "image": "chirashi-sushi.jpg",
+      "category": "Cold starters",
+      "description": "Sushi bar variety with sushi rice."
+      }, {
+      "id": 3,
+      "name": "Seaweed salad",
+      "price": 17,
+      "image": "seaweed-salad.jpg",
+      "category": "Cold starters",
+      "description": "A nice seaweed salad."
+      }, {
+      "id": 4,
+      "name": "Edamame",
+      "price": 4,
+      "image": "edamame.jpg",
+      "category": "Warm Starters",
+      "description": "Boiled soy beans with salt "
+      }, {
+      "id": 5,
+      "name": "Miso soup",
+      "price": 4,
+      "image": "miso-soup.jpg",
+      "category": "Warm Starters",
+      "description": "Soy bean soup with Wacame seaweed, tofu and spring onion."
+      }, {
+      "id": 6,
+      "name": "Maguro",
+      "price": 12.5,
+      "image": "maguro.jpg",
+      "category": "Sashimi",
+      "description": "Tuna pieces."
+      }, {
+      "id": 7,
+      "name": "Shake",
+      "price": 10,
+      "image": "shake.jpg",
+      "category": "Sashimi",
+      "description": ""
+      }, {
+      "id": 8,
+      "name": "Shiromi",
+      "price": 9.5,
+      "image": "shiromi.jpg",
+      "category": "Sashimi",
+      "description": "White fish pieces."
+      }, {
+      "id": 9,
+      "name": "Tekka maki",
+      "price": 6,
+      "image": "tekka-maki.jpg",
+      "category": "Hosomaki",
+      "description": "Tuna roll with wasabi. - 6 pieces"
+      }, {
+      "id": 10,
+      "name": "Hosomaki Mix",
+      "price": 17,
+      "image": "hosomaki-mix.jpg",
+      "category": "Hosomaki",
+      "description": "18 pieces."
+      }, {
+      "id": 11,
+      "name": "California rolls",
+      "price": 7.75,
+      "image": "california-rolls.jpg",
+      "category": "Traditionall Rolls",
+      "description": "Crab sticks, avocado and cucumber. - 8 pieces"
+      }, {
+      "id": 12,
+      "name": "Seattle rolls",
+      "price": 8,
+      "image": "seattle-rolls.jpg",
+      "category": "Traditionall Rolls",
+      "description": "Smoked salmon. Cucumber. Cream cheese."
+      }, {
+      "id": 13,
+      "name": "Spicy Tuna rolls",
+      "price": 6,
+      "image": "spicytuna-rolls.jpg",
+      "category": "Traditionall Rolls",
+      "description": "Spicy tuna, spring onion and avocado. - 6 pieces"
+      }, {
+      "id": 14,
+      "name": "Ebi rolls",
+      "price": 8,
+      "image": "ebi-rolls.jpg",
+      "category": "Traditionall Rolls",
+      "description": "King prawns, avocado and asparagus. - 8 pieces"
+      }, {
+      "id": 15,
+      "name": "Chicken Teriyaki",
+      "price": 12,
+      "image": "chicken-teriyaki.jpg",
+      "category": "Hot Dishes",
+      "description": "Sauted chicken with teiyaki sauce."
+      }, {
+      "id": 16,
+      "name": "Salmon Teriyaki",
+      "price": 13.5,
+      "image": "salmon-teriyaki.jpg",
+      "category": "Hot Dishes",
+      "description": "Sauted salmon with teriyaki sauce."
+      }, {
+      "id": 17,
+      "name": "Gohan",
+      "price": 3,
+      "image": "gohan.jpg",
+      "category": "Hot Dishes",
+      "description": "Steamed rice."
+      }, {
+      "id": 18,
+      "name": "Tori Katsu",
+      "price": 11,
+      "image": "tori-katsu.jpg",
+      "category": "Hot Dishes",
+      "description": "Pan-fried chicken breast with yasai salad."
+      }, {
+      "id": 19,
+      "name": "Yaki Udon",
+      "price": 11.5,
+      "image": "yaki-udon.jpg",
+      "category": "Hot Dishes",
+      "description": "Udon noddles with chicken, king prawns and vegetables."
+    }
+  ]
+}

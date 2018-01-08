@@ -1,0 +1,37 @@
+<body>
+  <script>
+    // function User(first, last) {  // Also works
+    //   this.first = first;
+    //   this.last = last;
+    //   return { name: this.first + ' ' + this.last };
+    // }
+
+    // function User(first, last) {
+    //   obj = Object.create(Object.prototype);
+    //
+    //   obj.first = first;
+    //   obj.last = last;
+    //   obj.name = obj.first + ' ' + obj.last;
+    //
+    //   return obj;
+    // }
+
+    function User(first, last) {
+      if (!(this instanceof User)) {
+        return new User(first, last);
+      }
+
+      this.name = first + ' ' + last;
+    }
+
+    var name = 'Jane Doe';
+    var user1 = new User('Jon', 'Snow');
+    debugger;
+    var user2 = User('John', 'Doe');
+
+    console.log(name);        // Jane Doe
+    console.log(user1.name);   // John Doe
+    console.log(user2.name);   // John Doe
+
+  </script>
+</body>

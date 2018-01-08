@@ -1,0 +1,29 @@
+<body>
+  <script>
+
+  function odd(number) {
+    return number % 2 === 1;
+  }
+
+  function myOwnEvery(array, func) {
+
+    for (var i = 0; i < array.length; i++) {
+      if (!func(array[i])) {
+        return false;
+      }
+    }
+
+    // array.forEach(function(element) {        // cannot break out of a forEach()
+    //   if (!func(element)) {                  // unless you throw an exception
+    //     return false;
+    //   }
+    // });
+
+    return true;
+  }
+
+  var count = [ 1, 2, 3, 4, 5 ];
+  // console.log(count.some(odd));          // true, some numbers are odd
+  console.log(myOwnEvery(count, odd));        // false, every number is not odd
+  </script>
+</body>

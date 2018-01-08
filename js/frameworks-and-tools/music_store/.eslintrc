@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb-base/legacy",
+  "rules": {
+    "func-names": ["warn", "as-needed"],
+    "indent": ["error", 2],
+    "space-before-function-paren": ["error", {
+        "anonymous": "never",
+        "named": "never",
+    }],
+    "no-console": 0,
+    "no-multi-spaces": ["error", { ignoreEOLComments: true }],
+    "no-underscore-dangle": ["error", { allowAfterThis: true }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-param-reassign": 0,
+    "no-unused-vars": 1,
+    "vars-on-top": 1,
+    "comma-dangle": ["error", "always-multiline"],
+    "no-undef": 1,
+    "no-use-before-define": 1,
+    "no-debugger": 0,
+    "no-new": 1,
+  },
+  "env": {
+    "jasmine": true
+  }
+}

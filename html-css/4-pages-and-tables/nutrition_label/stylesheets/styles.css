@@ -1,0 +1,116 @@
+@import url("whitespace-reset.css");
+
+body {
+  width: 520px;
+  font: 28px Arial, sans-serif;
+}
+
+header h2 {
+  width: 100%;
+  border-top: 30px solid black;
+  border-bottom: 1px solid black;
+}
+
+main {
+  width: 100%
+}
+
+table {
+  width: 100%;
+  border-top: 15px solid black;
+}
+
+footer {
+  width: 100%;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 950;
+}
+
+header dl {
+  display: inline-block;
+  width: 49%;
+}
+
+header dl:first-of-type dt {
+  font-weight: 600;
+}
+
+dl {
+  padding: 0;
+  margin: 0;
+}
+
+dl:nth-of-type(2) {
+  text-align: right;
+}
+
+dt {
+  display: inline;
+}
+
+dd {
+  display: inline;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead th {
+  text-align: right;
+}
+
+tr {
+  padding: 3px 5px 0 0;
+  /*border-top: 1px solid black;*/
+}
+
+tbody td,
+tbody th {
+  border-top: 1px solid black;
+}
+
+th dd {
+  font-weight: 400;
+}
+
+tr td:last-of-type {
+  text-align: right;
+}
+
+tfoot::before,
+tfoot::after {
+  content: '';
+  display: block;
+  height: 5px;
+}
+
+tbody tr th {
+  text-align: left;
+}
+
+tfoot,
+table:last-child {
+  font-size: 20px;
+}
+
+table:last-child {
+  border-top: 0px;
+}
+
+table:last-child tr:first-of-type {
+  border-bottom: 1px solid black;
+}
+
+.indent {
+  padding-left: 50px;
+  font-weight: 400;
+}

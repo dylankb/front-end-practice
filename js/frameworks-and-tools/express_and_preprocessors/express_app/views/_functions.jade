@@ -1,0 +1,16 @@
+-
+  function total(items) {
+    return items.reduce(function(acc, item) {
+      return acc += item.price * item.quantity
+    }, 0);
+  }
+
+  function formatPrice(price) {
+    return price.toFixed(2);
+  }
+
+  function quantity(items) {
+    return items.reduce(function(acc, item) {
+      return acc += item.quantity
+    }, 0);
+  }

@@ -1,0 +1,42 @@
+section {
+  width: 800px;
+  position: relative;
+}
+
+.positioned {
+  position: absolute;
+  top: 0;
+  width: 400px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+section {
+  background: grey;
+  z-index: 0;
+/*  position: relative;*/
+}
+
+.drop {
+  position: fixed;
+  background: rgba(0, 0, 0, .6);
+  top: 0;
+  left: 0;
+/*  width: 100vw;
+  height: 100vh;*/
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+body {
+  margin: 0;
+  background: dodgerblue;
+}
+
+div {
+  background: yellow;
+  padding: 15px;
+}

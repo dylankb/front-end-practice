@@ -2,6 +2,349 @@
 
 [TOC]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Primitives
 
 * number
@@ -270,8 +613,28 @@ false
 Two variables containing objects are only equal if they reference the same object.
 
 ```js
-var b = 'false';
-b == 'true'; // false
+// Arays are objects, too
+var array = [1];
+array === [1]; // false
+```
+
+Here's how you might compare two objects by using `JSON.stringify()`. In this case, each object is info on a flight route
+
+```js
+function isValidRoute(invalidRoutes, route) {
+  var invalidRouteFound = invalidRoutes.filter(invalidRoute => {
+    var invalidRouteValues = JSON.stringify(Object.values(invalidRoute));
+    var routeValues = JSON.stringify(Object.values(route));
+    return invalidRouteValues === routeValues;
+  });
+  
+  return invalidRouteFound.length > 0;
+}
+
+isValidRoute(
+  {"airline":24,"src":"DFW","dest":"YYA"}, 
+  {"airline":24,"src":"DFW","dest":"YYA"}
+)
 ```
 
 ### Primitives & Objects - Mutability
@@ -838,7 +1201,6 @@ Ordering | Arrange elements by sorting | new Array| 	`sort`
 Reducing / Folding | Iteratively compute a result using each element | single value | `reduce`, `reduceRight`
 Interrogation | Determine if an Array's elements pass a test |	single value |	`every`, `some`
 
-
 ##### Reduce - A form reduction example
 
 To demonstrate how `reduce` works, we'll go over a common task - gathering and manipulating form inputs.
@@ -956,7 +1318,7 @@ _.isBoolean(false) // true
 
 ## Objects
 
-#### this
+#### `this`
 
 * refers to the current execution context of a function
 * is used to access properties defined on objects from inside that object
@@ -969,6 +1331,73 @@ var = {
  start: function () {
    this.started = true;
  }
+```
+
+#### Cloning / copying objects
+
+##### Shallow copies 
+
+Getting code like this to work isn't too hard
+
+```js
+object = { 'a': 1 };
+
+new_object['a'] = 2;
+new_object  // { 'a': 2 }
+object      // { 'a' : 1 }
+```
+
+Here are the ways we could create `new_object` to accomplish this:
+
+```js
+new_object = Object.create(first);
+new_object = Object.assign({}, first);
+```
+
+##### Deep nesting
+
+Cloning deeply nested objects is a bit trickier.
+
+```js
+object = { 'a': 1 };
+array = [object];
+
+new_array[0]['a'] = 2
+new_array // [{ 'a': 2 }]
+array     // [{ 'a': 1 }]
+```
+
+How do we make this code work? It depends on how we create (clone or duplicated) `new_array`. We could try these two ways
+
+```
+var new_array= array.slice(0);                     
+new_array[0]['a'] = 2
+array // [{ 'a': 2 }]
+```
+
+But this doesn't work. Here's a similar method
+
+```
+var new_array = Array.prototype.slice.apply(array)
+new_array[0]['a'] = 2
+array // [{ 'a': 2 }]
+```
+
+These both copy references so they won't work. The same thing will happend with `Object.assign([], array)`. What does work is using JSON.
+
+```
+var new_array = JSON.parse(JSON.stringify(array))
+new_array[0]['a'] = 2
+array // [{ 'a': 1 }]
+```
+
+ES6
+
+The splat operator replaces apply, so we could try using that one as well. `let new_array = [...array]`. However, it too copies references.
+
+```
+new_array[0]['a'] = 2
+array // [{ 'a': 2 }]
 ```
 
 ### Factory functions
@@ -1087,7 +1516,7 @@ function Car(params) {
 
 ### Prototype
 
-All objects have a prototype chain, and a `prototype` property. When an object is created it receives an internal prototype property (although it's possible for it to be blank - `Object.create(null)`) - which references another object.
+All objects have a prototype chain, and a `prototype` property. When an object is created, it receives an internal prototype property (although it's possible for it to be blank - `Object.create(null)`) - which references another object.
 
 What does this linkage do? If a property or method is called on an object which doesn't have that property itself, it will look up the prototype chain for the first instance of that property.
 
@@ -1108,23 +1537,21 @@ foo.toString();   // [object Object]
 Object.getPrototypeOf(foo) === Object.prototype;  // true
 ```
 
-#### Constructor prototypes
+#### Methods to test prototype relationships
 
-Things work different when using constructors
+**Setup**
 
 ```js
 function Foo() {};
 var a = new Foo();
 ```
 
-* `a` object is the prototype object of the `bar` object OR
-* object `bar` is created with object `foo` as its prototype
-
-#### Methods to test prototype relationships
+* `a` object is the prototype object of the `Foo` object OR
+* object `a` is created with object `Foo` as its prototype
 
 Using a constructor changes the returned object's prototype to the constructor functions own prototype
 
-We'll use **`Object.isPrototypeOf(obj)`** - which returns the prototype of obj - to test that hypothesis
+We'll use `Object.isPrototypeOf(obj)` - which returns the prototype of object - to test that hypothesis
 
 ```js
 Object.getPrototypeOf(a) === Foo.prototype // true
@@ -1137,21 +1564,7 @@ Each object created from calling `new Foo()` will end up (somewhat arbitrarily) 
 Foo.prototype.isPrototypeOf( a ); // true
 ```
 
-in the entire `[[Prototype]]` chain of `a`, does `Foo.prototype` ever appear?
-
-#### Prototype link
-
-* `obj.isPrototypeOf(foo)` - check if obj is the prototype object of foo
-
-```js
-function Foo() {
-    // ...
-}
-
-var a = new Foo();
-
-Object.getPrototypeOf(a) === Foo.prototype; // true
-```
+This is essentially asking, in the entire `[[Prototype]]` chain of `a`, does `Foo.prototype` ever appear?
 
 #### Object.create(obj)
 
@@ -1164,7 +1577,7 @@ var foo = {};
 
 var a = Object.create(foo);
 Object.getPrototypeOf(a) === foo;   // true
-foo.isPrototypeOf(bar);             // true
+foo.isPrototypeOf(a);             // true
 ```
 
 `Object.create(..)` creates a "new" object out of thin air, and links that new object's internal `[[Prototype]]` to the object you specify (`foo` in this case).
@@ -1207,7 +1620,7 @@ var rover = new Dog();
 rover.speak();
 ```
 
-When `speak()` is called on `rover`, it looks for any `speak()` method on the instance. When it can't find one, it looks on the prototype for one. This same things is done for properties on instances (like `rover.species`). Other formats to use if you want to create multiple methods on the `Dog` prototype:
+When `speak()` is called on `rover`, it looks for any `speak()` method on the instance. When it can't find one, it looks on the prototype for one. This same things is done for properties on instances (like `rover.species`). Here are other formats to use if you want to create multiple methods on the `Dog` prototype:
 
 1) To avoid repeating `Dog.prototype`, you might choose to assign an object literal to `Dog.prototype`:
 
@@ -2531,23 +2944,28 @@ makeTimer("Cookies are done!", 1000);
 
 Function INNER has access to vars in function OUTER if function INNER is nested in OUTER. No matter how deeply nested.
 
-#### Closures & arguments
+#### Closures, callbacks & additional arguments
 
-Closures functions can take arguments
+Or, passing arguments to callback functions. Closure functions can take arguments
 
 ```js
 function makeCounterLogger(start) {
-  return function(stop) {    // Inner function also takes an argument
+  return function(stop) {    // Inner function also takes an argument here, but sometimes scoping means it doesn't need to.
     for (var i=start; i <= stop; i++) {
       console.log(i);
     }
   }
 }
+
+makeCounterLogger(5)(8)
+```
+
+You could also call the function like so:
+
+```js
 var countlog = makeCounterLogger(5);
 countlog(8);  // 5 6 7 8
 ```
-
-You could also call the function like so `makeCounterLogger(5)(8)`
 
 This behavior allows callbacks to take arguments, which can be useful when dealing with callback heavy libraries such as jQuery.
 
@@ -2888,6 +3306,13 @@ h1.style;      // CSSStyleDeclaration {alignContent: "", alignItems: "",
 h1.style.color = 'red';
 ```
 
+**Setting RGB vs. hex**
+
+```js
+container.style.backgroundColor = '#ff1212';
+container.style.backgroundColor = "rgb(255,0,0)";
+```
+
 **Removing a CSS property**
 
 To remove a CSS property*, set the property to `null` with the `style` property
@@ -3070,6 +3495,13 @@ Following this pattern, we would remove the event listener set above like this:
 
 Code that needs access to the DOM should be invoked after the `DOMContentLoaded` event is fired on document. For example, adding an event listener to one or more page elements.
 
+```js
+// https://codepen.io/dylankb/pen/PmazLp
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('.button-container').addEventListener('click', logger);
+});
+```
+
 _Like DOMContentLoaded, but not_
 
 Another, non event-driven way to execute JS after the `DOMContentLoaded` loaded event fires would be to include it in a script tag just before the closing `</body>` tag.
@@ -3165,7 +3597,7 @@ Cons
 
 #### Event loop
 
-##### Event loop bug
+##### Event loop / closure bug
 
 ```js
 function delayLog() {
@@ -3176,6 +3608,9 @@ function delayLog() {
     }
 }
 delayLog();
+11
+11
+// ... logs 8 more times
 ```
 
 JavaScript runtime has to finish executing one piece of code before it goes on to execute other code like the function you pass to `setTimeout`. A piece of code or a function that has to be executed asynchronously is stacked up in something called the event loop. So the `for` loop has to finish before your anonymous function gets called even if the timeout is 0 seconds.
@@ -3202,7 +3637,7 @@ for (var i = 1; i <= 10; i += 1) {
 
 The other solution is based on the ES6 `let` keyword. If you use `let` instead of `var` in your `for` loop, what effectively happens is that in every iteration the variable `i` is redefined for you.
 
-```
+```js
 for (let i = 1; i <= 10; i += 1) {
    setTimeout(function(){
      console.log(i);
@@ -3259,19 +3694,50 @@ $('window').on('popstate', function(e) {
 
 ### Tricks
 
-**Make a copy of something (like an object)**
+#### Make a copy of something (like an object)
 
-`var thing = thing.slice()`
+```js
+var thing = thing.slice() // ES5
+```
 
-**Make an N-1 length array**
+#### Make N length string**
 
-`new Array(n).join('x').map(function(x, i) { return i });`
+```js
+new Array(3).join('x') // ES5
+'x'.repeat(3) // ES6
+```
 
-You could map over the result and collect the index to create a 1..N array of numbers
+#### Make an N length array of letters
 
-`['x', ...].map(function(x, i) { return i });`
+First, you could append `.split()` to each of the above two string creation examples.
 
-**`toString()` to determine an object's type**
+```js
+// ES5 - If you wanted some flexibility
+Array.apply(null, new Array(2)).map(function (x) { return 'x' });
+// ES5 - more terse example
+new Array(2).fill('x');
+```
+
+#### Make an empty iterable array
+
+For example you can't map over `new Array(2)` since it is an array of 2 elements without pointers. `[undefined, undefined]` is an array of 2 elements with pointers to `undefined`.
+
+```js
+Array.apply(null, new Array(2)) // ES5  
+new Array(2).fill() // ES5
+[...new Array(2)] // ES6
+```
+
+#### Make an N-1 length array of integers
+
+You could map over the result and collect the index to create a 1..N array of numbers.
+
+```js
+new Array(3).join('x').split('').map(function(x, i) { return i }); // ES5
+'x'.repeat(3).split('').map((x, i) => i); // ES6
+```
+
+#### `toString()` to determine an object's type**
 
 ```js
 > document.toString() // "[object HTMLDocument]"
@@ -4565,11 +5031,48 @@ if (true) {
   for (var i = a;i <= b; i++) {
     console.log(i); // 2, 3, 4, ...
   }
-  console.log(i, 'hey') // 2, 3, 4, 5, 6 'hey'
+  console.log(i, 'hey') // 6 'hey'
 }
 console.log(b) // 5
 window.i       // 6
 ```
+
+**`for` and `let`**
+
+Here's a bit of unintuitive ES5 code:
+
+```js
+var funcs = [];
+
+for (var i = 0; i < 5; i++) {
+	funcs.push( function(){
+		console.log( i );
+	} );
+}
+
+funcs[3](); // 5
+```
+
+The problem is there's only one `i` in the outer scope that was closed over.
+
+If you use `for (let i = 0; i < 5; i++) {`, let declares an `i` not just for the for loop itself, but it redeclares a new `i` for each iteration of the loop. That means that closures created inside the loop iteration close over those per-iteration variables the way you'd expect.[^1]
+
+The `for` shorthand can obscure some of this, but here's an equivalent to a `let` in a `for` header.
+
+```js
+var funcs = [];
+
+for (var i = 0; i < 5; i++) {
+	let j = i;
+	funcs.push( function(){
+		console.log( j );
+	} );
+}
+
+funcs[3]();		// 3
+```
+
+We are defining a `let` within a block scope, and `let` is a block scoped variable so it correctly closes over, making the correct `i` accessible to the function.
 
 ###### `const`
 
@@ -4597,9 +5100,9 @@ let objA = { a };
 
 #### Splat operator
 
-#### Combining / Gathering
+##### Combining / Gathering
 
-##### Objects
+###### Objects
 
 1) spread operator
 
@@ -4637,17 +5140,22 @@ In ES5 `apply`
 foo.apply( null, [1,2,3] );
 ```
 
-
 #### Destructuring
 
 ##### Object properties
 
-Both arrays and object can assign values to named variables :
+Both arrays and object can assign values to named variables:
 
 ```js
-// const blop = blep.blop;
-const { blop } = blep;
-blop; // 'blop'
+const car = { model: 'Ford' };
+const { model } = car; // const model = car.model;
+model; // 'Ford'
+```
+
+```
+let tenses = ["I", "you", "me"]
+let [ firstPerson, secondPerson ] = tenses;
+firstPerson // "I"
 ```
 
 ##### Using destructuring to make method invocations clearer
@@ -4674,18 +5182,51 @@ export default {
 
 Default params / optional arguments are pretty cool, but they don't really help with making vague params like `true` make sense when you see them invoked.
 
-**Optional options object**
+**Destructured params**
 
-Options object can help
+To be a bit clearer with what arguments you were passing in ES5, you could pass in an object.
 
 ```js
-Albums.set(albums, {incrementId: true, explodeBomb: false});  
+var personInfo = { weight : 170, height: 72, max: 25 };
+calcBmi(personInfo);
+```
+
+The problem was your method signature would then be less clear, or at least a bit reptitive.
+
+```js
+function calcBmi(args) {
+  var weight = args.weight;
+  var height = args.height;
+  var max = args.max;
+  var callback = args.callback;
+  
+  // the actual function ...
+}
+```
+
+Now you can do something like this:
+
+```js
+function calcBmi({ weight: w, height, callback, max }) {
+  console.log(max); // 25
+  console.log(w); // 170
+}
+```
+
+Note that the number and order of the arguments are now flexible.
+
+###### Optional args object
+
+Options object can help provide flexible parameters to your function.
+
+```js
+Albums.set(albums, { incrementId: true, explodeBomb: false });  
 ```
 
 However, as is you need to pass in this options object every time. ES6 gives us some additional flexibility here.
 
 ```js
-set(albums,{ initializeFooToOne: true, explodeBomb: false } = {}) {...};
+set(albums, { initializeFooToOne: true, explodeBomb: false } = {}) {...};
 ```
 
 Now we can leave off the options object if we want.
@@ -4696,7 +5237,7 @@ Albums.set(albums, { {initializeFooToOne: true });
 Albums.set(albums);
 ```
 
-In the last three examples of `set` invocations the variable `initializeFooToOne` is always `true`.
+In the last three examples of `set` invocations, the variable `initializeFooToOne` is always `true`.
 
 Background on this technique and dealing with destructred params in ES6 [here](http://2ality.com/2015/01/es6-destructuring.html#simulating-named-parameters-in-javascript)
 
@@ -4711,16 +5252,108 @@ aTail(1, 2, 3); // [2, 3]
 
 #### Spread
 
-Spread does the opposite: it spreads the elements from an array to individual elements.
+**Collecting components**
+
+Spread does the opposite of rest: it spreads the elements from an array to individual elements.
+
+```js
+let num = [1]
+let largerNums = [2,3]
+[num, ...largerNums] // [1,2,3]
+```
 
 ```js
 const shiftToLast = (head, ...tail) => [...tail, head];
 shiftToLast(1, 2, 3); // [2, 3, 1]
 ```
 
+Which works as long as the second argument is iterable
+
+```js
+num = 1;
+[num, ...largerNums] // [1,2,3]
+
+let largerNum = 3;
+let nums = [1,2]
+[nums, ...largerNum] // largerNum is not iterable
+```
+
+**Cloning**
+
+This technique is also useful for cloning:
+
+```js
+moreNums = [...largerNums]
+// [2,3]
+```
+
+#### Arrow functions
+
+##### Abbreviated function syntax
+
+Example of equivalent functions
+
+```js
+do.something(function(a, b) { return a + b; } // ES5
+do.something((a,b) => { return a + b; }) // ES6 - no function
+do.something((a,b) => (a + b))           // ES6 - implicit return
+do.something((a,b) => a + b)             // ES6 - minimum parens
+```
+
+Equivalent example
+
+```js
+[5,6].map(function(num, index) { return num + index }); // ES5
+[5,6].map((num, index) => { return num + index });      // ES6 - no function 
+[5,6].map((num, index) => (num + index));               // ES6 - implicit return
+[5,6].map((num, index) => num + index);                 // ES6 - minimum parens
+```
+
+Single argument functions can be made even terser.
+
+```js
+[0,2,4].map((a) => { return ++a });  // ES6 
+[0,2,4].map(a => { return ++a });    // ES6 w/out extra parens
+[0,2,4].map((a) => (++a);            // ES6 w/out return statment
+[0,2,4].map(a => ++a)                // ES6 single arg shorthand
+```
+
+Here's a nested loop example as well.
+
+```js
+let arrays = [[1,2],[3,4]];
+// ES5
+arrays.forEach(function(nums) { 
+  nums.forEach(function(num) {
+    console.log(num); 
+  } 
+}
+
+// ES6
+arrays.forEach(nums => nums.forEach(num => console.log(num)) )
+```
+
+##### Automatic context binding
+
+This code will now work without manual binding, which is convenient.
+
+```js
+var person = { 
+  age: 29, 
+  intro: () => { console.log('I'm' + this.age) } 
+};
+
+var intro = person.intro()
+intro() // 'I'm 29'
+```
+
+**When it's not helpful**
+
+Watch out when using this with something like jQuery - you may lose jQuery `this` or the current element in an event handler.
+
 #### Classes
 
-Is this ES2017?
+Is this ES2017/ES7?
 
 ```js
 class Me {
@@ -4739,7 +5372,58 @@ const _Me = new Me('Dylan');
 console.log(_Me.sayHello()); // 'Hi Dylan'
 ```
 
+More examples
+
+```js
+class Parent {
+ constructor() {}
+ bar() { console.log('bar'); }
+ static foo() { console.log('foo') }
+}
+
+var parent = new Parent()
+parent.bar();
+Parent.foo()
+
+class Child extends Parent {
+  baz() { console.log('baz') }
+}
+
+var child = new Child();
+child.baz()
+```
+
+```
+class Bar extends Foo {
+  constructor(props) {
+    super(props)
+
+    // The rest of the implementation
+  }
+}
+
+Function Bar() {
+  Foo.apply(this);
+  
+  // the rest
+}
+```
+
 #### Module import / export
+
+Simple example.
+
+```js
+// myModule.js
+export default {
+  module: 'a module',
+}
+
+// other file
+import myModule from 'myModule';
+```
+
+A bit more complicated.
 
 ```js
 export const routeByWindowWidth = (props, nextProps, route, maxWidth) => {
@@ -4750,6 +5434,17 @@ export const routeByWindowWidth = (props, nextProps, route, maxWidth) => {
 };
 
 import { routeByWindowWidth } from './utils/routeByWindowWidth';
+```
+
+#### Generator function
+
+Generator function which returns a promise which is thenable.
+
+```js
+async function() {
+  var friends = await $.get("http://somesite.com/friends");
+  console.log(friends);
+}
 ```
 
 ### Linting
@@ -4786,3 +5481,5 @@ P.S
 
 Make sure your tests are specified in the env option:
 https://github.com/tlvince/eslint-plugin-jasmine/issues/56
+
+[^1]: https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20%26%20beyond/ch2.md#let--for

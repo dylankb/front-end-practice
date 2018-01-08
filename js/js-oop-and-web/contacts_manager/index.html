@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Dylan's Contact Manager</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="assets/main.css">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+    <script src="javascripts/contacts.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Contact Manager</h1>
+      <h3 class="title-caption">Using jQuery, Localstorage, Handlebars, and CSS</h3>
+    </header>
+    <main>
+      <section class="toolbar well">
+        <ul class="button-container-half">
+          <li class="button button-large new-contact">Add Contact</li>
+          <li class="button button-large new-tag">Add Tag</li>
+        </ul>
+        <form class="search">
+          <label for="search-field">Search:</label>
+          <input type="text" id="search-field" placeholder="Contact name...">
+        </form>
+      </section>
+      <div class="sections">
+        <section class="results">
+          <ul>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <script id="tagForm" type="text/x-handlebars">
+      <form class="form tag-form">
+        <h2 class="form-title">Create Contact</h2>
+        <dl>
+          <dt>
+            <label for="tag-name">Tag:</label>
+          </dt><!--
+          --><dd>
+            <input type="text" name="tagName" id="tag-name" value={{tagName}}>
+          </dd>
+        </dl>
+        <ul class="button-container-full button-container-form">
+          <input type="submit" class="button button-large form-button">
+          <li class="button button-large form-button cancel-button">Cancel</li>
+        </ul>
+    </script>
+
+    <script id="contactFormTags" type="text/x-handlebars">
+      {{#each tags}}
+        {{> formTag}}
+      {{/each}}
+    </script>
+
+    <script id="formTag" type="text/x-handlebars" data-type="partial">
+      <dt>
+        <label for="tag-{{id}}">{{tagName}}</label>
+      </dt><!--
+      --><dd>
+        <input type="checkbox" id="tag-{{id}}" name="tagIds" value={{id}}>
+      </dd>
+    </script>
+
+    <script id="contactDisplayTags" type="text/x-handlebars">
+      <dt class="tag-list">Tags</dt>
+      {{#each contactTags}}
+        {{> contactTag}}
+      {{/each}}
+    </script>
+
+    <script id="contactTag" type="text/x-handlebars" data-type="partial">
+      <dd class="tag" data-tag-id={{id}}>
+        <a href="#">{{tagName}}</a>
+      </dd>
+    </script>
+
+    <script id="contactsTemplate" type="text/x-handlebars">
+      {{#each contacts}}
+        {{> contact}}
+      {{/each}}
+    </script>
+
+    <script id="contact" data-type="partial" type="text/x-handlebars">
+      <li class="contact" data-id={{id}}>
+        <article>
+          <h2>{{name}}</h2>
+          <dl class="info">
+            <dt>Phone Number</dt>
+            <dd>{{phone}}</dd>
+            <dt>Email</dt>
+            <dd>{{email}}</dd>
+          </dl>
+          <ul>
+            <li class="button button-small edit-contact">Edit</li>
+            <li class="button button-small delete-contact">Delete</li>
+          </ul>
+        </article>
+      </li>
+    </script>
+
+    <script id="contactForm" data-type="partial" type="text/x-handlebars">
+      <form class="form contact-form" data-contact-id={{id}}>
+        <h2 class="form-title">Create Contact</h2>
+        <dl>
+          <dt>
+            <label for="name">Full name:</label>
+          </dt><!--
+          --><dd>
+            <input type="text" name="name" id="name" value="{{name}}">
+          </dd>
+        </dl>
+        <dl>
+          <dt>
+            <label for="email">Email address:</label>
+          </dt><!--
+          --><dd>
+            <input type="text" name="email" id="email" value={{email}}>
+          </dd>
+        </dl>
+        <dl>
+          <dt>
+            <label for="phone">Phone number:</label>
+          </dt><!--
+          --><dd>
+            <input type="text" name="phone" id="phone" value={{phone}}>
+          </dd>
+        </dl>
+        <dl>
+          <dt>
+            <label for="tags">Tags: </label>
+          </dt><!--
+          --><dd class="tagSelectOptions">
+          </dd>
+        </dl>
+        <ul class="button-container-full button-container-form">
+          <input type="submit" class="button button-large form-button">
+          <li class="button button-large form-button cancel-button">Cancel</li>
+        </ul>
+      </form>
+    </script>
+
+    <script id="resultsMessage" data-type="partial" type="text/x-handlebars">
+      <section class="well search-results">
+        <div class="close">X</div>
+        <p class="search-message">
+          <span class="message-text"></span>
+          <span class="search-text"></span>
+        </p>
+      </section>
+    </script>
+  </body>
+</html>
