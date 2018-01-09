@@ -3773,6 +3773,7 @@ new Array(3).join('x').split('').map(function(x, i) { return i }); // ES5
 * Enter `debugger;` into the script and debug from console
 * Enter `console.log(someVariable)` and debug from console
 * Nested breakpoints: Create a breakpoint/enter a debugger and disable breakpoints (tab icon in devtools) until, for example, the sixth iteration. Then re-enable them. Beats clicking continue X number of times.
+* Node debugging - set `debugger` and run `node debug script.js`
 
 ### Preventing errors
 
